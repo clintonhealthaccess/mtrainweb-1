@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>mTrain Administration | Users</title>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <!-- Native css -->
+    <link rel="stylesheet" href="css/app.css"/>
+  </head>
+  <body>
+
+<div class="container-fluid">
+         
+
+ <div class="row header-bg">
+         <div class="col-md-10 padd10">
+             <img src="img/adm-logo.png" class="img-responsive" />
+         </div>
+   
+         <div class="col-md-1 col-md-offset-1  aligncenter dropdown margintop20">
+             <a href="" id="adminDropdown" role="button" data-toggle="dropdown" data-target="#" class="linkcolor smallerfont">Admin <span class="caret"></span></a>
+             <ul class="dropdown-menu pull-right nomargin" role="menu" aria-labelledby="adminDropdown">
+                 <li role="menuitem"><a href="index.php">Sign Out</a></li>
+             </ul>
+         </div>
+ </div><!-- .row -->
+  <div class="row header-bg-m-br">
+    
+        <div class="col-md-12 padd15">
+            
+                 <div class="col-md-1">
+                 <a href="dashboard.html">Dashboard</a>
+                 </div>
+               
+                 <div class="col-md-1 alignright">
+                     <a href="" class="">&nbsp;Topics</a>
+                </div>
+                 <div class="col-md-2 aligncenter">
+                 <a href="" class="">Assessment</a>
+                </div>
+                 <div class="col-md-1">
+                 <a href="" class="">Job Aids</a>
+                </div>
+                 <div class="col-md-2 aligncenter">
+                 <a href="" class="">Standing Orders</a>
+                </div>
+                 
+                <div class="col-md-1 alignright dropdown">
+                 <a href="" id="userDropdown" role="button" data-toggle="dropdown" data-target="#" class="activewithdropdown">Users <span class="caret"></span></a>
+                 <ul class="dropdown-menu smallerfont" role="menu" aria-labelledby="userDropdown">
+                    <li role="menuitem"><a href="users-health-workers-information.html" >Health Workers</a></li>
+                    <li role="menuitem"> <a href="users-add-new.html" >Add New Health Care Worker</a></li>
+                    <li role="menuitem"><a href="users-batch-registration.html">Batch Registration</a></li>
+                    <li role="menuitem" class="dropdown-submenu">
+                            <a tabindex="-1" href="#">Administrators</a>
+                              <ul class="dropdown-menu">
+                                  <li><a href="users-admin.html">Users</a></li>
+                                  <li><a href="users-roles-and-permission.html">Roles & Permissions</a></li>
+                              </ul>
+                    </li>
+                 </ul>
+                </div>
+            
+                <div class="col-md-2 aligncenter dropdown">
+                <a href="" id="settingDropdown" role="button" data-toggle="dropdown" data-target="#">Settings <span class="caret"></span></a>
+                 <ul class="dropdown-menu smallerfont pull-right" role="menu" aria-labelledby="settingDropdown">
+                    <li role="menuitem"><a href="settings-cadre.html">Cadre</a></li>
+                    <li role="menuitem"><a href="settings-facility.html">Facility</a></li>
+                    
+                  </ul>
+                </div>
+                <div class="col-md-1 dropdown aligncenter">
+                 <a href="" id="reportDropdown" role="button" data-toggle="dropdown" data-target="#">Reports <span class="caret"></span></a>
+                 <ul class="dropdown-menu pull-right smallerfont" role="menu" aria-labelledby="reportDropdown">
+                    <li role="menuitem"><a href="reports-health-care-workers.html">Health Workers</a></li>
+                    <li role="menuitem"> <a href="reports-training-metrics.html" >Training Metrics</a></li>
+                    <li role="menuitem"><a href="reports-assessment-metrics.html">Assessment Metrics</a></li>
+                    <li role="menuitem"><a href="reports-job-aids-and-standing-orders-views.html">Job Aids & Standing Orders Views</a></li>
+                 </ul>
+                </div>
+         </div>
+ </div><!-- .row -->
+<div class="row margintop20 marginbottom15">
+    <div class="col-md-4 marginleft55">
+        <h3 class="arialtitlebold">Users</h3>
+    </div>
+</div><!-- .row -->
+<div class="row marginleft40 marginbottom20">
+  <div class="col-md-11">
+      <header class="containerheader">
+     <div class="">
+             <div class=" floatleft"><h6 >Add New Health Worker</h6></div>
+             <div class=" floatright margintop3 marginright25"><button type="button"  class="btn btn-primary width70px marginleft10">Save</button><button type="button"  class="btn btn-primary marginleft10" onClick="parent.location='users-health-workers-information.html'">Cancel</button></div>
+     </div>
+      </header>
+      <section class="container">
+          <article>
+              <div class="row noborder marginleft10 margintop20">
+                <div class="col-md-12 whitebg">
+                
+           <div class="row noborder">
+                <div class="col-md-6">                   
+<form class="form-horizontal" >
+    <fieldset class="bluetextcolor smallfont">
+        <legend class="normalfont boldtext">Personal Information</legend>
+  <div class="form-group">
+    <label for="firstname" class="col-sm-3 control-label">First&nbsp;Name: </label>
+    <div class="col-sm-8">
+      <input type="text" class="form-control" id="firstname" placeholder="Enter First Name"/>
+    </div>
+  </div>
+  <div class="form-group">
+      <label for="middlename" class="col-sm-3 control-label">Middle&nbsp;Name:</label>
+    <div class="col-sm-8">
+      <input type="text" class="form-control" id="middlename" placeholder="Enter Middle Name"/>
+    </div>
+  </div>
+  <div class="form-group">
+      <label for="lastname" class="col-sm-3 control-label">Last&nbsp;Name:</label>
+    <div class="col-sm-8">
+      <input type="text" class="form-control" id="lastname" placeholder="Enter Last Name"/>
+    </div>
+  </div>
+  <div class="form-group">
+      <label for="cadre" class="col-sm-3 control-label">Cadre:</label>
+    <div class="col-sm-8">
+         <select class="form-control" id="cadre">
+           <option>Select Cadre</option>
+           <option>CHEW</option>
+           <option>Midwife</option>
+           <option>Nurse</option>
+         </select>              
+    </div>
+  </div>      
+<div class="form-group">
+      <label for="lastname" class="col-sm-3 control-label">Email:</label>
+    <div class="col-sm-8">
+      <input type="email" class="form-control" id="email" placeholder="Enter Email Address"/>
+    </div>
+</div>
+<div class="form-group">
+      <label for="phone" class="col-sm-3 control-label">Phone:</label>
+    <div class="col-sm-8">
+      <input type="text" class="form-control" id="phone" placeholder="Enter Phone Number"/>
+    </div>
+</div>        
+  <div class="form-group">
+      <label for="male" class="col-sm-3 control-label">Gender:</label>
+      <div class="col-sm-4">
+  <label class="radio-inline">
+   <input type="radio" name="inlineRadioOptions" id="male"  value="option1"/><span class="top">Male</span> 
+    </label>
+     <label class="radio-inline">
+     <input type="radio" name="inlineRadioOptions" id="female" value="option2"/><span class="top">Female</span>
+     </label>
+   </div>
+  </div>
+    </fieldset>
+</form>
+                  </div>
+               <div class="col-md-6">                   
+<form class="form-horizontal" >
+    <fieldset class="bluetextcolor smallfont">
+        <legend class="normalfont boldtext">Location</legend>
+  
+  <div class="form-group">
+      <label for="state" class="col-sm-4 control-label">State:</label>
+    <div class="col-sm-7">
+                    <select class="form-control" id="state">
+                      <option>State</option>
+                      <option>Abuja</option>
+                      <option>Cross River</option>
+                      <option>Kaduna</option>
+                      <option>Lagos</option>
+                      <option>Nasarawa</option>
+                    </select>              
+    </div>
+  </div>      
+  <div class="form-group">
+      <label for="lga" class="col-sm-4 control-label">Local&nbsp;Government&nbsp;Area:</label>
+    <div class="col-sm-7">
+                    <select class="form-control" id="lga">
+                      <option>LGA</option>
+                      <option>Somolu Local Government</option>
+                      <option>Garki Local Government</option>
+                      <option>Ikeja Local Government</option>
+                      <option>Tinapa Local Government</option>
+                      <option>Lafia Local Government</option>
+                    </select>              
+    </div>
+  </div>
+   <div class="form-group">
+      <label for="facility" class="col-sm-4 control-label">Facility:</label>
+    <div class="col-sm-7">
+                    <select class="form-control" id="facility">
+                      <option>Facility</option>
+                      <option>General Hospital Ikeja</option>
+                      <option>Secretariat General Hospital</option>
+                      <option>(LASUTH)Lagos State University Teaching Hospital</option>
+                      <option>(LUTH)Lagos University Teaching Hospital </option>
+                      <option>Triple Click Orthopedic Hospital</option>
+                    </select>              
+    </div>
+  </div>     
+  
+    </fieldset>
+</form>
+                  </div>
+             </div><!-- .row -->   
+                </div>
+             </div><!-- .row -->
+          </article>
+      </section>
+  </div>
+    
+</div>
+    <div class="row footer-bg noborder">
+         <div class="col-md-7 col-md-offset-5 top15 whitecolor">
+             Copyright mTrain 2014
+         </div>
+    </div>
+ </div><!-- .container -->
+ 
+ 
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>

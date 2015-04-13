@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>mTrain Administration | Users</title>
+   
+    <!-- Native css -->
+    <link rel="stylesheet" href="css/app.css"/>
+<script src="js/bootstrap.min.js"></script>
+ <!-- Bootstrap -->
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+  </head>
+  <body>
+
+<div class="container-fluid">
+         
+ <div class="row header-bg">
+         <div class="col-md-10 padd10">
+             <img src="img/adm-logo.png" class="img-responsive" />
+         </div>
+   
+         <div class="col-md-1 col-md-offset-1  aligncenter dropdown margintop20">
+             <a href="" id="adminDropdown" role="button" data-toggle="dropdown" data-target="#" class="linkcolor smallerfont">Admin <span class="caret"></span></a>
+             <ul class="dropdown-menu pull-right nomargin" role="menu" aria-labelledby="adminDropdown">
+                 <li role="menuitem"><a href="index.php">Sign Out</a></li>
+             </ul>
+         </div>
+ </div><!-- .row -->
+
+  <div class="row header-bg-m-br">
+    
+        <div class="col-md-12 padd15">
+            
+                 <div class="col-md-1">
+                 <a href="dashboard.html">Dashboard</a>
+                 </div>
+               
+                 <div class="col-md-1 alignright">
+                     <a href="" class="">&nbsp;Topics</a>
+                </div>
+                 <div class="col-md-2 aligncenter">
+                 <a href="" class="">Assessment</a>
+                </div>
+                 <div class="col-md-1">
+                 <a href="" class="">Job Aids</a>
+                </div>
+                 <div class="col-md-2 aligncenter">
+                 <a href="" class="">Standing Orders</a>
+                </div>
+                 
+                <div class="col-md-1 alignright dropdown">
+                 <a href="" id="userDropdown" role="button" data-toggle="dropdown" data-target="#">Users <span class="caret"></span></a>
+                 <ul class="dropdown-menu smallerfont" role="menu" aria-labelledby="userDropdown">
+                    <li role="menuitem"><a href="users-health-workers-information.html" >Health Workers</a></li>
+                    <li role="menuitem"> <a href="users-add-new.html" >Add New Health Care Worker</a></li>
+                    <li role="menuitem"><a href="users-batch-registration.html">Batch Registration</a></li>
+                    <li role="menuitem" class="dropdown-submenu">
+                            <a tabindex="-1" href="#">Administrators</a>
+                              <ul class="dropdown-menu">
+                                  <li><a href="users-admin.html">Users</a></li>
+                                  <li><a href="users-roles-and-permission.html">Roles & Permissions</a></li>
+                              </ul>
+                    </li>
+                 </ul>
+                </div>
+            
+                <div class="col-md-2 aligncenter dropdown">
+                <a href="" id="settingDropdown" role="button" data-toggle="dropdown" data-target="#">Settings <span class="caret"></span></a>
+                 <ul class="dropdown-menu smallerfont pull-right" role="menu" aria-labelledby="settingDropdown">
+                    <li role="menuitem"><a href="settings-cadre.html">Cadre</a></li>
+                    <li role="menuitem"><a href="settings-facility.html">Facility</a></li>
+                    
+                  </ul>
+                </div>
+                <div class="col-md-1 dropdown aligncenter">
+                 <a href="" id="reportDropdown" role="button" data-toggle="dropdown" data-target="#"  class="activewithdropdown">Reports <span class="caret"></span></a>
+                 <ul class="dropdown-menu pull-right smallerfont" role="menu" aria-labelledby="reportDropdown">
+                    <li role="menuitem"><a href="reports-health-care-workers.html">Health Workers</a></li>
+                    <li role="menuitem"> <a href="reports-training-metrics.html" >Training Metrics</a></li>
+                    <li role="menuitem"><a href="reports-assessment-metrics.html">Assessment Metrics</a></li>
+                    <li role="menuitem"><a href="reports-job-aids-and-standing-orders-views.html">Job Aids & Standing Orders Views</a></li>
+                 </ul>
+                </div>
+         </div>
+ </div><!-- .row -->
+ 
+ 
+<div class="row margintop20 marginbottom15">
+    <div class="col-md-2 marginleft5">
+        <h3 class="arialtitlebold">Reports</h3>
+    </div>
+    <div class="nopadding nomargin floatright marginright15">
+        <button type="button"  class="btn btn-primary   margintop20 width70px" onClick="parent.location='reports-assessment-metrics.html'">View All</button><button type="button"  class="btn btn-primary  floatright marginleft10 margintop20 width70px">Print</button>
+    </div>
+    
+</div><!-- .row -->
+
+
+<div class="row marginbottom20">
+  <div class="col-md-12">
+      <section class="container">
+          <article>
+              <div class="row noborder">
+                  <div class="col-md-12">
+                      <h3 class="bluetextcolor aligncenter">Assessment Metrics - Comparison Report</h3>
+                  </div>
+              </div>
+              <div class="row noborder">
+                  <div class="col-md-3 col-md-offset-2 nopadding">
+                      <h3 class="bordercolor aligncenter smallerfont padd10 boldtext">State-1/LGA-1/Facility-1</h3>
+                  </div>
+                  <div class="col-md-3 marginleft25 nopadding">
+                      <h3 class="bordercolor aligncenter smallerfont padd10 boldtext">State-2/LGA-2/Facility-2</h3>
+                  </div>
+                  <div class="col-md-3 marginleft25 nopadding">
+                      <h3 class="bordercolor aligncenter smallerfont padd10 boldtext">State-3/LGA-3/Facility-3</h3>
+                  </div>
+              </div>
+              <table class="smallerfont tableborder marginbottom15" border="1">
+                      <tbody> 
+                      <tr>
+                          <th></th><th>Nurses</th><th>Midwives</th><th>CHEWs</th><th>Total</th><th>Nurses</th><th>Midwives</th><th>CHEWs</th><th>Total</th><th>Nurses</th><th>Midwives</th><th>CHEWs</th><th>Total</th>
+                      </tr>
+                      <tr>
+                          <th class="alignleft">Number of Health Care<br/>Workers Taking Tests</th><td>100</td><td>250</td><td>100</td><td>450</td><td>100</td><td>250</td><td>100</td><td>450</td><td>100</td><td>250</td><td>100</td><td>450</td>
+                      </tr>
+                      <tr>
+                          <th class="alignleft">Number of Tests Taken</th><td>100</td><td>250</td><td>100</td><td>450</td><td>100</td><td>250</td><td>100</td><td>450</td><td>100</td><td>250</td><td>100</td><td>450</td>
+                      </tr>
+                      <tr>
+                          <th class="alignleft">High Performing Score<br/>Tests(>80%)</th><td>100 of 500</td><td>250 of 500</td><td>100 of 500</td><td>450 of 500</td><td>100 of 500</td><td>250 of 500</td><td>100 of 500</td><td>450 of 500</td><td>100 of 500</td><td>250 of 500</td><td>100 of 500</td><td>450 of 500</td>
+                      </tr>
+                      <tr>
+                          <th class="alignleft">Average Score<br/>Tests(61% to 80%)</th><td>100</td><td>250</td><td>100</td><td>450</td><td>100</td><td>250</td><td>100</td><td>450</td><td>100</td><td>250</td><td>100</td><td>450</td>
+                      </tr>
+                      <tr>
+                          <th class="alignleft">Underperforming Score<br/>Tests(40% to 60%)</th><td>100</td><td>250</td><td>100</td><td>450</td><td>100</td><td>250</td><td>100</td><td>450</td><td>100</td><td>250</td><td>100</td><td>450</td>
+                      </tr>
+                      <tr>
+                          <th class="alignleft">Failed Score Tests(<40%)</th><td>100</td><td>250</td><td>100</td><td>450</td><td>100</td><td>250</td><td>100</td><td>450</td><td>100</td><td>250</td><td>100</td><td>450</td>
+                      </tr>
+                      </tbody>
+                  </table>
+          </article>
+      </section>
+  </div>
+    
+</div>
+
+
+    <div class="row footer-bg noborder">
+         <div class="col-md-7 col-md-offset-5 top15 whitecolor">
+             Copyright mTrain 2014
+         </div>
+    </div>
+ </div><!-- .container -->
+  </body>
+</html>

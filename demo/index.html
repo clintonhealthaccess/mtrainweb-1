@@ -1,0 +1,79 @@
+<html>
+	<head>
+		<!-- Include one of jTable styles. -->
+		
+		<link href="jtable/jquery-ui.min.css" rel="stylesheet" type="text/css" />
+		<link href="jtable/themes/metro/blue/jtable.min.css" rel="stylesheet" type="text/css" />
+ 	
+ 		
+ 		<script src="jtable/jquery-1.11.1.min.js" type="text/javascript"></script>
+ 		<script src="jtable/jquery-ui.min.js" type="text/javascript"></script>
+
+		<!-- Include jTable script file. -->
+		<script src="jtable/jquery.jtable.js" type="text/javascript"></script>
+
+
+		<script type="text/javascript">
+    $(document).ready(function () {
+    	// $.ajaxSetup ({ cache: false });
+        $('#PersonTableContainer').jtable({
+            title: 'Table of people',
+            paging: true,
+            pageSize: 4,
+            cache: false,
+            sorting: true,
+            defaultSorting: 'FacilityName ASC',
+            actions: {
+            	//listAction: 'people.php?action=list',
+                listAction: 'PersonActionsPagedSorted.php?action=list',
+              	createAction: 'PersonActionsPagedSorted.php?action=create',
+              	updateAction: 'PersonActionsPagedSorted.php?action=update',
+              	deleteAction: 'PersonActionsPagedSorted.php?action=delete'
+            },
+            fields: {
+                PersonId: {
+                key: true,
+                create: false,
+                edit: false,
+                list: false
+              },
+              FacilityName: {
+                title: 'Facility Name',
+                width: '20%'
+                                                    //inputClass: 'validate[required]'
+              },
+              FacilityAddress: {
+                title: 'Facility Address',
+                width: '25%',
+                                                    type: 'textarea'
+                                                    //inputClass: 'validate[required]'
+              },
+              LocalGovernmentArea: {
+                title: 'Local Government Area',
+                width: '20%',
+                // options: function(){
+                // 	return ['-- Select Local Government Area --','Gbagada', 'Shomolu', 'Kosofe' ]
+                // }
+                options: function(data){ 
+                	if(data.source == 'list'){
+                		return 'PersonActionsPagedSorted.php?action=lgalist';
+                	}
+                }
+              },
+              State: {
+                title: 'State',
+                width: '20%',
+                options: ['-- Select State --','Abuja', 'Abia', 'Akwa Ibom', 'Ekiti', 'Edo', 'Ondo', 'Lagos', 'Nasarawa' ]
+              }
+            }
+        });
+        $('#PersonTableContainer').jtable('load');
+    });
+	
+</script>
+	</head>
+
+	<body>
+			<div id="PersonTableContainer"></div>
+	</body>
+</html>

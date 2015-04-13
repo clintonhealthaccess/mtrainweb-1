@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>mTrain Administration | Users</title>
+   
+    <!-- Native css -->
+    <link rel="stylesheet" href="css/app.css"/>
+<script src="js/bootstrap.min.js"></script>
+ <!-- Bootstrap -->
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+  </head>
+  <body>
+
+<div class="container-fluid">
+         
+ <div class="row header-bg">
+         <div class="col-md-10 padd10">
+             <img src="img/adm-logo.png" class="img-responsive" />
+         </div>
+   
+         <div class="col-md-1 col-md-offset-1  aligncenter dropdown margintop20">
+             <a href="" id="adminDropdown" role="button" data-toggle="dropdown" data-target="#" class="linkcolor smallerfont">Admin <span class="caret"></span></a>
+             <ul class="dropdown-menu pull-right nomargin" role="menu" aria-labelledby="adminDropdown">
+                 <li role="menuitem"><a href="index.php">Sign Out</a></li>
+             </ul>
+         </div>
+ </div><!-- .row -->
+  <div class="row header-bg-m-br">
+    
+        <div class="col-md-12 padd15">
+            
+                 <div class="col-md-1 nooutline">
+                 <a href="dashboard.html" >Dashboard</a>
+                 </div>
+               
+                 <div class="col-md-1 alignright">
+                     <a href="" class="">&nbsp;Topics</a>
+                </div>
+                 <div class="col-md-2 aligncenter">
+                 <a href="" class="">Assessment</a>
+                </div>
+                 <div class="col-md-1">
+                 <a href="" class="">Job Aids</a>
+                </div>
+                 <div class="col-md-2 aligncenter">
+                 <a href="" class="">Standing Orders</a>
+                </div>
+                 
+                <div class="col-md-1 alignright dropdown">
+                 <a href="" id="userDropdown" role="button" data-toggle="dropdown" data-target="#">Users <span class="caret"></span></a>
+                 <ul class="dropdown-menu pull-left smallerfont" role="menu" aria-labelledby="userDropdown">
+                    <li role="menuitem"><a href="users-health-workers-information.html" >Health Workers</a></li>
+                    <li role="menuitem"> <a href="users-add-new.html" >Add New Health Care Worker</a></li>
+                    <li role="menuitem"><a href="users-batch-registration.html">Batch Registration</a></li>
+                    <li role="menuitem" class="dropdown-submenu">
+                            <a tabindex="-1" href="#">Administrators</a>
+                              <ul class="dropdown-menu">
+                                  <li><a href="users-admin.html">Users</a></li>
+                                  <li><a href="users-roles-and-permission.html">Roles & Permissions</a></li>
+                              </ul>
+                    </li>
+                 </ul>
+                </div>
+            
+                <div class="col-md-2 aligncenter dropdown">
+                <a href="" id="settingDropdown" role="button" data-toggle="dropdown" data-target="#">Settings <span class="caret"></span></a>
+                 <ul class="dropdown-menu smallerfont pull-right" role="menu" aria-labelledby="settingDropdown">
+                    <li role="menuitem"><a href="settings-cadre.html">Cadre</a></li>
+                    <li role="menuitem"><a href="settings-facility.html">Facility</a></li>
+                    
+                  </ul>
+                </div>
+                <div class="col-md-1 dropdown aligncenter">
+                 <a href="" id="reportDropdown" role="button" data-toggle="dropdown" data-target="#" class="activewithdropdown">Reports <span class="caret"></span></a>
+                 <ul class="dropdown-menu pull-right smallerfont" role="menu" aria-labelledby="reportDropdown">
+                    <li role="menuitem"><a href="reports-health-care-workers.html">Health Workers</a></li>
+                    <li role="menuitem"> <a href="reports-training-metrics.html" >Training Metrics</a></li>
+                    <li role="menuitem"><a href="reports-assessment-metrics.html">Assessment Metrics</a></li>
+                    <li role="menuitem"><a href="reports-job-aids-and-standing-orders-views.html">Job Aids & Standing Orders Views</a></li>
+                 </ul>
+                </div>
+         </div>
+ </div><!-- .row -->
+ 
+<div class="row margintop20 marginbottom15">
+    <div class="col-md-4 marginleft55">
+        <h3 class="arialtitlebold">Reports</h3>
+    </div>
+    <div class="col-md-3 col-md-offset-3">
+        <button type="button"  class="btn btn-primary  floatright margintop20 width70px">Print</button>
+    </div>
+    
+</div><!-- .row -->
+<div class="row marginleft40 marginbottom20">
+  <div class="col-md-11">
+      <section class="container">
+          <article>
+              <div class="row noborder marginbottom15">
+                  <div class="col-md-12">
+                      <h3 class="bluetextcolor aligncenter">Health Care Workers</h3>
+                  </div>
+              </div>
+              <div class="row noborder marginleft15 marginbottom15">
+                  <div class="col-md-2 nopadding marginright5">
+                    <select class="form-control">
+                      <option>State</option>
+                      <option>Abuja</option>
+                      <option>Cross River</option>
+                      <option>Kaduna</option>
+                      <option>Lagos</option>
+                      <option>Nasarawa</option>
+                    </select>
+                    </div>
+                    <div class="col-md-2 nopadding marginright5">
+                    <select class="form-control">
+                      <option>LGA</option>
+                      <option>Somolu Local Government</option>
+                      <option>Garki Local Government</option>
+                      <option>Ikeja Local Government</option>
+                      <option>Tinapa Local Government</option>
+                      <option>Lafia Local Government</option>
+                    </select>
+                    </div>
+                    <div class="col-md-2  nopadding marginright5">
+                    <select class="form-control">
+                      <option>Facility</option>
+                      <option>General Hospital Ikeja</option>
+                      <option>Secretariat General Hospital</option>
+                      <option>(LASUTH)Lagos State University Teaching Hospital</option>
+                      <option>(LUTH)Lagos University Teaching Hospital </option>
+                      <option>Triple Click Orthopedic Hospital</option>
+                    </select>
+                    </div>
+                   <div class="col-md-2  nopadding marginright5">
+                    <select class="form-control">
+                      <option>Cadre</option>
+                      <option>CHEW</option>
+                      <option>Midwife</option>
+                      <option>Nurse</option>
+                    </select>
+                    </div>
+                  <div class="col-md-1 nopadding">
+                     <button type="button" class="btn btn-primary">Filter</button>
+                 </div>
+                 </div>
+                 
+              <table class="smallerfont tableborder" >
+                      <tbody>
+                      <tr>
+                          <th>Health Worker Name</th><th>Cadre</th><th>Facility</th><th>Local Government Area</th><th>State</th><th>Gender</th><th>Role</th>
+                      </tr>
+                      <tr>
+                          <td class="aligncenter"><a href="#" class="alinks">Alexandra Smith Johnson</a></td><td>Nurse</td><td>Secretariat General Hospital</td><td>Ikeja</td><td>Lagos</td><td>Female</td><td>Health Worker</td>
+                      </tr>
+                      <tr>
+                          <td class="aligncenter"><a href="#" class="alinks">Alexandra Smith Johnson</a></td><td>CHEW</td><td>Secretariat General Hospital</td><td>Ikeja</td><td>Lagos</td><td>Female</td><td>Facility Admin</td>
+                      </tr>
+                      <tr>
+                          <td class="aligncenter"><a href="#" class="alinks">Alexandra Smith Johnson</a></td><td>Midwife</td><td>Secretariat General Hospital</td><td>Ikeja</td><td>Lagos</td><td>Female</td><td>Health Worker</td>
+                      </tr>
+                      <tr>
+                          <td class="aligncenter"><a href="#" class="alinks">Alexandra Smith Johnson</a></td><td>Nurse</td><td>Secretariat General Hospital</td><td>Ikeja</td><td>Lagos</td><td>Female</td><td>Facility Admin</td>
+                      </tr>
+                      <tr>
+                          <td class="aligncenter"><a href="#" class="alinks">Alexandra Smith Johnson</a></td><td>Midwife</td><td>Secretariat General Hospital</td><td>Ikeja</td><td>Lagos</td><td>Female</td><td>Health Worker</td>
+                      </tr>
+                      <tr>
+                          <td class="aligncenter"><a href="#" class="alinks">Alexandra Smith Johnson</a></td><td>Nurse</td><td>Secretariat General Hospital</td><td>Ikeja</td><td>Lagos</td><td>Male</td><td>Facility Admin</td>
+                      </tr>
+                      <tr>
+                          <td class="aligncenter"><a href="#" class="alinks">Alexandra Smith Johnson</a></td><td>CHEW</td><td>Secretariat General Hospital</td><td>Ikeja</td><td>Lagos</td><td>Female</td><td>Health Worker</td>
+                      </tr>
+                      <tr>
+                          <td class="aligncenter"><a href="#" class="alinks">Alexandra Smith Johnson</a></td><td>Midwife</td><td>Secretariat General Hospital</td><td>Ikeja</td><td>Lagos</td><td>Male</td><td>Facility Admin</td>
+                      </tr>
+                      </tbody>
+                  </table>
+          </article>
+      </section>
+  </div>
+    
+</div>
+
+
+
+
+    <div class="row footer-bg noborder">
+         <div class="col-md-7 col-md-offset-5 top15 whitecolor">
+             Copyright mTrain 2014
+         </div>
+    </div>
+ </div><!-- .container -->
+ 
+ <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>

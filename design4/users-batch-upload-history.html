@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>mTrain Administration | Users</title>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <!-- Native css -->
+    <link rel="stylesheet" href="css/app.css"/>
+  </head>
+  <body>
+<div class="navbar navbar-default  noborder backgroundblue" role="navigation"> 
+    <div class="container header-bg noborder"> 
+    <div class="navbar-header ">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+    </button>
+         <a href="dashboard.html"   class="navbar-brand">
+                     <img src="img/adm-logo.png" class="img-responsive" />
+         </a>
+    </div>
+        <div class="navbar-collapse collapse admin-signout">
+            <ul class="nav navbar-nav navbar-right"> 
+                <li class="dropdown smallerfont bluehoverbackground">
+                    <a href="#" id="adminDropdown" class="dropdown-toggle" data-toggle="dropdown">Admin <b><span class="caret"></span></b></a>
+                    <ul class="dropdown-menu  nomargin  nopadding" role="menu" aria-labelledby="adminDropdown">
+                         <li role="menuitem" class="dropdown-header"><a href="index.php">Sign Out</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+        <div class="container header-bg-m-br noborder"> 
+    
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-left ">
+                <li class="marginright25"><a href="dashboard.html" >Dashboard</a></li>
+                <li class="marginright25"><a href="#" >Topics</a></li>
+                <li class="marginright25"><a href="#" >Assessment</a></li>
+                <li class="marginright25"><a href="#" >Job Aids</a></li>
+                <li class="marginright25"><a href="#" >Standing Orders</a></li>
+                <li class="dropdown marginright25">
+                    <a href="#" id="usersDropdown" class="dropdown-toggle  active" data-toggle="dropdown">Users <b><span class="caret"></span></b></a>
+                    <ul class="dropdown-menu  nomargin" role="menu" aria-labelledby="usersDropdown">
+                         <li role="menuitem"><a href="users-batch-registration.html">Batch Registration</a></li>
+                         <li role="menuitem" class="dropdown-submenu">
+                                <a tabindex="-1" href="#">Administrators</a>
+                                  <ul class="dropdown-menu">
+                                      <li><a href="users-admin.html">Users</a></li>
+                                      <li><a href="users-roles-and-permission.html">Roles & Permissions</a></li>
+                                  </ul>
+                         </li>
+                    </ul>
+                </li>
+                <li class="dropdown marginright25">
+                    <a href="#" id="settingsDropdown" class="dropdown-toggle" data-toggle="dropdown" >Settings <b><span class="caret"></span></b></a>
+                    <ul class="dropdown-menu  nomargin" role="menu" aria-labelledby="settingsDropdown">
+                         <li role="menuitem"><a href="settings-cadre.html">Cadre</a></li>
+                         <li role="menuitem"><a href="settings-facility.html">Facility</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" id="reportsDropdown" class="dropdown-toggle " data-toggle="dropdown">Reports <b><span class="caret"></span></b></a>
+                    <ul class="dropdown-menu  nomargin" role="menu" aria-labelledby="reportsDropdown">
+                         <li role="menuitem"><a href="reports-health-care-workers.html">Health Care Workers</a></li>
+                         <li role="menuitem"> <a href="reports-training-metrics.html" >Usage Metrics</a></li>
+                         <li role="menuitem"><a href="reports-assessment-metrics.html">Assessment Metrics</a></li>
+                         <li role="menuitem"><a href="job-aids-and-standing-orders-view.html">Job Aids & Standing Orders View</a></li>
+                    </ul>
+                </li>
+                <li ><a href="index.php" class="smallerfont mini-signout">Sign Out</a></li>
+            </ul>
+        </div>
+    </div>
+    </div>
+<div class="container-fluid">
+         
+<div class="row margintop20 marginbottom15">
+    <div class="col-md-3 col-md-offset-1">
+        <h3 class="arialtitlebold">Users</h3>
+    </div>
+</div><!-- .row -->
+<div class="row marginbottom20">
+  <div class="col-md-10 col-md-offset-1">
+      <header class="containerheader"><h6>Batch File Upload History</h6></header>
+      <section class="container">
+          <article>
+              <div class="row noborder margintop20">
+              <div class="col-md-6 col-md-offset-1">
+                  <table class="smallerfont tableborder">
+                      <tbody>
+                      <tr>
+                          <th>File</th><th>Date Uploaded</th><th></th>
+                      </tr>
+                      <tr>
+                          <td>batch-1.xls</td><td><span>23-09-2014</span></td><td><a href="#"  class="btn btn-primary ">Download</a></td>
+                      </tr>
+                      <tr>
+                          <td>batch-2.xls</td><td><span>21-07-2014</span></td><td><a href="#"  class="btn btn-primary ">Download</a></td>
+                      </tr>
+                      <tr>
+                          <td>batch-3.xls</td><td><span>14-03-2014</span></td><td><a href="#"  class="btn btn-primary ">Download</a></td>
+                      </tr>
+                      </tbody>
+                  </table>
+                </div>
+              </div>
+          </article>
+      </section>
+  </div>
+    
+</div>
+    <div class="row footer-bg noborder">
+         <div class="col-md-7 col-md-offset-5 top15">
+             <strong>Copyright mTrain &COPY; 2014</strong>
+         </div>
+    </div>
+ </div><!-- .container -->
+ 
+ 
+   <script src="jTable/scripts/jquery-1.11.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>
