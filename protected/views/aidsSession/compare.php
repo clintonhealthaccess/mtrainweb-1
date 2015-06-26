@@ -8,6 +8,18 @@
             <h3 class="arialtitlebold">Reports</h3>
         </div>
         
+        <div class="col-md-3 margintop20">
+            <div class="dropdown floatright">
+                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+                    Export &nbsp;&nbsp;<span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-right whitebg" role="menu" aria-labelledby="dropdownMenu1">
+                  <!--<li role="presentation"><a role="menuitem" tabindex="0" href="#" onclick="createDatedExcelFile('/assessmentMetrics/exportExcel', '2007'); return false;">Excel 2007 (.xlsx)</a></li>-->
+                  <!--<li role="presentation"><a role="menuitem" tabindex="0" href="#" onclick="createDatedExcelFile('/assessmentMetrics/exportExcel', '97_2003'); return false;">Excel 97-2003 (.xls)</a></li>-->
+                  <li role="presentation"><a role="menuitem" tabindex="1" href="#" onclick="createDatedPDFFile('parseCompare'); return false;">PDF</a></li>
+                </ul>
+            </div>
+        </div>
         
     </div>
     
@@ -99,7 +111,7 @@
                         <div class="col-md-5  nopadding">
                               <label for="from" class="smallerfont">From</label>
                               <input type="text" id="from" class="datepicker" name="from"/>
-                              <label for="to" class=" smallerfont">to</label>
+                              <label for="to" class=" smallerfont">To</label>
                               <input type="text" id="to" class="datepicker" name="to"/>
                         </div>
 
@@ -140,12 +152,14 @@
         <p></p>
     </div>
     
+    <input type="hidden" name="selectionjson" id="selectionjson">
     
 </div>
 </div>
 
 
    <script type="text/javascript">
+       var selectionJSONObject = {};
        
       $(document).ready(function(){ 
 
@@ -162,13 +176,28 @@
                     state = $('#stateDropdown').val();
                     lga = $('#lgaDropdown').val();
                     facility = $('#facilityDropdown').val();
-                    //cadre = $('#cadreDropdown').val();
                     fromdate = $('#from').val();
                     todate = $('#to').val();
                     
+                    var singleSelectionObject = {state:state, lga:lga, facility:facility, fromdate: fromdate, todate: todate};
+                    var singleSelectionJSON = JSON.stringify(singleSelectionObject);
+                    
                     var selectionString =  'STATE: ' + ((state == 0) ? 'All' : $("#stateDropdown option:selected").html()) + '<span id="spacer"></span>';
                         selectionString += 'LGA: ' + ((lga == 0) ? 'All' : $("#lgaDropdown option:selected").html()) + '<span id="spacer"></span>';
-                        selectionString += 'FACILITY: ' + ((facility == 0) ? 'All' : $("#facilityDropdown option:selected").html());
+                        selectionString += 'FACILITY: ' + ((facility == 0) ? 'All' : $("#facilityDropdown option:selected").html()) + '<span id="spacer"></span>';
+                        
+                        if(fromdate == '' && todate == ''){
+                            selectionString += 'DATE RANGE: ' + 'ALL' +  '<span id="spacer"></span>';
+                        }
+                        else {
+                            fromdate = $('#from').val();
+                            todate = $('#to').val();
+                            if(!validateDates(fromdate, todate)) return;
+                            
+                            selectionString += 'FROM: ' + fromdate + '<span id="spacer"></span>';
+                            selectionString += 'TO: ' + todate + '<span id="spacer"></span>';
+                            
+                        } 
                         
                     $('#dialog p').text('Fetching data. Please wait!');
                     $('#dialog').dialog({modal:true});
@@ -192,7 +221,7 @@
                                     setTimeout(function(){
                                         $('#dialog').dialog("close");
                                         //add the data to the table
-                                        addComparisonRows(resultObj.Records, selectionString);
+                                        addComparisonRows(resultObj.Records, selectionString, singleSelectionJSON);
                                     },1000);
                                 }
                             },
@@ -203,10 +232,13 @@
             });
              
              
-             function addComparisonRows(recordsObj, selectionString){
+             function addComparisonRows(recordsObj, selectionString, selectionJSON){
                  var html = '';
                  var cuc = parseInt($('#comparisonTable').data('compareUnitsCount')) + 1;
                  var groupid = 'group_'+cuc;
+                 
+                 selectionJSONObject[groupid] = selectionJSON;
+                 document.getElementById("selectionjson").value = JSON.stringify(selectionJSONObject);
                  
                  html += '<tbody id="' + groupid + '">';
                  
@@ -261,6 +293,8 @@
      function doRemove(id){
          log('doRemove');
          removeElementById(id, removeCallback);
+         delete selectionJSONObject[id];
+         document.getElementById("selectionjson").value = JSON.stringify(selectionJSONObject);
      }
 
 </script>     

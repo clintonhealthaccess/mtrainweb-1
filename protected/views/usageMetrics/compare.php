@@ -14,9 +14,9 @@
                     Export &nbsp;&nbsp;<span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-right whitebg" role="menu" aria-labelledby="dropdownMenu1">
-                  <li role="presentation"><a role="menuitem" tabindex="0" href="#" onclick="createDatedExcelFile('/usageMetrics/exportExcel', '2007'); return false;">Excel 2007 (.xlsx)</a></li>
-                  <li role="presentation"><a role="menuitem" tabindex="0" href="#" onclick="createDatedExcelFile('/usageMetrics/exportExcel', '97_2003'); return false;">Excel 97-2003 (.xls)</a></li>
-                  <li role="presentation"><a role="menuitem" tabindex="1" href="#">PDF</a></li>
+                  <!--<li role="presentation"><a role="menuitem" tabindex="0" href="#" onclick="createDatedExcelFile('/usageMetrics/exportExcel', '2007'); return false;">Excel 2007 (.xlsx)</a></li>-->
+                  <!--<li role="presentation"><a role="menuitem" tabindex="0" href="#" onclick="createDatedExcelFile('/usageMetrics/exportExcel', '97_2003'); return false;">Excel 97-2003 (.xls)</a></li>-->
+                  <li role="presentation"><a role="menuitem" tabindex="1" href="#" onclick="createDatedPDFFile('parseCompare'); return false;">PDF</a></li>
                 </ul>
             </div>
         </div>
@@ -117,7 +117,7 @@
                         <div class="col-md-5  nopadding">
                               <label for="from" class="smallerfont">From</label>
                               <input type="text" id="from" class="datepicker" name="from"/>
-                              <label for="to" class=" smallerfont">to</label>
+                              <label for="to" class=" smallerfont">To</label>
                               <input type="text" id="to" class="datepicker" name="to"/>
                         </div>
 
@@ -153,10 +153,13 @@
         </div>
     </div>
     
-    <iframe id="dframe" src="" class="hidden"></iframe>
+    <iframe id="dframe" src="http://localhost/yii/mtrain/img/logo.png" class="hidden"></iframe>
+    <!--<a target="_self" href="http://localhost/yii/mtrain/usageMetrics/parseCompare2">Load PDF</a>-->
     <div id="dialog" title="mTrain Report Engine">
         <p></p>
     </div>
+    
+    <input type="hidden" name="selectionjson" id="selectionjson">
     
     
 </div>
@@ -165,14 +168,13 @@
 
    <script type="text/javascript">
        
-      $(document).ready(function(){ 
-
-        $(function(){
-            $('.datepicker').datepicker();
-        });
+      //IMPORTANT: this var is used to store and manage all active comparison unit selection JSONs.
+        var selectionJSONObject = {};
         
+      $(document).ready(function(){ 
+                
         //initialize the comparison counter
-        $('#comparisonTable').data('compareUnitsCount', 0);
+        $('#comparisonTable').data('compareUnitsCount', 0);               
         
         $('#filterButton').click(function (e){             
                     e.preventDefault();
@@ -186,10 +188,30 @@
                     fromdate = $('#from').val();
                     todate = $('#to').val();
                     
+                    var singleSelectionObject = {channel: channel, state:state, lga:lga, facility:facility, cadre:cadre, fromdate: fromdate, todate: todate};
+                    var singleSelectionJSON = JSON.stringify(singleSelectionObject);
+                    
+                    //console.log(singleSelectionJSON); return;
+                    
+                    
                     var selectionString =  'STATE: ' + ((state == 0) ? 'All' : $("#stateDropdown option:selected").html()) + '<span id="spacer"></span>';
                         selectionString += 'LGA: ' + ((lga == 0) ? 'All' : $("#lgaDropdown option:selected").html()) + '<span id="spacer"></span>';
                         selectionString += 'FACILITY: ' + ((facility == 0) ? 'All' : $("#facilityDropdown option:selected").html()) + '<span id="spacer"></span>';
-                        selectionString += 'CHANNEL: ' + ((channel == 'mobile') ? 'Mobile' : 'IVR');
+                        selectionString += 'CHANNEL: ' + ((channel == 'mobile') ? 'Mobile' : 'IVR') + '<span id="spacer"></span>';
+                        
+                        if(fromdate == '' && todate == ''){
+                            selectionString += 'DATE RANGE: ' + 'ALL' +  '<span id="spacer"></span>';
+                        }
+                        else {
+                            fromdate = $('#from').val();
+                            todate = $('#to').val();
+                            if(!validateDates(fromdate, todate)) return;
+                            
+                            selectionString += 'FROM: ' + fromdate + '<span id="spacer"></span>';
+                            selectionString += 'TO: ' + todate + '<span id="spacer"></span>';
+                            
+                        }                      
+                        
                         
                     $('#dialog p').text('Fetching data. Please wait!');
                     $('#dialog').dialog({modal:true});
@@ -214,7 +236,7 @@
                                     setTimeout(function(){
                                         $('#dialog').dialog("close");
                                         //add the data to the table
-                                        addComparisonRows(resultObj.Records, selectionString);
+                                        addComparisonRows(resultObj.Records, selectionString, singleSelectionJSON);
                                     },1000);
                                 }
                             },
@@ -225,17 +247,21 @@
             });
              
              
-             function addComparisonRows(recordsObj, selectionString){
+             function addComparisonRows(recordsObj, selectionString, selectionJSON){
                  var html = '';
                  var cuc = parseInt($('#comparisonTable').data('compareUnitsCount')) + 1;
                  var groupid = 'group_'+cuc;
+                 
+                 selectionJSONObject[groupid] = selectionJSON;
+                 document.getElementById("selectionjson").value = JSON.stringify(selectionJSONObject);
                  
                  html += '<tbody id="' + groupid + '">';
                  
                  html += '<tr class="bold textwhite" style="background: #7c94ac;"><td colspan="8" class="alignleft">' + 
                                 selectionString + 
-                                '<a href="#" class="floatright compareremove" onclick="doRemove(\'' + groupid + '\');return false;"><em>Remove from Compare</em></a>';
+                                '<a href="#" class="floatright compareremove" onclick="doRemove(\'' + groupid + '\');return false;"><em>Remove from Compare</em></a>' +
                          '</td></tr>';
+                         
                  
                  html += '<tr>' +
                                 '<th>Cadre Name</th>' +
@@ -250,7 +276,7 @@
                     
                  for(key in recordsObj){
                      record = recordsObj[key];
-                     log('key: ' + (parseInt(key)+1));
+                     //log('key: ' + (parseInt(key)+1));
                      
                      var classes = ((parseInt(key) + 1) % 2) ==0 ? 'groupTitle' : '';
                          classes += (parseInt(key) + 1) == recordsObj.length ? ' bold borderbottom ' : '';
@@ -266,6 +292,8 @@
                                 '<td>' + record.total_guide_views + '</td>' +
                               '</tr>';
                  }
+                 
+                 html += '</tbody>';
                  
                 //now append to table
                  if($('#nodata').length > 0)
@@ -294,6 +322,8 @@
      function doRemove(id){
          log('doRemove');
          removeElementById(id, removeCallback);
+         delete selectionJSONObject[id];
+         document.getElementById("selectionjson").value = JSON.stringify(selectionJSONObject);
      }
 
-</script>     
+</script>

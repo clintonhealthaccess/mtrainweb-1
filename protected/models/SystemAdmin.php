@@ -42,15 +42,17 @@ class SystemAdmin extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('username, password, firstname, lastname, gender, email, phone, role_id, state_id, lga_id', 'required'),
+			array('username, password, firstname, lastname, gender, phone, role_id, state_id, lga_id', 'required'),
 			array('role_id, state_id, lga_id', 'numerical', 'integerOnly'=>true),
+                        array('role_id, state_id, lga_id', 'numerical', 'min'=>1, 'tooSmall'=>'Please select {attribute}'),
 			array('username', 'length', 'max'=>30),
-                        //array('username', 'unique', 'message'=>'User name already in use.'),
 			array('password', 'length', 'max'=>32),
 			array('firstname, middlename, lastname', 'length', 'max'=>35),
-			array('gender', 'length', 'max'=>6),
+			array('gender', 'length', 'max'=>6, 'tooLong'=>'Please select gender'),
 			array('email', 'length', 'max'=>255),
-			array('phone', 'length', 'max'=>15),
+                        array('email', 'email'),
+			array('phone', 'length', 'min'=>8,  'message'=>'Please enter valid phone number.'),
+                    
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('admin_id, username, password, salt, firstname, middlename, lastname, gender, email, phone, role_id, state_id, lga_id', 'safe', 'on'=>'search'),
@@ -122,8 +124,8 @@ class SystemAdmin extends CActiveRecord
 		$criteria->compare('email',$this->email,true);
 		$criteria->compare('phone',$this->phone,true);
 		$criteria->compare('role_id',$this->role_id);
-                $criteria->compare('state_id',$this->role_id);
-                $criteria->compare('lga_id',$this->role_id);
+                $criteria->compare('state_id',$this->state_id);
+                $criteria->compare('lga_id',$this->lga_id);
                 $criteria->compare('salt',$this->salt);
 
 		return new CActiveDataProvider($this, array(

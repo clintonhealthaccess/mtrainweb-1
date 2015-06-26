@@ -66,7 +66,7 @@
                                 
                                 listAction: './cadre/ajaxList',
                                 createAction: checkAccess('create_cadre', permissions) ? './cadre/ajaxCreate' : null,
-                                updateAction: checkAccess('update_cadre', permissions) ? './cadre/ajaxUpdate' : null,
+                                updateAction: checkAccess('update_cadre', permissions) ? './cadre/ajaxUpdate' : null
                                 //deleteAction: checkAccess('manage_cadres', permissions) ? './cadre/ajaxDelete' : null
                         },
                         fields: {

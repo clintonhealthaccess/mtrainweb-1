@@ -68,7 +68,7 @@ class MessagingAPIController extends Controller {
         
         if(!is_null($message)){
             $messagesArray = explode('|',$message);
-            echo '$messagesArray : ' . json_encode($messagesArray); exit;
+            //echo '$messagesArray : ' . json_encode($messagesArray); exit;
             
             foreach($messagesArray as $msg){
                 $messageArr = explode(',',$msg);
@@ -101,35 +101,55 @@ class MessagingAPIController extends Controller {
      * If this user exists before, it will update the record.
      */
     private function handleRegMessage(&$messageArr, $channelID){
-        //User data - firstname, middlename, lastname, gender, email, phone, 
-        //supervisor, cadre_id, worker_id, facility_id
-        list($firstname, $middlename, $lastname, $gender, $email, $phone, 
-                $supervisor, $cadreId, $remoteID, $facilityID, $smsID, $sourceID) = $messageArr;
+        //send mail so we know it got here
+        //mail('leke@techieplanetltd.com', 'Reg Message', implode(',', $messageArr));
         
-        $worker = HealthWorker::model()->findByAttributes(array('remote_id'=>$remoteID, 'facility_id'=>$facilityID));
-        if(is_null($worker))
-            $worker = new HealthWorker();
+        $this->log('Attempting Registration: ' . implode(',', $messageArr));
+	
+        try {
         
-        $worker->firstname = $firstname;
-        $worker->middlename = $middlename;
-        $worker->lastname = $lastname;
-        $worker->gender = $gender == 1 ? 'Male' : 'Female';
-        $worker->email = $email;
-        $worker->phone = $phone;
-        $worker->supervisor = $supervisor;
-        $worker->cadre_id = $cadreId;
-        $worker->remote_id = $remoteID;
-        $worker->facility_id = $facilityID;
-        $worker->date_created = date('Y-m-d H:i:s');
-        $worker->channel_id = $channelID;
-        
-        
-        if($worker->validate()){
-            $worker->save();
-            return 2;
+            //User data - firstname, middlename, lastname, gender, email, phone, 
+            //supervisor, cadre_id, worker_id, facility_id
+            list($firstname, $middlename, $lastname, $gender, $email, $phone, 
+                    $supervisor, $cadreId, $remoteID, $facilityID, $smsID, $sourceID) = $messageArr;
+
+            $this->log('Broken Down');
+            $worker = HealthWorker::model()->findByAttributes(array('remote_id'=>$remoteID, 'facility_id'=>$facilityID));
+            if(is_null($worker)){
+                $worker = new HealthWorker();
+                $this->log('Worker: ' . implode($worker->attributes));
+            }
+            else{
+                $this->log('Worker found');
+            }
+                
+            $worker->firstname = $firstname;
+            $worker->middlename = $middlename;
+            $worker->lastname = $lastname;
+            $worker->gender = $gender == 1 ? 'Male' : 'Female';
+            $worker->email = $email;
+            $worker->phone = $phone;
+            $worker->supervisor = $supervisor;
+            $worker->cadre_id = $cadreId;
+            $worker->remote_id = $remoteID;
+            $worker->facility_id = $facilityID;
+            $worker->date_created = date('Y-m-d H:i:s');
+            $worker->channel_id = $channelID;
+
+            if($worker->validate()){
+                $this->log('Worker Saved');
+                $worker->save();
+                return 2;
+            }
+            else{
+                $this->log('Reg Message Validation Error: on data ==> ' . implode(',', $messageArr));
+                return -1;
+            }
+        } catch (Exception $e){
+            $this->log('Reg Error: ' . $e->getMessage() . ' on data ==> ' . implode(',', $messageArr));
+            //mail('leke@techieplanetltd.com', 'Reg Error', $e->getMessage());
         }
-        else
-            return -1;
+        
   }
     
     
@@ -158,7 +178,7 @@ class MessagingAPIController extends Controller {
         }
         
         //check if still null. If yes, then no pending uncompleted training 
-        //for this user and topic.
+        //for this user and topic. Insert new record
         if(empty($trainingSession))  
             $trainingSession = new TrainingSession();
         
@@ -173,13 +193,14 @@ class MessagingAPIController extends Controller {
         $trainingSession->facility_id = $facilityID;
         $trainingSession->channel_id = $channelID;
         
+        
         if($trainingSession->validate()){
             $trainingSession->save();
             return 2;
         }
         else 
             return -1;
-    }
+ }
     
     
     private function handleTestMessage(&$messageArr, $channelID){
@@ -261,7 +282,6 @@ class MessagingAPIController extends Controller {
         
         $responseArray = json_decode($response);
         
-        //
         foreach($responseArray as $responseObj){
             //this should first be converted to our own ID first
             $mtrainTrainingID = $responseObj->Training_Id; 
@@ -318,7 +338,7 @@ class MessagingAPIController extends Controller {
         date_default_timezone_set('Africa/Lagos');
         
         if(empty($lastCallJSONArray[$channel])){
-            $start_date = date('Y-m-d H:i:s', time() - (30 * 24 * 60 * 60)); //7days ago
+            $start_date = date('Y-m-d H:i:s', time() - (30 * 24 * 60 * 60)); //30 days ago
         }
         else{
             $start_date = $lastCallJSONArray[$channel];
@@ -378,6 +398,8 @@ class MessagingAPIController extends Controller {
         * MANUAL CALL SAMPLE: http://techieplanetltd.com/chai/mtrain/MessagingAPI/consumeSMSHistory?passkey=mtrainsms_v2n
         *******************************************************************/
         
+        $this->log('Inside SMS History Call');
+        
         $passkey = isset($_GET['passkey']) ? $_GET['passkey'] : '';
         $passKeysList = $this->getPassKeys(); $keyFound = false;
         foreach($passKeysList as $key=>$passKeyEntry){
@@ -391,43 +413,60 @@ class MessagingAPIController extends Controller {
             throw new CHttpException(403, 'Access Denied');
         
          
-        
         //authentication passed, get dates
         list($start_date, $end_date) = $this->getLastCallDates('sms');
         //echo 'start: ' . $start_date . ' <br/>end date: ' . $end_date . '<br/>'; 
         
+        //$start_date = '2015-05-29 00:00:00';
+        //$end_date = '2015-06-05 21:30:02';
+        
         $url = 'http://83.138.190.170/chai/listcha.php?' . 'from=' . $start_date . '&to=' .$end_date;
-        //echo $url; exit;
+        $url = str_replace(' ', '%20', trim($url));
+        $this->log('URL: ' . $url);
+        
         
         $response = file_get_contents($url);
-        
+        //echo 'code 1: ' . str_replace(' ', '%20', trim($url)) . '<br><br>'; 
+                
         //clean up for the | character that is being converted to \u00c3\u00b6 in 
         //old messages...Wont be necessary after we clear sms table
         $cleanResponse = str_replace('\u00c3\u00b6', '#', $response);
         //print 'cleanResponse: ' . $cleanResponse; exit;
         
         $smsArray = json_decode($cleanResponse);
-        //print_r($smsArray); exit;
+        //echo 'Result Count:  ' . count($smsArray); exit;
+        
+        $this->log('Result Count:  ' . count($smsArray));
+        //print_r($smsArray); 
+        //echo '<br>'; 
+        
         
         foreach($smsArray as $sms){
+            $this->log('Parsing SMS: ' . $sms->message);
+            $this->log('Delivered: ' . $sms->delivered);
+            //echo '<br>sms<br/>'; var_dump($sms); print '<br/><br/>';
+            
             //get the message and remove the "CHAI" prefix then trim the string
             $usageDataGroupString = trim(str_replace('CHAI', '', $sms->message));
             $usageDataUnits = explode('#', $usageDataGroupString);
             
-            //var_dump($usageDataGroup); 
-            //var_dump($usageDataUnit);
-            //print '<br/><br/>';
-            //continue;
+            //$this->log('Message: ' . $usageDataGroupString);
+            //var_dump($usageDataGroupString); print '<br/><br/>';
+            //var_dump($usageDataUnits); print '<br/><br/>'; 
             
             foreach($usageDataUnits as $dataUnit){
+    
                 $messageArr = explode(',',$dataUnit);
+                //echo 'message<br>';  var_dump($messageArr); print '<br/><br/>'; 
 
                 $sourceid = $messageArr[count($messageArr)-1];
                 $status = 0;
 
+                //continue; //prevent from saving.
+                
                 //FIND OUT THE SOURCE 
                 if($sourceid == MessagingAPIController::REG_SOURCE)
-                    $status = $this->handleRegMessage($messageArr);
+                    $status = $this->handleRegMessage($messageArr, MessagingAPIController::SMS_CHANNEL);
                 else if($sourceid == MessagingAPIController::TRAINING_SOURCE)
                     $status = $this->handleTrainingMessage($messageArr, MessagingAPIController::SMS_CHANNEL);
                 else if($sourceid == MessagingAPIController::TEST_SOURCE)
@@ -436,11 +475,19 @@ class MessagingAPIController extends Controller {
                     $status = $this->handleAidMessage($messageArr, MessagingAPIController::SMS_CHANNEL);
             }
         }
-
+        
+        $this->log('About to update. SMS History Call');
+        
         //update the call date records to new end date
         $this->saveLastCallDates('sms', $end_date);
         
    }    
+   
+   
+   private function log($logMessage){
+        $logMessage = date('Y-m-d H:i:s') . ' ' . $logMessage . "\n";
+        file_put_contents("apilogger.json", $logMessage, FILE_APPEND);
+   }
    
 }
 

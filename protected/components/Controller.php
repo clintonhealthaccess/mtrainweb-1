@@ -30,7 +30,6 @@ class Controller extends CController
         public $clientScript;
         public $user;
 
-
         public function init(){
             //$this->thumbMaker = Yii::app()->thumbMaker->getNewObject();
             $this->webroot = Yii::getPathOfAlias('webroot');

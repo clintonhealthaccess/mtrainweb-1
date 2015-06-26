@@ -47,7 +47,7 @@ class Training extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'trainingSessions' => array(self::HAS_MANY, 'TrainingSession', 'training_id'),
-			'cthxTrainingModules' => array(self::MANY_MANY, 'TrainingModule', '{{training_to_module}}(training_id, module_id)'),
+			'trainingModules' => array(self::MANY_MANY, 'TrainingModule', '{{training_to_module}}(training_id, module_id)'),
 		);
 	}
 

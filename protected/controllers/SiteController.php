@@ -30,9 +30,11 @@ class SiteController extends Controller
                 $this->actionLogin();
             else{
                 $content = new Content();
+                $category = new Category();
 		$this->render('content', array(
-                    'trainingArray' => $content->getTrainingContent(),
-                    'aidsArray' => $content->getAidsContent(),
+                    'categories' => $category->getCategoriesAndModules(),
+                    //'trainingArray' => $content->getTrainingContent(),
+                    //'aidsArray' => $content->getAidsContent(),
                 ));
             }
 		

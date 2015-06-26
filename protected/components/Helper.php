@@ -73,6 +73,15 @@
         }
         
         
+        public function displayError($array){
+            $errorString = '';
+            foreach ($array as $key=>$err){
+                $errorString .= $err[0] . '<br/>';
+            }
+            
+            return $errorString;
+        }
+        
     }
     
     

@@ -85,6 +85,40 @@ function filterLoadFacility(combo, facilitySelectId, depth){
     });
 }
 
+
+function validateDates(fromdate, todate){
+    //alert('dates');
+     if((fromdate == '' && todate != '') || (fromdate != '' && todate == '')){
+            $('#dialog p').text('Please select start and end dates');
+            $('#dialog').dialog({modal:true});
+            return;
+     }
+     else{
+         //get the right date formats
+         var today = new Date();
+         var fromArray = fromdate.split('-');
+         var toArray = todate.split('-');
+         //DATE FROMAT YEAR, MONTH, DATE...-1 ON MONTH BECAUSE MONTHS START FROM 0 IN JS DATE OBJECT
+         var fromDateObject = new Date(fromArray[2], fromArray[1]-1, fromArray[0]);
+         var toDateObject = new Date(toArray[2], toArray[1]-1, toArray[0]);
+
+         //future dates
+         if(fromDateObject > today || toDateObject > today){
+            $('#dialog p').text('Please select dates not later than today');
+            $('#dialog').dialog({modal:true});;
+            return;
+         }
+         if(toDateObject < fromDateObject){
+            $('#dialog p').text('Start date cannot be later than end date');
+            $('#dialog').dialog({modal:true});;
+            return;
+         }
+     }
+     
+     return true;
+}
+
+
 function createExcelFile(url, format ){
     var url = './' + url;    
     
@@ -107,7 +141,7 @@ function createExcelFile(url, format ){
             log('excelFileUrl: ' + JSON.stringify(resultObj)); 
             //return;
             if(resultObj.STATUS == 'ERROR'){
-                $('#dialog p').text('An error occurred while generating report. Please try again later.');
+                $('#dialog p').text('An error occurred while generating report. Please try again.');
                 //USE THIS IN DEBUG MODE
                 //$('#dialog p').text(resultObj['MESSAGE']);
             }
@@ -146,10 +180,10 @@ function createDatedExcelFile(url, format ){
         dataType:'json',
         data: {channel:channel, state:state,lga:lga,facility:facility,cadre:cadre, format: format, fromdate: fromdate, todate: todate},
         success: function(resultObj){
-            console.log('excelFileUrl: ' + resultObj);
+            //console.log('excelFileUrl: ' + resultObj);
             //console.log('excelFileUrl: ' + resultObj.STATUS);
             if(resultObj.STATUS == 'ERROR'){
-                $('#dialog p').text('An error occurred while generating report. Please try again later.');
+                $('#dialog p').text('An error occurred while generating report. Please try again.');
                 //USE THIS IN DEBUG MODE
                 //$('#dialog p').text(resultObj.MESSAGE);
             }
@@ -166,6 +200,69 @@ function createDatedExcelFile(url, format ){
         complete:function(){}
     });
 }
+
+function downlaodFile(url, filename){ 
+    //To get the path router to choose the Util controller, 
+    //step up directory structure one level to pick it
+    //in same folder of current controller or adjust to suit. 
+    var path = '../util/downloadFile?' +  
+                'filepath=' + url +
+                '&filename=' + filename;
+    $('#dframe').attr('src', path);
+}
+
+function createDatedPDFFile(url){ 
+    var url = './' + url;
+    
+    var selectionString  = $('#selectionjson').val();
+    
+    if(selectionString != ''){
+        $('#dialog p').text('Your report is being generated. Please wait!');
+        $('#dialog').dialog({modal:true});
+    }
+    else{
+        $('#dialog p').text('Please add selection(s) to compare list!');
+        $('#dialog').dialog({modal:true});
+        return;
+    }
+    
+    
+    
+    $.ajax({
+        type: 'POST',
+        url: url,
+        dataType:'json',
+        data: {selectionString:selectionString},
+//        beforeSend: function(xhr, settings){
+//            //xhr.setRequestHeader("Content-Type", "application/pdf");
+//            xhr.setRequestHeader("Accept", "application/pdf");
+//        },
+        success: function(resultObj){                 
+            console.log('my pdf url: ' + resultObj.URL);
+            if(resultObj.STATUS == 'ERROR'){
+                $('#dialog p').text('An error occurred while generating report. Please try again.');
+                //USE THIS IN DEBUG MODE
+                //$('#dialog p').text(resultObj.MESSAGE);
+            }
+            else{
+                $('#dialog p').text('Report successfully generated. Download will now begin');
+                console.log('URL: ' + JSON.stringify(resultObj));
+                //window.location = "http://localhost/yii/mtrain/reports/test.pdf";
+                setTimeout(function(){
+                    $('#dialog').dialog("close");
+                    $('#dframe').attr('src', resultObj.URL);
+                    downlaodFile(resultObj.URL, resultObj.FILENAME);
+                },2000);
+            }
+        },
+        error: function(xHr, status, error){
+            console.log('error function: ' + JSON.stringify(xHr.responseText));
+        },
+        complete:function(){}
+    });
+}
+
+
 
  function checkAccess(operation, permissions){
     //log('permissions 2: ' + $('#container-row').data("permissions"));
@@ -185,7 +282,6 @@ function loadStackedBarChart(){
     //$('#transparentdialog').dialog({modal:true});
     $('.loadingdiv').removeClass('hidden');
     
-    var url = '';
     url = './site/filterStackedChart';
     
     state = $('#stateDropdown').val();
@@ -197,6 +293,12 @@ function loadStackedBarChart(){
     
     //log('state: ' + state + ' lga: ' + lga + ' facility ' + facility + ' cadre ' + cadre);
     //return;
+    
+    //validate dates
+    if(!validateDates(fromdate, todate)) {
+        $('.loadingdiv').addClass('hidden');
+        return;
+    }
     
     $.ajax({
         type: 'POST',

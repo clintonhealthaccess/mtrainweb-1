@@ -18,10 +18,10 @@
         <link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/css/bootstrap.min.css" media="screen, projection" type="text/css" />
         <!-- Native css -->
         <link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/css/jquery-ui.min.css" media="screen, projection" />
-        <link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/css/datepicker.css" media="screen, projection" />
+        <!--<link rel="stylesheet" href="<?php //echo Yii::app()->request->baseUrl; ?>/css/datepicker.css" media="screen, projection" />-->
         <link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/jTable/themes/redmond/jquery-ui-1.11.2.custom.css" />
         <link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/jtable/themes/metro/blue/jtable.min.css" media="screen, projection" />
-        <link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/css/datepicker.css" media="screen, projection" />
+        <!--<link rel="stylesheet" href="<?php //echo Yii::app()->request->baseUrl; ?>/css/datepicker.css" media="screen, projection" />-->
         <link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/css/app.css" media="screen, projection" />
         
 	<!--<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/main.css" />-->
@@ -41,7 +41,20 @@
         <?php //Yii::app()->clientScript->registerScriptFile( $this->baseUrl . "/js/facilityjtable.js", CClientScript::POS_END ); ?>
         
         
-          
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <!--<link rel="stylesheet" href="/resources/demos/style.css">-->
+  <script>
+        $(function() {
+          $( ".datepicker" ).datepicker({
+            changeYear: true,
+            changeMonth: true,
+            dateFormat: 'dd-mm-yy'
+            //yearRange: "2015:2050"
+          });
+        });
+  </script>
         
         
 </head>
@@ -59,7 +72,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-             <a href="<?php echo $this->baseUrl;?>"   class="navbar-brand">
+             <a href="<?php echo Yii::app()->getBaseUrl(true);?>"   class="navbar-brand">
                 <img src="<?php echo Yii::app()->request->baseUrl; ?>/img/adm-logo.png" class="img-responsive" alt="mTrain Logo" />
              </a>
     </div>

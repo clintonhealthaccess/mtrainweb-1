@@ -30,15 +30,15 @@ class SystemAdminController extends Controller
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
 				'actions'=>array('index','view'),
-				'users'=>array('*'),
+				'users'=>array('@'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
 				'actions'=>array('ajaxCreate','ajaxUpdate', 'ajaxList', 'ajaxDelete'),
-				'users'=>array('*'),
+				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('getRolesList','delete'),
-				'users'=>array('*'),
+				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -62,6 +62,7 @@ class SystemAdminController extends Controller
             try{
                 
 		$model=new SystemAdmin;
+                $helper = new Helper();
 
                 $model->attributes=$_POST;
                 if($model->save()){
@@ -72,9 +73,13 @@ class SystemAdminController extends Controller
                     print json_encode($jTableResult);
                 }
                 else{
+                    $errorsArray = $model->getErrors();
+                    $errorMessage = !empty($errorsArray) ? $helper->displayError($errorsArray) : 'An error occurred';
+                    
                     $jTableResult = array();
                     $jTableResult['Result'] = "ERROR";
-                    $jTableResult['Message'] = 'Validation Error';
+                    $message = $errorMessage;
+                    $jTableResult['Message'] = $message;
                     print json_encode($jTableResult);
                 }
 		
@@ -82,7 +87,7 @@ class SystemAdminController extends Controller
                 //Return error message
                     $jTableResult = array();
                     $jTableResult['Result'] = "ERROR";
-                    $jTableResult['Message'] = $ex->getMessage();
+                    //$jTableResult['Message'] = $ex->getMessage();
                     print json_encode($jTableResult);
             }
 	}
@@ -92,7 +97,8 @@ class SystemAdminController extends Controller
 	{
             try {
                 $model=$this->loadModel($_POST['admin_id']);
-
+                $helper = new Helper();
+                
                 $model->attributes=$_POST;
                 if($model->save()){
                     //Return result to jTable
@@ -100,11 +106,21 @@ class SystemAdminController extends Controller
                     $jTableResult['Result'] = "OK";
                     print json_encode($jTableResult);
                 }
+                else{
+                    $errorsArray = $model->getErrors();
+                    $errorMessage = !empty($errorsArray) ? $helper->displayError($errorsArray) : 'An error occurred';
+                    
+                    $jTableResult = array();
+                    $jTableResult['Result'] = "ERROR";
+                    $message = $errorMessage;
+                    $jTableResult['Message'] = $message;
+                    print json_encode($jTableResult);
+                }
             } catch(Exception $ex) {
                 //Return error message
                     $jTableResult = array();
                     $jTableResult['Result'] = "ERROR";
-                    $jTableResult['Message'] = $ex->getMessage();
+                    //$jTableResult['Message'] = $ex->getMessage();
                     print json_encode($jTableResult);
             }
 	}

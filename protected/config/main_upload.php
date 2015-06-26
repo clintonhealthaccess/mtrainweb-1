@@ -70,11 +70,11 @@ return array(
 		
                 // uncomment the following to use a MySQL database
 		'db'=>array(
-			'connectionString' => 'mysql:host=localhost;dbname=techie17_chaidb',
+			'connectionString' => 'mysql:host=localhost;dbname=mhtraini_mtraindb',
 			'emulatePrepare' => true,
                         'tablePrefix' => 'cthx_',
-			'username' => 'techie17_user50',
-			'password' => 'user50pass',
+			'username' => 'mhtraini_tpcuser',
+			'password' => '*Apple*Potato*2#',
 			'charset' => 'utf8',
 		),
 		

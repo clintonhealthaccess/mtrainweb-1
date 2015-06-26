@@ -2,7 +2,7 @@
     
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-left ">
-                <li class="marginright25"><a href="<?php echo Yii::app()->baseUrl; ?>" >Dashboard</a></li>
+                <li class="marginright25"><a href="<?php echo Yii::app()->getBaseUrl(true); ?>" >Dashboard</a></li>
                 <li class="marginright25"><a href="<?php echo $this->baseUrl;?>/site/content" >Content</a></li>
                 <!--<li class="marginright25"><a href="#" >Assessment</a></li>
                 <li class="marginright25"><a href="#" >Job Aids</a></li>

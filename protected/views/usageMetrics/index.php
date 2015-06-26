@@ -16,7 +16,7 @@
                 <ul class="dropdown-menu dropdown-menu-right whitebg" role="menu" aria-labelledby="dropdownMenu1">
                   <li role="presentation"><a role="menuitem" tabindex="0" href="#" onclick="createDatedExcelFile('/usageMetrics/exportExcel', '2007'); return false;">Excel 2007 (.xlsx)</a></li>
                   <li role="presentation"><a role="menuitem" tabindex="0" href="#" onclick="createDatedExcelFile('/usageMetrics/exportExcel', '97_2003'); return false;">Excel 97-2003 (.xls)</a></li>
-                  <li role="presentation"><a role="menuitem" tabindex="1" href="<?php echo $this->baseUrl;?>/usageMetrics/exportPDF" id="pdflink" target="_blank">PDF</a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="1" href="<?php echo $this->baseUrl;?>/usageMetrics/exportPDF" id="pdflink" target="_self">PDF</a></li>
                 </ul>
             </div>
         </div> 
@@ -40,7 +40,7 @@
                     <div class="row noborder margintop10 marginbottom15">
                         <div class="col-md-2 nopadding marginright5">
                             <select id="channelDropdown" class="form-control">
-                                <option value="mobile" selected>Mobile</option>
+                                <option value="mobile">Mobile</option>
                                 <option value="ivr">IVR</option>
                             </select>
                         </div>
@@ -104,7 +104,7 @@
                         <div class="col-md-5  nopadding">
                               <label for="from" class="smallerfont">From</label>
                               <input type="text" id="from" class="datepicker" name="from"/>
-                              <label for="to" class=" smallerfont">to</label>
+                              <label for="to" class=" smallerfont">To</label>
                               <input type="text" id="to" class="datepicker" name="to"/>
                         </div>
 
@@ -205,25 +205,24 @@
             //Load person list from server
             //$('#UsersTableContainer').jtable('load');
 
-             $('#filterButton').click(function (e){
-                    log('channel: ' + $('#channelDropdown').val());
-                    log('state: ' + $('#stateDropdown').val());
-                    log('lga: ' + $('#lgaDropdown').val());
-                    log('facility: ' + $('#facilityDropdown').val()),
-                    log('fromdate: ' + $('#from').val()),
-                    log('todate: ' + $('#to').val())
-                    
+             $('#filterButton').click(function (e){                    
                     setPDFUrl();
                  
                  e.preventDefault();
-                 $('#UsageMetricsTableContainer').jtable('load',{
-                     channel : $('#channelDropdown').val(), 
-                     state: $('#stateDropdown').val(), 
-                     lga: $('#lgaDropdown').val(), 
-                     facility: $('#facilityDropdown').val(),
-                     fromdate: $('#from').val(),
-                     todate: $('#to').val()
-                 });
+                 
+                 fromdate = $('#from').val();
+                 todate = $('#to').val();
+                 if(!validateDates(fromdate, todate)) return;
+                    
+//                 $('#UsageMetricsTableContainer').jtable('load',{
+//                     channel : $('#channelDropdown').val(), 
+//                     state: $('#stateDropdown').val(), 
+//                     lga: $('#lgaDropdown').val(), 
+//                     facility: $('#facilityDropdown').val(),
+//                     fromdate: $('#from').val(),
+//                     todate: $('#to').val()
+//                 });
+                    $('#UsageMetricsTableContainer').jtable('load');
              });
              
              $('#filterButton').click();
@@ -241,6 +240,7 @@
         modifierParams.cadre = $('#cadreDropdown').val();
         modifierParams.fromdate = $('#from').val();
         modifierParams.todate = $('#to').val();
+        //console.log(modifierParams);
         
         $('#pdflink').attr('href',
                             modifierParams.pdfUrl + '/?' +
@@ -265,5 +265,4 @@
             fromdate : '',
             todate: ''
         }
-
 </script>     

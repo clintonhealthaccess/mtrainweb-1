@@ -97,12 +97,12 @@
                                     key: true
                             },
                             facility_name: {
-                                    title: 'Facility Name',
+                                    title: 'Facility Name *',
                                     width: '20%'
                                     //inputClass: 'validate[required]'
                             },
                             facility_address: {
-                                    title: 'Facility Address',
+                                    title: 'Facility Address *',
                                     width: '25%',
                                     type: 'textarea'
                                     //inputClass: 'validate[required]'
@@ -113,7 +113,7 @@
                                     options: 'healthFacility/getStatesList'
                                 },
                             lga_id: {
-                                    title: 'Local Government Area',
+                                    title: 'Local Government Area *',
                                     width: '20%',
                                     dependsOn: 'state_id',
                                     //options: {0:'-- Select LGA --',1:'Gbagada', 2:'Shomolu', 15:'Kosofe'}

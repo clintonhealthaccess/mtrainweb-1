@@ -29,15 +29,15 @@ class HealthFacilityController extends Controller
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
 				'actions'=>array('index','view'),
-				'users'=>array('*'),
+				'users'=>array('@'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
 				'actions'=>array('ajaxCreate','ajaxUpdate', 'ajaxList', 'ajaxDelete'),
-				'users'=>array('*'),
+				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('getStatesList', 'getLgaList'),
-				'users'=>array('*'),
+				'actions'=>array('getStatesList', 'getLgaList','testList'),
+				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -54,7 +54,8 @@ class HealthFacilityController extends Controller
 	{
             try{
 		$model=new HealthFacility;
-
+                $helper = new Helper();
+                
 		if(isset($_POST['facility_name']) && isset($_POST['facility_address'])){
                     $model->attributes=$_POST;
                     if($model->save()){
@@ -66,12 +67,22 @@ class HealthFacilityController extends Controller
                         $jTableResult['Record'] = $row;
                         print json_encode($jTableResult);
                     }
+                    else{
+                        $errorsArray = $model->getErrors();
+                        $errorMessage = !empty($errorsArray) ? $helper->displayError($errorsArray) : 'An error occurred';
+
+                        $jTableResult = array();
+                        $jTableResult['Result'] = "ERROR";
+                        $message = $errorMessage;
+                        $jTableResult['Message'] = $message;
+                        print json_encode($jTableResult);
+                    }
 		}
             } catch(Exception $ex) {
                 //Return error message
                     $jTableResult = array();
                     $jTableResult['Result'] = "ERROR";
-                    $jTableResult['Message'] = $ex->getMessage();
+                    //$jTableResult['Message'] = $ex->getMessage();
                     print json_encode($jTableResult);
             }
 	}
@@ -82,7 +93,8 @@ class HealthFacilityController extends Controller
             try {
                 if(isset($_POST['facility_id'])){
                     $model=$this->loadModel($_POST['facility_id']);
-
+                    $helper = new Helper();
+                    
                         $model->attributes=$_POST;
                         if($model->save()){
                             //Return result to jTable
@@ -90,12 +102,22 @@ class HealthFacilityController extends Controller
                             $jTableResult['Result'] = "OK";
                             print json_encode($jTableResult);
                         }
+                        else{
+                            $errorsArray = $model->getErrors();
+                            $errorMessage = !empty($errorsArray) ? $helper->displayError($errorsArray) : 'An error occurred';
+
+                            $jTableResult = array();
+                            $jTableResult['Result'] = "ERROR";
+                            $message = $errorMessage;
+                            $jTableResult['Message'] = $message;
+                            print json_encode($jTableResult);
+                        }
                 }
             } catch(Exception $ex) {
                 //Return error message
                     $jTableResult = array();
                     $jTableResult['Result'] = "ERROR";
-                    $jTableResult['Message'] = $ex->getMessage();
+                    //$jTableResult['Message'] = $ex->getMessage();
                     print json_encode($jTableResult);
             }
 	}
@@ -133,7 +155,7 @@ class HealthFacilityController extends Controller
                 $criteria->order = $_GET["jtSorting"];
                 $criteria->limit = $_GET['jtPageSize'];
                 $criteria->offset = $_GET["jtStartIndex"];
-                
+
                 /*
                  * Build the condition string part for the query. 
                  * These conditons will be concatenated to form one big condition tthat 
@@ -149,19 +171,21 @@ class HealthFacilityController extends Controller
                 
                 //set condition 
                 $criteria->condition  = $condition = $state . $lga;
-                //throw new Exception('Post: ' . json_encode($_POST) . ' condtoion: ' . $condition);
 
-
+                
                 $healthFacilitys = HealthFacility::model()->findAll($criteria);
+                //$healthFacilitys = HealthFacility::model()->findAllByAttributes(array('facility_id'=>20));
                 
                 //count records only after applying any possible filters
                 $recordCount = empty($condition) ? count(HealthFacility::model()->findAll()) : count($healthFacilitys);
+                //$recordCount = !empty($healthFacilitys) ? count($healthFacilitys) : 0;
+                //throw new Exception('recordcount: ' . $recordCount);
                 
                 foreach($healthFacilitys as $healthFacility){
                     $rows[] = $healthFacility->attributes;
                 }
                 
-
+                
                 //Return result to jTable
                 $jTableResult = array();
                 $jTableResult['Result'] = "OK";
@@ -173,7 +197,8 @@ class HealthFacilityController extends Controller
                 //Return error message
                 $jTableResult = array();
                 $jTableResult['Result'] = "ERROR";
-                $jTableResult['Message'] = $ex->getMessage();
+                //$jTableResult['Message'] = $ex->getMessage() . 'sort: ' . $_GET['jtSorting'] . ' limit: ' . $_GET['jtPageSize'] . ' offset:  ' . $_GET['jtStartIndex'];
+                $jTableResult['Message'] = ' level: ' . $msg;
                 print json_encode($jTableResult);
             }
         }
@@ -266,5 +291,37 @@ class HealthFacilityController extends Controller
                 $lgaArray[$lga->lga_id] = $lga->lga_name;
             
             echo json_encode($lgaArray);
+        }
+        
+        
+        public function actionTestList(){
+            try{
+
+                $rows = array();
+
+
+                $healthFacilitys = HealthFacility::model()->findAllByAttributes(array('facility_id'=>20));
+                //throw new Exception('after fetch');
+                
+                //count records only after applying any possible filters
+                //$recordCount = empty($condition) ? count(HealthFacility::model()->findAll()) : count($healthFacilitys);
+                $recordCount = !empty($healthFacilitys) ? count($healthFacilitys) : 0;
+                throw new Exception('recordcount: ' . $recordCount);
+                
+                foreach($healthFacilitys as $healthFacility){
+                    $rows[] = $healthFacility->attributes;
+                }
+                
+
+                //Return result to jTable
+                $jTableResult = array();
+                $jTableResult['Result'] = "OK";
+                $jTableResult['TotalRecordCount'] = $recordCount;
+                $jTableResult['Records'] = $rows;
+                print json_encode($jTableResult);
+                
+            } catch(Exception $ex) {
+                print $ex->getMessage(); exit;
+            }
         }
 }

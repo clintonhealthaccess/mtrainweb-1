@@ -99,4 +99,9 @@ class Category extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+        
+        
+        public function getCategoriesAndModules(){
+            return $categories = Category::model()->with('trainingModules')->findAll();
+        }
 }

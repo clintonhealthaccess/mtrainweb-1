@@ -59,7 +59,9 @@ class TrainingModule extends CActiveRecord
 			'admin' => array(self::BELONGS_TO, 'SystemAdmin', 'admin_id'),
 			'category' => array(self::BELONGS_TO, 'Category', 'category_id'),
 			'trainingSessions' => array(self::HAS_MANY, 'TrainingSession', 'module_id'),
-			'cthxTrainings' => array(self::MANY_MANY, 'Training', '{{training_to_module}}(module_id, training_id)'),
+			'trainingsMM' => array(self::MANY_MANY, 'Training', '{{training_to_module}}(module_id, training_id)'),
+                        'trainings' => array(self::HAS_MANY, 'Training', 'training_id'),
+                    
 		);
 	}
 

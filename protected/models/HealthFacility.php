@@ -37,6 +37,7 @@ class HealthFacility extends CActiveRecord
 		return array(
 			array('facility_address, facility_name, state_id, lga_id', 'required'),
 			array('state_id, lga_id', 'numerical', 'integerOnly'=>true),
+                        array('state_id, lga_id', 'numerical', 'min'=>1, 'tooSmall'=>'Please select {attribute}'),
 			array('facility_address', 'length', 'max'=>255),
 			array('facility_name', 'length', 'max'=>150),
 			// The following rule is used by search().
@@ -71,7 +72,7 @@ class HealthFacility extends CActiveRecord
 			'facility_address' => 'Facility Address',
 			'facility_name' => 'Facility Name',
 			'state_id' => 'State',
-			'lga_id' => 'Local Government Area',
+			'lga_id' => 'LGA',
 		);
 	}
 

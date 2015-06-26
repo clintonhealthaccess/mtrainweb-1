@@ -39,7 +39,7 @@ class AssessmentMetricsController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view','compare'),
+				'actions'=>array('index','view','compare', 'parseCompare'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -48,7 +48,7 @@ class AssessmentMetricsController extends Controller
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('admin'),
-				'users'=>array('admin'),
+				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -512,6 +512,126 @@ class AssessmentMetricsController extends Controller
         }
         
         
+        public function actionParseCompare(){        
+            $domPDFPath = Yii::getPathOfAlias('ext.vendors.dompdf');
+
+            //get PHPExcel parent class
+            $domPDFConfigFile = $domPDFPath . DIRECTORY_SEPARATOR . 'dompdf_config.inc.php';
+
+            if(file_exists($domPDFConfigFile))
+                include($domPDFConfigFile);
+
+            $selections = $_POST['selectionString'];
+            $selectionsArray = json_decode($selections, true);
+
+            $cadreRowsSet = array();
+            $stringSpace = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
+
+            foreach ($selectionsArray as $selection){
+                $ssArray = json_decode($selection, true);
+
+                try{
+                     $rows = array();
+                     //simulate Post request variables for each 
+
+                     $_POST['state'] = $ssArray['state'];
+                     $_POST['lga'] = $ssArray['lga'];
+                     $_POST['facility'] = $ssArray['facility'];
+                     $_POST['fromdate'] = $ssArray['fromdate'];
+                     $_POST['todate'] = $ssArray['todate'];
+
+                     //prepare the selection string header
+                     $selectionString =  'STATE: ' . (($ssArray['state'] == 0) ? 'All' : State::model()->findByPk($ssArray['state'])->state_name) . $stringSpace .
+                                         'LGA: ' . (($ssArray['lga'] == 0) ? 'All' : Lga::model()->findByPk($ssArray['lga'])->lga_name) . $stringSpace .
+                                         'FACILITY: ' . (($ssArray['facility'] == 0) ? 'All' : HealthFacility::model()->findByPk($ssArray['facility'])->facilty_name) . $stringSpace;
+
+                      if($ssArray['fromdate'] == '' && $ssArray['todate'] == ''){
+                             $selectionString .= 'DATE RANGE: ' . 'All' . $stringSpace;
+                      }
+                      else {
+                             $selectionString .= 'FROM: ' . $ssArray['fromdate'] . $stringSpace .
+                                                 'TO: ' . $ssArray['todate'] . $stringSpace;
+                      }     
+
+                      //add the prepared selection string as the first element of the array
+                      $rows[]  = $selectionString;
+
+
+                     //get the conditions string based on the criteria
+                     $builder = new ConditionBuilder();
+                     $filterString = $builder->getFilterConditionsString();
+                     $dateFilterString = $builder->getDateConditionString();
+                     $filterString = $builder->getFinalCondition($dateFilterString, $filterString);
+
+                     $cadres = Cadre::model()->findAll();     
+
+                     foreach($cadres as $cadre){
+                             $cadreid = $cadre->cadre_id;
+
+                            $worker = array();
+                            $worker['cadre'] = Cadre::model()->findByPk($cadre->cadre_id)->cadre_title;
+                            $worker['num_hcw'] = $this->getNumberOfCadreWorkers($cadreid,'GET');
+                            $worker['num_hcw_taking_tests'] = $this->getNumberTakingTests($cadreid, $filterString); 
+                            $worker['num_tests_taken'] = $this->getNumberOfTestsTaken($cadreid, $filterString);
+                            $worker['high_performing_score'] = $this->getNumberOfHighPerformingScore($cadreid, $filterString);
+                            $worker['average_score'] = $this->getNumberOfAverageScore($cadreid, $filterString); 
+                            $worker['underperforming_score'] = $this->getNumberOfUnderPerformingScore($cadreid, $filterString);
+                            $worker['failed_score'] = $this->getNumberOfFailedScore($cadreid, $filterString);
+
+                            $rows[] = $worker;
+                     }
+
+                     //HANDLE ONE MORE ITEM FOR TOTALS
+                     $rows[] = $this->totals;
+
+                     $cadreRowsSet[] = $rows;
+
+                 } catch(Exception $ex) {
+                     echo $ex->getTrace();
+                     echo $ex->getMessage();
+                 }
+
+            }
+
+            //echo json_encode($cadreRowsSet); exit;
+
+             //create the html            
+             //$this->render('_pdf', array('hcws'=>$healthWorkers));
+             try{
+                 //delete obsolete files in reports folder
+                 Yii::import('application.controllers.UtilController');
+                 $folderPath = $this->webroot . '/reports';
+                 UtilController::deleteObsoleteReportFiles($folderPath);
+                 
+                 $html = $this->renderPartial('_compare_pdf', 
+                                               array(
+                                                 'cadreRowSets'=>$cadreRowsSet,
+                                                 'webroot'=>  $this->webroot, 
+                                               ),
+                                                 true
+                                             );
+
+                   $title = 'Assessment_Comparison_Report';
+                   $timestamp = date('Y-m-d');
+                   $fileName = Yii::app()->user->name . '_' . $title . '_' . $timestamp . '.pdf';
+                   $saveName = "reports/" . $fileName;
+
+                   $dompdf = new DOMPDF();
+                   $dompdf->set_paper('A4', 'landscape');
+                   $dompdf->load_html($html);
+                   $dompdf->render();
+                   $pdf = $dompdf->output();
+
+                   file_put_contents($saveName, $pdf);
+
+                   //return back to the calling ajax function
+                   echo json_encode(array('URL'=>$saveName, 'FILENAME'=>$fileName, 'STATUS'=>'OK'));
+
+             } catch(Exception $ex){
+                 echo json_encode(array('MESSAGE'=>$ex->getMessage(), 'STATUS'=>'ERROR'));
+             }
+        }
+        
         /* This function exports data to a PDF file. */
         public function actionExportPDF(){
              try{
@@ -538,7 +658,7 @@ class AssessmentMetricsController extends Controller
                      include($domPDFConfigFile);
 
                  foreach($cadres as $cadre){
-                         $cadreid = $cadre->cadre_id;
+                        $cadreid = $cadre->cadre_id;
 
                         $worker = array();
                         $worker['cadre'] = Cadre::model()->findByPk($cadre->cadre_id)->cadre_title;
@@ -564,8 +684,8 @@ class AssessmentMetricsController extends Controller
                                                  'webroot'=>  $this->webroot, 
                                                  'params' => array(
                                                              'state'=>  !empty($_GET['state']) ? State::model()->findByPk($_GET['state'])->state_name : 'All',
-                                                             'lga'=>  !empty($_GET['state']) ? Lga::model()->findByPk($_GET['lga'])->lga_name : 'All',
-                                                             'facility'=>  !empty($_GET['state']) ? HealthFacility::model()->findByPk($_GET['facility'])->facility_name : 'All',
+                                                             'lga'=>  !empty($_GET['lga']) ? Lga::model()->findByPk($_GET['lga'])->lga_name : 'All',
+                                                             'facility'=>  !empty($_GET['facility']) ? HealthFacility::model()->findByPk($_GET['facility'])->facility_name : 'All',
                                                              'fromdate' => !empty($_GET['fromdate']) ? $_GET['fromdate'] : 'Not Set',
                                                              'todate' => !empty($_GET['todate']) ? $_GET['todate'] : 'Not Set',
                                                          ),

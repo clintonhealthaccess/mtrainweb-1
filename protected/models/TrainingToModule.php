@@ -41,6 +41,8 @@ class TrainingToModule extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+                    'module_id' => array(self::HAS_MANY, 'TrainingModule', 'module_id'),
+                    'trainings' => array(self::HAS_MANY, 'Training', 'training_id'),
 		);
 	}
 

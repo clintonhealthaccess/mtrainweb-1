@@ -7,7 +7,7 @@
 <!--<script type="text/javascript" src="js/jfx/jchartfx.animation.js"></script>-->
 <!--<script type="text/javascript" src="js/jfx/jchartfx.advanced.js"></script>-->
 
-<?php //echo $performance; ?>
+<?php //echo $this->absUrl;  ?>
    
 
 <!--pagetitle-->
@@ -72,6 +72,9 @@
           <!--</article>-->
       </section>
  
+        <div id="dialog" title="mTrain">
+            <p></p>
+        </div>
   </div>
     
 </div>
@@ -189,7 +192,7 @@
                  <div class="col-md-7  nopadding margintop10">
                         <label for="from" class="smallerfont">From</label>
                         <input type="text" id="from" class="datepicker" name="from" size="10"/>
-                        <label for="to" class=" smallerfont">to</label>
+                        <label for="to" class=" smallerfont">To</label>
                         <input type="text" id="to" class="datepicker" name="to" size="10"/>
                   </div>
                         
@@ -294,12 +297,7 @@
             
             data.addColumn('number', 'Failing');
             data.addColumn({type: 'string', role: 'tooltip'});
-            //data.addColumn({type: 'string', role: 'style'});
-            
-            //data.addColumn('number', 'No Activity');
-            //data.addColumn({type: 'string', role: 'tooltip'});
-            
-            
+            //data.addColumn({type: 'string', role: 'style'});           
                 
            for (var i = 0; i < rows.length; i++) {
                 //console.log('row: ' + rows[i].topping, parseInt(rows[i].slices))
@@ -320,7 +318,7 @@
                         //'#08A1D9',
                         
                         rows[i].failing,
-                        rows[i].failing_tooltip,
+                        rows[i].failing_tooltip
                         //'#7C984A'
                         
                         //rows[i].no_data
@@ -334,7 +332,8 @@
                 bar: { groupWidth: '45%' },
                 isStacked: true,
                 'tooltip' : {isHtml : true },
-                vAxis: {format:'#\'%\''}
+                vAxis: {format:'#\'%\''},
+                colors: ['green', 'blue', 'orange', '#DC3912']
             };
 
             // Instantiate and draw our chart, passing in some options.

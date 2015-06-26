@@ -75,6 +75,8 @@ class ConditionBuilder extends CApplicationComponent{
               $endConditioin = $this->getEndDateCondition();
                 if(!empty($startCondition) && !empty($endConditioin))
                     return $startCondition . ' AND ' . $endConditioin;
+                //else if(!empty($startCondition))
+                  //  return $startCondition;
         }
         
         public function getAssessmentDateConditionString() {

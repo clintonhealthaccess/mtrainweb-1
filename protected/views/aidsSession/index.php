@@ -8,17 +8,18 @@
             <h3 class="arialtitlebold">Reports</h3>
         </div>
         
-<!--        <div class="col-md-3 margintop20">
+        <div class="col-md-3 margintop20">
             <div class="dropdown floatright">
                 <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
                     Export &nbsp;&nbsp;<span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-right whitebg" role="menu" aria-labelledby="dropdownMenu1">
-                  <li role="presentation"><a role="menuitem" tabindex="0" href="#">Excel</a></li>
-                  <li role="presentation"><a role="menuitem" tabindex="1" href="#">PDF</a></li>
+                  <!--<li role="presentation"><a role="menuitem" tabindex="0" href="#" onclick="createDatedExcelFile('/assessmentMetrics/exportExcel', '2007'); return false;">Excel 2007 (.xlsx)</a></li>-->
+                  <!--<li role="presentation"><a role="menuitem" tabindex="0" href="#" onclick="createDatedExcelFile('/assessmentMetrics/exportExcel', '97_2003'); return false;">Excel 97-2003 (.xls)</a></li>-->
+                  <li role="presentation"><a role="menuitem" tabindex="1" href="<?php echo $this->baseUrl;?>/aidsSession/exportPDF" id="pdflink" target="_self">PDF</a></li>
                 </ul>
             </div>
-        </div>-->
+        </div>
     </div>
     
     
@@ -94,7 +95,7 @@
                         <div class="col-md-5  nopadding">
                               <label for="from" class="smallerfont">From</label>
                               <input type="text" id="from" class="datepicker" name="from"/>
-                              <label for="to" class=" smallerfont">to</label>
+                              <label for="to" class=" smallerfont">To</label>
                               <input type="text" id="to" class="datepicker" name="to"/>
                         </div>
 
@@ -124,6 +125,12 @@
             </section>
         </div>
     </div>
+    
+    <iframe id="dframe" src="" class="hidden"></iframe>
+    <div id="dialog" title="mTrain Report Engine">
+        <p></p>
+    </div>
+    
 </div>
 </div>
 
@@ -164,8 +171,14 @@
 
 
              $('#filterButton').click(function (e){
-             
+                 setPDFUrl();
                  e.preventDefault();
+                 
+                 fromdate = $('#from').val();
+                 todate = $('#to').val();
+                 if(!validateDates(fromdate, todate)) return;
+                 
+                 
                  $('#JobAidsTableContainer').jtable('load',{
                      state: $('#stateDropdown').val(), 
                      lga: $('#lgaDropdown').val(), 
@@ -179,5 +192,39 @@
              
 
      });
+     
+     
+     function setPDFUrl(){
+         //set modifier parameters for pdf link
+        modifierParams.state = $('#stateDropdown').val();
+        modifierParams.lga = $('#lgaDropdown').val();
+        modifierParams.facility = $('#facilityDropdown').val();
+        modifierParams.cadre = $('#cadreDropdown').val();
+        modifierParams.fromdate = $('#from').val();
+        modifierParams.todate = $('#to').val();
+        log('modifierParams: ' + JSON.stringify(modifierParams));
+        
+        $('#pdflink').attr('href',
+                            modifierParams.pdfUrl + '/?' +
+                            'state=' + modifierParams.state + 
+                            '&lga=' + modifierParams.lga +
+                            '&facility=' + modifierParams.facility +
+                            '&fromdate=' + modifierParams.fromdate +
+                            '&todate=' + modifierParams.todate
+                          );
+     }
+         
+     
+      var modifierParams = {
+            pdfUrl : $('#pdflink').attr('href'),
+            excel2007Url : "createExcelFile('/assessmentMetrics/exportExcel', '2007')",
+            excel2003Url : "createExcelFile('/assessmentMetrics/exportExcel', '97_2003')",
+           
+            state : 0,
+            lga : 0,
+            facility : 0,
+            fromdate : '',
+            todate: ''
+      }
 
 </script>     

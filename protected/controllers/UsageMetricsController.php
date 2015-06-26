@@ -46,12 +46,12 @@ class UsageMetricsController extends Controller
 				'users'=>array('@'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('ajaxList', 'exportExcel','exportPDF'),
+				'actions'=>array('ajaxList', 'exportExcel','exportPDF','test', 'parseCompare', 'downloadFile'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('create','update','admin','delete'),
-				'users'=>array('admin'),
+				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -74,7 +74,10 @@ class UsageMetricsController extends Controller
         
         
        public function actionAjaxList(){
+             
             try{
+                
+                
                 $rows = array();
                                        
                 //get the conditions string based on the criteria
@@ -86,11 +89,11 @@ class UsageMetricsController extends Controller
                 
                 //set the channel to POST value or 'mobile' by default
                 $channel = isset($_POST['channel']) ? $_POST['channel'] : 'mobile';
-                $this->materialType = Yii::app()->helper->getChannelMaterialType($channel);
-                
+                $this->materialType = Yii::app()->helper->getChannelMaterialType($channel);              
                 
                 $cadres = Cadre::model()->findAll();
                 
+                $c = array();
                 foreach($cadres as $cadre){
                         $cadreid = $cadre->cadre_id;
                         
@@ -101,13 +104,18 @@ class UsageMetricsController extends Controller
                         $worker['distinct_topics_viewed'] = $this->getDistinctTrainingsDone($cadreid,$filterString);
                         $worker['total_topic_views'] = $this->getTotalTopicViews($cadreid,$filterString); 
                         $worker['topics_completed'] = $this->getCadreCompletedTraining($cadreid,$filterString);
-                        $worker['distinct_guide_views'] = $this->getDistinctGuideViews($cadreid,$filterString);
-                        $worker['total_guide_views'] = $this->getTotalGuideViews($cadreid,$filterString);
+                        $worker['distinct_guide_views'] = $this->materialType < 3 ? $this->getDistinctGuideViews($cadreid,$filterString) : 'NA';
+                        $worker['total_guide_views'] = $this->materialType < 3 ? $this->getTotalGuideViews($cadreid,$filterString) : 'NA';
 
                         $rows[] = $worker;
+                        
                 }
                 
                 //HANDLE ONE MORE ITEM FOR TOTALS
+                if($this->materialType == 3){
+                    $this->totals['distinct_guide_views'] = 'NA';
+                    $this->totals['total_guide_views'] = 'NA';
+                }
                 $rows[] = $this->totals;
                 
                 $recordCount = count($rows);
@@ -118,7 +126,7 @@ class UsageMetricsController extends Controller
                 $jTableResult['TotalRecordCount'] = $recordCount;
                 $jTableResult['Records'] = $rows;
                 print json_encode($jTableResult);
-                
+
             } catch(Exception $ex) {
                 //Return error message
                 $jTableResult = array();
@@ -139,14 +147,17 @@ class UsageMetricsController extends Controller
             $conditionString = 'cadre_id='.$cadreid;
             //get filter string for this method differently as it does not work with dates
             $builder = '';
+            
             if($method=='GET')
                 $builder = new GETConditionBuilder();
             else
                 $builder = new ConditionBuilder();
             
+            
             $filterString = $builder->getFilterConditionsString();
-            $criteria->condition =  $filterString . (empty($filterString) ? $conditionString : ' AND ' . $conditionString);
-                          
+            $filterString .= (empty($filterString) ? $conditionString : ' AND ' . $conditionString);
+            $criteria->condition =  $filterString;
+            
             $cadreWorkers = HealthWorker::model()->with('facility')->findAll($criteria);
             
             $count = count($cadreWorkers);
@@ -378,6 +389,7 @@ class UsageMetricsController extends Controller
         
         
         public function actionExportExcel(){
+            //echo 'return value'; exit;
             try{                                       
                 //get the conditions string based on the criteria
                 $builder = new ConditionBuilder();
@@ -479,7 +491,6 @@ class UsageMetricsController extends Controller
             
                 //return back to the calling ajax function
                 echo json_encode(array('URL'=>$saveName, 'STATUS'=>'OK'));
-
             } catch(Exception $ex) {
                 echo json_encode(array('MESSAGE'=>$ex->getMessage(), 'STATUS'=>'ERROR'));
             }
@@ -518,11 +529,144 @@ class UsageMetricsController extends Controller
        //make colums widths adjust automatically to width size
        $excelFunctions->columnAutoSize('A', 'H');
    }
-        
-        
+
+
+   public function actionParseCompare(){        
+       $domPDFPath = Yii::getPathOfAlias('ext.vendors.dompdf');
+
+       //get PHPExcel parent class
+       $domPDFConfigFile = $domPDFPath . DIRECTORY_SEPARATOR . 'dompdf_config.inc.php';
+       
+       if(file_exists($domPDFConfigFile))
+           include($domPDFConfigFile);
+       
+       $selections = $_POST['selectionString'];
+       //$selections = '{"group_1":"{\"channel\":\"mobile\",\"state\":\"0\",\"lga\":\"0\",\"facility\":\"0\",\"fromdate\":\"\",\"todate\":\"\"}","group_2":"{\"channel\":\"mobile\",\"state\":\"5\",\"lga\":\"0\",\"facility\":\"0\",\"fromdate\":\"\",\"todate\":\"\"}"}';
+       $selectionsArray = json_decode($selections, true);
+       
+       
+       $cadreRowsSet = array();
+       $stringSpace = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
+       
+       foreach ($selectionsArray as $selection){
+           $ssArray = json_decode($selection, true);
+           
+           try{
+                $rows = array();
+                //simulate Post request variables for each 
+                
+                $_POST['channel'] = $ssArray['channel'];
+                $_POST['state'] = $ssArray['state'];
+                $_POST['lga'] = $ssArray['lga'];
+                $_POST['facility'] = $ssArray['facility'];
+                $_POST['fromdate'] = $ssArray['fromdate'];
+                $_POST['todate'] = $ssArray['todate'];
+                
+                //prepare the selection string header
+                $selectionString =  'STATE: ' . (($ssArray['state'] == 0) ? 'All' : State::model()->findByPk($ssArray['state'])->state_name) . $stringSpace .
+                                    'LGA: ' . (($ssArray['lga'] == 0) ? 'All' : Lga::model()->findByPk($ssArray['lga'])->lga_name) . $stringSpace .
+                                    'FACILITY: ' . (($ssArray['facility'] == 0) ? 'All' : HealthFacility::model()->findByPk($ssArray['facility'])->facilty_name) . $stringSpace .
+                                    'CHANNEL: ' . (($ssArray['channel'] == 'mobile') ? 'Mobile' : 'IVR') . $stringSpace;
+                
+                 if($ssArray['fromdate'] == '' && $ssArray['todate'] == ''){
+                        $selectionString .= 'DATE RANGE: ' . 'All' . $stringSpace;
+                 }
+                 else {
+                        $selectionString .= 'FROM: ' . $ssArray['fromdate'] . $stringSpace .
+                                            'TO: ' . $ssArray['todate'] . $stringSpace;
+                 }     
+                 
+                 //add the prepared selection string as the first element of the array
+                 $rows[]  = $selectionString;
+                 
+                 
+                //get the conditions string based on the criteria
+                $builder = new ConditionBuilder();
+                $filterString = $builder->getFilterConditionsString();
+                $dateFilterString = $builder->getDateConditionString();
+                $filterString = $builder->getFinalCondition($dateFilterString, $filterString);
+                $this->materialType = Yii::app()->helper->getChannelMaterialType($_POST['channel']);
+                //echo 'material: ' . $this->materialType . ' ' . $_GET['channel']; exit;
+
+                $cadres = Cadre::model()->findAll();     
+                
+                foreach($cadres as $cadre){
+                        $cadreid = $cadre->cadre_id;
+
+                        $worker = array();
+                        $worker['cadre'] = Cadre::model()->findByPk($cadre->cadre_id)->cadre_title;
+                        $worker['num_hcw'] = $this->getNumberOfCadreWorkers($cadreid);
+                        $worker['num_taking_trainings'] = $this->getNumberOfWorkers($cadreid,$filterString); 
+                        $worker['distinct_topics_viewed'] = $this->getDistinctTrainingsDone($cadreid,$filterString);
+                        $worker['total_topic_views'] = $this->getTotalTopicViews($cadreid,$filterString); 
+                        $worker['topics_completed'] = $this->getCadreCompletedTraining($cadreid,$filterString);
+                        $worker['distinct_guide_views'] = $this->getDistinctGuideViews($cadreid,$filterString);
+                        $worker['total_guide_views'] = $this->getTotalGuideViews($cadreid,$filterString);
+
+                        $rows[] = $worker;
+                }
+
+                //HANDLE ONE MORE ITEM FOR TOTALS
+                $rows[] = $this->totals;
+                
+                $cadreRowsSet[] = $rows;
+
+            } catch(Exception $ex) {
+                echo $ex->getTrace();
+                echo $ex->getMessage();
+            }
+            
+            //var_dump($cadreRowsSet); 
+            //print '<br><br>'; 
+            
+       }
+       
+       //echo json_encode($cadreRowsSet); exit;
+       
+        //create the html            
+        //$this->render('_pdf', array('hcws'=>$healthWorkers));
+        try{
+            //delete obsolete files in reports folder
+             Yii::import('application.controllers.UtilController');
+             $folderPath = $this->webroot . '/reports';
+             UtilController::deleteObsoleteReportFiles($folderPath);
+             
+            $html = $this->renderPartial('_compare_pdf', 
+                                          array(
+                                            'cadreRowSets'=>$cadreRowsSet,
+                                            'webroot'=>  $this->webroot, 
+                                          ),
+                                            true
+                                        );
+
+              $title = 'Usage_Comparison_Report';
+              $timestamp = date('Y-m-d');
+              $fileName = Yii::app()->user->name . '_' . $title . '_' . $timestamp . '.pdf';
+              $saveName = "reports/" . $fileName;
+                          
+
+              $dompdf = new DOMPDF();
+              $dompdf->set_paper('A4', 'landscape');
+              $dompdf->load_html($html);
+              $dompdf->render();
+              $pdf = $dompdf->output();
+              //$dompdf->stream($saveName);
+
+              file_put_contents($saveName, $pdf);
+              
+              //return back to the calling ajax function
+              echo json_encode(array('URL'=>$saveName, 'FILENAME'=>$fileName, 'STATUS'=>'OK'));
+                
+        } catch(Exception $ex){
+            echo json_encode(array('MESSAGE'=>$ex->getMessage(), 'STATUS'=>'ERROR'));
+        }
+   }
+   
+   
         
    /* This function exports data to a PDF file. */
    public function actionExportPDF(){
+       //var_dump($_GET); exit;
         try{
             $rows = array();
             
@@ -534,7 +678,8 @@ class UsageMetricsController extends Controller
             $dateFilterString = $builder->getDateConditionString();
             $filterString = $builder->getFinalCondition($dateFilterString, $filterString);
             $this->materialType = Yii::app()->helper->getChannelMaterialType($_GET['channel']);
-            //echo 'material: ' . $this->materialType; exit;
+            //echo 'material: ' . $this->materialType . ' ' . $_GET['channel']; exit;
+            
             
             $cadres = Cadre::model()->findAll();
             
@@ -575,10 +720,11 @@ class UsageMetricsController extends Controller
                                             'webroot'=>  $this->webroot, 
                                             'params' => array(
                                                         'state'=>  !empty($_GET['state']) ? State::model()->findByPk($_GET['state'])->state_name : 'All',
-                                                        'lga'=>  !empty($_GET['state']) ? Lga::model()->findByPk($_GET['lga'])->lga_name : 'All',
-                                                        'facility'=>  !empty($_GET['state']) ? HealthFacility::model()->findByPk($_GET['facility'])->facility_name : 'All',
+                                                        'lga'=>  !empty($_GET['lga']) ? Lga::model()->findByPk($_GET['lga'])->lga_name : 'All',
+                                                        'facility'=>  !empty($_GET['facility']) ? HealthFacility::model()->findByPk($_GET['facility'])->facility_name : 'All',
                                                         'fromdate' => !empty($_GET['fromdate']) ? $_GET['fromdate'] : 'Not Set',
                                                         'todate' => !empty($_GET['todate']) ? $_GET['todate'] : 'Not Set',
+                                                        'channel' => $_GET['channel'] = 'ivr' ? strtoupper($_GET['channel']) : ucwords($_GET['channel']),
                                                     ),
                                           ),
                                             true
@@ -602,5 +748,34 @@ class UsageMetricsController extends Controller
             //echo 'Error Occurred while generating PDF';
             //echo json_encode(array('MESSAGE'=>$ex->getMessage(), 'STATUS'=>'ERROR'));
         }
+   }
+   
+   public function actionTest(){
+       $cadreid = 1; $method = 'POST';
+       $criteria = new CDbCriteria;
+            $criteria->select = 't.worker_id';
+            $criteria->group = 't.worker_id';
+            $criteria->distinct = true;
+            
+            $conditionString = 'cadre_id='.$cadreid;
+            //get filter string for this method differently as it does not work with dates
+            $builder = '';
+            
+            if($method=='GET')
+                $builder = new GETConditionBuilder();
+            else
+                $builder = new ConditionBuilder();
+            
+            
+            $filterString = $builder->getFilterConditionsString();
+            $filterString .= (empty($filterString) ? $conditionString : ' AND ' . $conditionString);
+            $criteria->condition =  $filterString;
+            
+            $cadreWorkers = HealthWorker::model()->with('facility')->findAll($criteria);
+            print 'inside test 2'; exit; 
+            
+            $count = count($cadreWorkers);
+            $this->totals['num_hcw'] += $count;
+            print count($cadreWorkers); exit;
    }
 }

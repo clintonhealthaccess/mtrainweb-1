@@ -481,15 +481,17 @@ THE SOFTWARE.
 
                 //Generate URL (with query string parameters) to load records
                 var loadUrl = self._createRecordLoadUrl();
-
+                
                 //Load data from server using AJAX
                 self._ajax({
                     url: loadUrl,
                     data: self._lastPostData,
                     success: function (data) {
+                        console.log('Ajax Call Succeeded');
                         completeReload(data);
                     },
-                    error: function () {
+                    error: function (xhr, status, error) {
+                        console.log('Error in the house: ' + JSON.stringify(xhr));
                         self._hideBusy();
                         self._showError(self.options.messages.serverCommunicationError);
                     }

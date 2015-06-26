@@ -34,7 +34,7 @@
 
 
 <script type="text/javascript">
-        //$('#container-row').data("permissions",<?php echo $permissions; ?>);
+        //$('#container-row').data("permissions",<?php //echo $permissions; ?>);
         //log('permissions 1: ' + permissions);
             
        //var permissions = $('#container-row').data("permissions");
@@ -61,16 +61,16 @@
                                 list: false
                         },
                         firstname: {
-                                title: 'First Name'
+                                title: 'First Name *'
                         },
                         middlename: {
                                 title: 'Middle Name'
                         },
                         lastname: {
-                                title: 'Last Name'
+                                title: 'Last Name *'
                         },
                         gender: {
-                                title: 'Gender',
+                                title: 'Gender *',
                                 list: false,
                                 options: ['-- Select Gender --','Male', 'Female']
                         },
@@ -78,11 +78,11 @@
                                 title: 'Email'
                         },
                         phone: {
-                                title: 'Phone'
+                                title: 'Phone *'
                         },
                         
                         role_id: {
-                                title: 'Role',
+                                title: 'Role *',
                                 options: 'systemAdmin/getRolesList'
                                 //list: false
                                 
@@ -90,11 +90,11 @@
                                 //inputClass: 'validate[required]'
                         },
                         state_id: {
-                                title: 'State',
+                                title: 'State *',
                                 options: 'healthFacility/getStatesList'
                         },
                         lga_id: {
-                                title: 'Local Govt. Area',
+                                title: 'Local Govt. Area *',
                                 dependsOn: 'state_id',
                                 options: function(data){
                                     if(data.source == 'list'){
@@ -105,17 +105,17 @@
 
                         },
                         username: {
-                                title: 'Username',
+                                title: 'Username *',
                                 list: false
                         },
                         password: {
-                                title: 'Password',
+                                title: 'Password *',
                                 type: 'password',
                                 edit: false,
                                 list: false
                         },
                         cpassword: {
-                                title: 'Confirm Password',
+                                title: 'Confirm Password *',
                                 type: 'password',
                                 edit: false,
                                 list: false

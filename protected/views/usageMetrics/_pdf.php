@@ -95,8 +95,9 @@
                 <p style="position: absolute; left: 10;top:40"><strong>Facility: </strong> <?php echo $params['facility']; ?></p>
             </div>
             <div class="right-side">
-                <p style="position: absolute; right: 70;top:0"><strong>Begin Date: </strong> <?php echo $params['fromdate']; ?></p>
-                <p style="position: absolute; right: 75;top:20"><strong>End Date:&nbsp; </strong> <?php echo $params['todate']; ?></p>
+                <p style="position: absolute; right: 75;top:0" class=""><strong>Channel: </strong> <?php echo $params['channel']; ?></p>
+                <p style="position: absolute; right: 70;top:20"><strong>Begin Date: </strong> <?php echo $params['fromdate']; ?></p>
+                <p style="position: absolute; right: 75;top:40"><strong>End Date:&nbsp; </strong> <?php echo $params['todate']; ?></p>
             </div>
         </fieldset>
         
