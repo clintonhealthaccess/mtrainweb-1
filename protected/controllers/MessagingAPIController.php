@@ -306,7 +306,7 @@ class MessagingAPIController extends Controller {
                              $responseObj->EndTime,
                              $responseObj->Completed==0 ? 1 : 2,  //our own complete is 2 and incomplete is 1
                              1, //session type: individual only
-                             3, //material type: IVR will be 3
+                             MessagingAPIController::IVR_CHANNEL, //material type: IVR will be 3
                              TrainingToModule::model()->findByAttributes(array('training_id'=>$mtrainTrainingID))->module_id,
                              $mtrainTrainingID,
                              $mtrainWorkerID,

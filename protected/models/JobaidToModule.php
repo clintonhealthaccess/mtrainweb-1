@@ -41,6 +41,8 @@ class JobaidToModule extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+                    'aidSession' => array(self::HAS_ONE, 'AidsSession', 'aid_id'),
+                    'module' => array(self::HAS_ONE, 'TrainingModule', 'module_id'),
 		);
 	}
 

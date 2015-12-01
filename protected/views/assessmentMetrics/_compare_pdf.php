@@ -25,8 +25,7 @@
                 border-left:1px solid #fff !important;  
                 background: #0378b3;
                 text-align: center;
-                padding-top:5px; 
-                padding-bottom: 5px; 
+                padding:5px; 
                 color: #fff !important;
             }
             .thcell:first-child {border-left:1px solid #0378b3 !important; }

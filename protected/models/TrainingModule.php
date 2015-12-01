@@ -6,6 +6,7 @@
  * The followings are the available columns in table '{{training_module}}':
  * @property string $module_id
  * @property string $module_title
+ * * @property string $module_abbr
  * @property string $guide_file
  * @property string $remarks
  * @property integer $admin_id
@@ -54,13 +55,14 @@ class TrainingModule extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'cthxJobAs' => array(self::MANY_MANY, 'JobAid', '{{jobaid_to_module}}(module_id, aid_id)'),
+			'JobAsMM' => array(self::MANY_MANY, 'JobAid', '{{jobaid_to_module}}(module_id, aid_id)'),
 			'tests' => array(self::HAS_MANY, 'Test', 'module_id'),
 			'admin' => array(self::BELONGS_TO, 'SystemAdmin', 'admin_id'),
 			'category' => array(self::BELONGS_TO, 'Category', 'category_id'),
 			'trainingSessions' => array(self::HAS_MANY, 'TrainingSession', 'module_id'),
 			'trainingsMM' => array(self::MANY_MANY, 'Training', '{{training_to_module}}(module_id, training_id)'),
                         'trainings' => array(self::HAS_MANY, 'Training', 'training_id'),
+                        //'jobaids' => array(self::HAS_MANY, 'JobAid', 'aid_id'),
                     
 		);
 	}
@@ -73,6 +75,7 @@ class TrainingModule extends CActiveRecord
 		return array(
 			'module_id' => 'Module',
 			'module_title' => 'Module Title',
+                        'module_abbr' => 'Module Abbr.',
 			'guide_file' => 'Guide File',
 			'remarks' => 'Remarks',
 			'admin_id' => 'Admin',
@@ -100,6 +103,7 @@ class TrainingModule extends CActiveRecord
 
 		$criteria->compare('module_id',$this->module_id,true);
 		$criteria->compare('module_title',$this->module_title,true);
+                $criteria->compare('module_abbr',$this->module_abbr,true);
 		$criteria->compare('guide_file',$this->guide_file,true);
 		$criteria->compare('remarks',$this->remarks,true);
 		$criteria->compare('admin_id',$this->admin_id);

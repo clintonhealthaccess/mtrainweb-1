@@ -10,12 +10,12 @@
         
         <div class="col-md-3 margintop20">
             <div class="dropdown floatright">
-                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
                     Export &nbsp;&nbsp;<span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-right whitebg" role="menu" aria-labelledby="dropdownMenu1">
-                  <!--<li role="presentation"><a role="menuitem" tabindex="0" href="#" onclick="createDatedExcelFile('/assessmentMetrics/exportExcel', '2007'); return false;">Excel 2007 (.xlsx)</a></li>-->
-                  <!--<li role="presentation"><a role="menuitem" tabindex="0" href="#" onclick="createDatedExcelFile('/assessmentMetrics/exportExcel', '97_2003'); return false;">Excel 97-2003 (.xls)</a></li>-->
+                  <li role="presentation"><a role="menuitem" tabindex="0" href="#" onclick="createDatedExcelFile('/aidsSession/exportExcel', '2007'); return false;">Excel 2007 (.xlsx)</a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="0" href="#" onclick="createDatedExcelFile('/aidsSession/exportExcel', '97_2003'); return false;">Excel 97-2003 (.xls)</a></li>
                   <li role="presentation"><a role="menuitem" tabindex="1" href="<?php echo $this->baseUrl;?>/aidsSession/exportPDF" id="pdflink" target="_self">PDF</a></li>
                 </ul>
             </div>
@@ -25,7 +25,7 @@
     
     
     <!--form-->
-    <div class="row">
+    <div class="row geobox">
         <div class="col-md-10 col-md-offset-1 marginbottom20">
             
             <section class="container">
@@ -39,7 +39,7 @@
                     
                     <div class="row noborder margintop10 marginbottom15">
                         <div class="col-md-2 nopadding marginright5">
-                            <select id="stateDropdown" class="form-control" onchange="filterLoadLga(this,'lgaDropdown','');">
+                            <select id="stateDropdown" class="form-control stateDropdown" onchange="filterLoadLga(this,'');">
                                 <?php
                                     $states = Yii::app()->helper->getStatesList($this->user->id);
                                     $html ='';
@@ -55,7 +55,7 @@
                         </div>
                         
                         <div class="col-md-2 nopadding marginright5">
-                            <select id="lgaDropdown" class="form-control" name="lga" onchange="filterLoadFacility(this,'facilityDropdown','');">
+                            <select id="lgaDropdown" class="form-control lgaDropdown" name="lga" onchange="filterLoadFacility(this,'');">
                                 <?php
                                         $lgas = Yii::app()->helper->getLgaList($this->user->id);
                                         $html ='';
@@ -72,7 +72,7 @@
                         </div>
                         
                         <div class="col-md-2  nopadding marginright5">
-                          <select id="facilityDropdown" class="form-control facility" id="facility" name="facility">
+                          <select id="facilityDropdown" class="form-control facility facilityDropdown" id="facility" name="facility">
                               <?php
                                     $facs = Yii::app()->helper->getFacilityList($this->user->id);
                                     $html ='';
@@ -100,7 +100,7 @@
                         </div>
 
                         <div class="col-md-1 nopadding" class="filterButtonContainer">
-                            <a id="filterButton" class="btn btn-primary bluehover" >Filter</a>
+                            <a id="filterButton" class="btn btn-default bluehover" >Filter</a>
                         </div>
                         
                         <div class="col-md-1 nopadding text-right loadingdiv hidden" style="margin-top: -7px;">
@@ -111,7 +111,7 @@
                         </div>
                         
                         <div class="col-md-5 floatright">
-                              <a href="aidsSession/compare" class="btn btn-primary floatright">Compare Views Metrics</a>
+                              <a href="aidsSession/compare" class="btn btn-default floatright">Compare Views Metrics</a>
                         </div>  
                    </div>
                     

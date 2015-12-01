@@ -35,16 +35,16 @@
         <?php Yii::app()->clientScript->registerScriptFile( $this->baseUrl . "/js/jquery-1.11.1.min.js", CClientScript::POS_HEAD ); ?>
         <?php Yii::app()->clientScript->registerScriptFile( $this->baseUrl . "/js/jquery-ui.min.js", CClientScript::POS_HEAD ); ?>
         <?php //Yii::app()->clientScript->registerScriptFile( $this->baseUrl . "/js/highcharts.js", CClientScript::POS_HEAD ); ?>
-        <?php Yii::app()->clientScript->registerScriptFile( $this->baseUrl . "/js/bootstrap-datepicker.js", CClientScript::POS_HEAD ); ?>
+        <?php //Yii::app()->clientScript->registerScriptFile( $this->baseUrl . "/js/bootstrap-datepicker.js", CClientScript::POS_HEAD ); ?>
         <?php Yii::app()->clientScript->registerScriptFile( $this->baseUrl . "/jtable/jquery.jtable.js", CClientScript::POS_BEGIN ); ?>
-        <?php Yii::app()->clientScript->registerScriptFile( $this->baseUrl . "/js/jquery.form.js", CClientScript::POS_HEAD ); ?>
+        <?php //Yii::app()->clientScript->registerScriptFile( $this->baseUrl . "/js/jquery.form.js", CClientScript::POS_HEAD ); ?>
         <?php Yii::app()->clientScript->registerScriptFile( $this->baseUrl . "/js/functions.js", CClientScript::POS_HEAD ); ?>
-        <?php //Yii::app()->clientScript->registerScriptFile( $this->baseUrl . "/js/facilityjtable.js", CClientScript::POS_END ); ?>
+        <?php Yii::app()->clientScript->registerScriptFile( $this->baseUrl . "/js/facilityjtable.js", CClientScript::POS_END ); ?>
         
         
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
-  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <!--<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />-->
+  <!--<script src="//code.jquery.com/jquery-1.10.2.js"></script>-->
+  <!--<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>-->
   <script src="http://code.highcharts.com/highcharts.js"></script>
  
   
@@ -124,7 +124,7 @@
 
 <!--    <script src="<?php echo $this->baseUrl; ?>/js/jquery-1.11.1.min.js"></script>-->
 <!--    <script src="<?php echo $this->baseUrl; ?>/js/bootstrap-datepicker.js"></script>-->
-    <script src="<?php echo $this->baseUrl; ?>/js/bootstrap.min.js"></script>
+    <!--<script src="<?php echo $this->baseUrl; ?>/js/bootstrap.min.js"></script>-->
     
     
 </body>

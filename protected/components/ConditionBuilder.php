@@ -86,6 +86,14 @@ class ConditionBuilder extends CApplicationComponent{
                     return $startCondition . ' AND ' . $endConditioin;
         }
         
+        public function getAidsDateConditionString() {
+              $startCondition = isset($_POST['fromdate']) && !empty($_POST['fromdate']) ?
+                        'date_viewed >= "' . date('Y-m-d',  strtotime($_POST['fromdate'])) . '"'  : '';
+              $endConditioin = isset($_POST['todate']) && !empty($_POST['todate']) ?
+                        'date_viewed <= "' . date('Y-m-d',strtotime($_POST['todate'])) . '"' : '';
+                if(!empty($startCondition) && !empty($endConditioin))
+                    return $startCondition . ' AND ' . $endConditioin;        
+        }
         
         public function getAidDateConditionString() {
               $startCondition = $this->getAidStartDateCondition();

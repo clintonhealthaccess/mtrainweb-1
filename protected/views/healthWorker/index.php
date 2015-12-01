@@ -13,13 +13,13 @@
         
         <div class="col-md-3 margintop20">
             <div class="dropdown floatright">
-                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
                     Export &nbsp;&nbsp;<span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-right whitebg" role="menu" aria-labelledby="dropdownMenu1">
                   <li role="presentation"><a role="menuitem" tabindex="0" href="#" onclick="createExcelFile('healthWorker/exportExcel', '2007'); return false;">Excel 2007 (.xlsx)</a></li>
                   <li role="presentation"><a role="menuitem" tabindex="0" href="#" onclick="createExcelFile('healthWorker/exportExcel', '97_2003'); return false;">Excel 97-2003 (.xls)</a></li>
-                  <li role="presentation"><a role="menuitem" tabindex="1" href="<?php echo $this->baseUrl;?>/healthWorker/exportPDF" id="pdflink" target="_blank">PDF</a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="1" href="<?php echo $this->baseUrl;?>/healthWorker/exportPDF" id="pdflink">PDF</a></li>
                 </ul>
             </div>
         </div>
@@ -40,9 +40,9 @@
                         </div>
                     </div>
                     
-                    <div class="row noborder margintop10 marginbottom15">
+                    <div class="row noborder margintop10 marginbottom15 geobox">
                         <div class="col-md-2 nopadding marginright5">                            
-                            <select id="stateDropdown" name="state_id" class="form-control" onchange="filterLoadLga(this,'lgaDropdown','');">
+                            <select id="stateDropdown" name="state_id" class="form-control stateDropdown" onchange="filterLoadLga(this,'');">
                                 <?php
                                     $states = Yii::app()->helper->getStatesList($this->user->id);
                                     $html ='';
@@ -58,7 +58,7 @@
                         </div>
                         
                         <div class="col-md-2 nopadding marginright5">                            
-                            <select id="lgaDropdown" class="form-control" name="lga" onchange="filterLoadFacility(this,'facilityDropdown','');">                                  
+                            <select id="lgaDropdown" class="form-control lgaDropdown" name="lga" onchange="filterLoadFacility(this,'');">                                  
                                     <?php
                                         $lgas = Yii::app()->helper->getLgaList($this->user->id);
                                         $html ='';
@@ -77,7 +77,7 @@
                         </div>
                         
                         <div class="col-md-2  nopadding marginright5">
-                          <select id="facilityDropdown" class="form-control facility" id="facility" name="facility">
+                          <select id="facilityDropdown" class="form-control facility facilityDropdown" id="facility" name="facility">
                               <!--<option value="0">--Select Facility--</option>-->
                               <?php
                                     $facs = Yii::app()->helper->getFacilityList($this->user->id);
@@ -109,7 +109,7 @@
                         </div>
                         
                         <div class="col-md-1 nopadding">
-                            <a id="filterButton" class="btn btn-primary bluehover ">Filter</a>
+                            <a id="filterButton" class="btn btn-default bluehover ">Filter</a>
                         </div>
                         
                         <div class="col-md-1 nopadding text-right loadingdiv hidden" style="margin-top: -7px;">

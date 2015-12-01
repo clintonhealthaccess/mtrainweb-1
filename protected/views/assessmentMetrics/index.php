@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row geobox">
     <div class="col-md-12">
         
     
@@ -10,7 +10,7 @@
         
         <div class="col-md-3 margintop20">
             <div class="dropdown floatright">
-                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
                     Export &nbsp;&nbsp;<span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-right whitebg" role="menu" aria-labelledby="dropdownMenu1">
@@ -38,7 +38,7 @@
                     
                     <div class="row noborder margintop10 marginbottom15">
                         <div class="col-md-2 nopadding marginright5">
-                            <select id="stateDropdown" class="form-control" onchange="filterLoadLga(this,'lgaDropdown','');">
+                            <select id="stateDropdown" class="form-control stateDropdown" onchange="filterLoadLga(this,'');">
                                 <?php
                                     $states = Yii::app()->helper->getStatesList($this->user->id);
                                     $html ='';
@@ -54,7 +54,7 @@
                         </div>
                         
                         <div class="col-md-2 nopadding marginright5">
-                            <select id="lgaDropdown" class="form-control" name="lga" onchange="filterLoadFacility(this,'facilityDropdown','');">
+                            <select id="lgaDropdown" class="form-control lgaDropdown" name="lga" onchange="filterLoadFacility(this,'');">
                                 <?php
                                         $lgas = Yii::app()->helper->getLgaList($this->user->id);
                                         $html ='';
@@ -71,7 +71,7 @@
                         </div>
                         
                         <div class="col-md-2  nopadding marginright5">
-                          <select id="facilityDropdown" class="form-control facility" id="facility" name="facility">
+                          <select id="facilityDropdown" class="form-control facility facilityDropdown" id="facility" name="facility">
                               <?php
                                     $facs = Yii::app()->helper->getFacilityList($this->user->id);
                                     $html ='';
@@ -100,7 +100,7 @@
                         </div>
 
                         <div class="col-md-1 nopadding" class="filterButtonContainer">
-                            <a id="filterButton" class="btn btn-primary bluehover" >Filter</a>
+                            <a id="filterButton" class="btn btn-default bluehover" >Filter</a>
                         </div>
                         
                         <div class="col-md-1 nopadding text-right loadingdiv hidden" style="margin-top: -7px;">
@@ -111,7 +111,7 @@
                         </div>
                         
                         <div class="col-md-5 floatright">
-                              <a href="assessmentMetrics/compare" class=" btn btn-primary floatright">Compare Assessment Metrics </a>
+                              <a href="assessmentMetrics/compare" class=" btn btn-default floatright">Compare Assessment Metrics </a>
                         </div>
                         
                             

@@ -10,7 +10,7 @@
  *
  * @author Swedge
  */
-class SystemStats extends CApplicationComponent {
+class SystemStatsDemo extends CApplicationComponent {
     private $totalWorkers;
     private $totalVideoTrainigs, $totalTrainingGuides;
     private $testDenominator=4; //is this the range OR test max score possible
@@ -42,48 +42,72 @@ class SystemStats extends CApplicationComponent {
     
     
     public function getSystemCoverage(){
+        $criteria = new CDbCriteria;
+        //$criteria->select = 'COUNT(DISTINCT(healthFacilities.facility_id)) as cc';
+        $criteria->group = 't.state_id';
+        $activeStates = State::model()->with(array(
+                                'lga' => array('joinType'=>'INNER JOIN',
+                                               'with'=>array('healthFacilities' => array(
+                                                    'joinType'=> 'INNER JOIN',
+                                                    'with' => array('healthWorkers'=>array('joinType'=>'INNER JOIN'))
+                                                   )
+                                                )
+                                               )))->findAll();
         
-        $appDb = Yii::app()->db;
-        //$num_workers = count(HealthWorker::model()->findAll());
-        $num_workers = $appDb->createCommand('SELECT COUNT(*) as hc FROM cthx_health_worker')->queryScalar();
-        $num_nurses = count(HealthWorker::model()->findAll(array('condition'=> 'cadre_id=' . Cadre::NURSES)));
-        $num_midwives = count(HealthWorker::model()->findAll(array('condition'=> 'cadre_id=' . Cadre::MIDWIFE)));
-        $num_chews = count(HealthWorker::model()->findAll(array('condition'=> 'cadre_id=' . Cadre::CHEW)));
+        $activeStatesArray = array();
         
-        //get each worker with their facility and use the facility details to get state and lga
-        //a previously treated facility has corresponding state and lga recorded, no need to treat 
-        //those for that loop anymore
-        $workersArray = HealthWorker::model()->with('facility.state', 'facility.lga')->findAll();
-        $facsArray = $statesArray = $lgaArray = array();
-        foreach ($workersArray as $worker){
-            $facility = $worker->facility;
+        
+        $totalFacsCount = $totalHWCount = 0;
+        
+        foreach($activeStates as $activeState){
+            //if($activeState->state_id != 12) continue; 
+            //echo $activeState->state_id;
+            //state=>state_name, faccount, lgacount,lgas
+            //lgas => lgaid, lganame, faccount,facs
+            $stateFacsCount = 0;
+            $stateHWCount = 0;
             
-            if(!in_array($facility->facility_id, $facsArray)) {
-                $facsArray[] = $facility->facility_id; 
-                    
-                if(!in_array($facility->state_id, $statesArray))
-                    $statesArray[] = $facility->state_id; 
+            //first get all the LGAs in the state and their facs counts
+            $activeStateLgasArray = array();
+            foreach ($activeState->lga as $activeLga){
+                //var_dump($activeLga);echo '<br><br>'; exit;
+                //var_dump($activeLga->healthFacilities);echo '<br><br>'; exit;
+                $activeStateLgasArray[$activeLga->lga_id] = array(
+                            'lga_name' => str_replace('Local Government Area', 'LGA', $activeLga->lga_name),
+                            'facscount' => count($activeLga->healthFacilities),
+                            'hwcount' => 0 //initialize to 0 first
+                );
                 
-                if(!in_array($facility->lga_id, $lgaArray))
-                    $lgaArray[] = $facility->lga_id; 
+                //get the number of health workers in lga
+                $hwCount = 0;
+                foreach($activeLga->healthFacilities as $fac)
+                    $hwCount += count($fac->healthWorkers);
+                
+                //set $hwCount for this LGA to LGA hwcount index
+                $activeStateLgasArray[$activeLga->lga_id]['hwcount'] = $hwCount;
+                
+                //add the facs count to the state running total
+                $stateFacsCount += count($activeLga->healthFacilities);
+                
+                //add the HW count to the state runnint total
+                $stateHWCount += $hwCount;
             }
-            else 
-                continue;
+                
+            //create state details structure, insert LGA details and state running facs count figure
+            $activeStatesArray[$activeState->state_id] = array(
+                            'state_name' => $activeState['state_name'],
+                            'lgacount' => count($activeState->lga),
+                            'lgas' => $activeStateLgasArray,
+                            'facscount' => $stateFacsCount,
+                            'hwcount' => $stateHWCount
+            );
+            
+            $totalFacsCount += $stateFacsCount;
+            $totalHWCount += $stateHWCount;
         }
         
-        return $stats = array(
-                            //'num_facs' => $appDb->createCommand('SELECT COUNT(*) as hc FROM cthx_health_facility')->queryScalar(),
-                            //'num_facs' => $appDb->createCommand('SELECT COUNT(DISTINCT(facility_id)) as hc FROM cthx_health_worker')->queryScalar(),
-                            'num_facs' => count($facsArray),
-                            //'num_lga' => count(Lga::model()->findAll()),
-                            'num_lga' => count($lgaArray),
-                            //'num_states' => count(State::model()->findAll()),
-                            'num_states' => count($statesArray),
-                            'num_workers' => $num_workers,
-                            'ptage_nurses' => number_format($num_nurses / $num_workers * 100,1),
-                            'ptage_midwives' => number_format($num_midwives / $num_workers * 100,1),
-                            'ptage_chews' => number_format($num_chews / $num_workers * 100,1),
-                        );
+        //var_dump($activeStatesArray); exit;
+        return array($activeStatesArray, $totalFacsCount, $totalHWCount);
     }
     
     
@@ -262,8 +286,283 @@ class SystemStats extends CApplicationComponent {
         return $performance;
     }
     
+    /*
+     * This gets the performance on training 
+     * 1. No of times access per topic
+     * 2. No of people accessing per topic
+     * Args: POST[state,lga,facility,fromdate,todate]
+     */
+    public function getTrainingPerformance($ajaxCall){
+        $builder = new ConditionBuilder();            
+        $dateFilterString = $builder->getDateConditionString();
+        $finalConditionString = $builder->getFinalCondition($dateFilterString, $this->filterString);
+        
+        //number accessing group condition 
+        $criteria = new CDbCriteria();
+        $criteria->condition = $finalConditionString;
+        $criteria->group = 't.module_id';
+        $criteria->select = 'COUNT(DISTINCT(worker_id)) AS wcount';
+
+        $numAccessing = TrainingSession::model()->with(array(
+                            'module'=>array('select'=>'module_abbr'),
+                            'facility' => array('select'=>false)
+                        ))->findAll($criteria);
+         
+        //times accessed query using exising condition object
+        $criteria->select = 'COUNT(session_id) AS scount';
+        $timesAccessed = TrainingSession::model()->with(array(
+                                    'module'=>array('select'=>false),
+                                    'facility' => array('select'=>false)
+                         ))->findAll($criteria);
+        
+        $TPArray = $categories = array();
+        
+        for($i=0; $i<count($numAccessing); $i++){
+            $numAcc = $numAccessing[$i];
+            $categories[] = $numAcc->module->module_abbr;
+            $TPArray['No. of HWs<br/>Accessing'][] = (int)$numAcc->wcount;
+            $TPArray['No. of Times<br/>Accessed'][] = (int)$timesAccessed[$i]->scount;
+        }
+
+        $performanceArray = array($categories, $TPArray);
+        //var_dump($performanceArray); exit;
+        if($ajaxCall) echo json_encode($performanceArray); else return json_encode($performanceArray);    
+    }
     
-/*
+    
+    
+    
+    /*
+     * This gets the performance on job aids
+     * 1. No of times accessed per module
+     * 2. No of people accessing per module
+     * Args: POST[state,lga,facility,fromdate,todate]
+     */
+    public function getJAPerformance($ajaxCall){
+        ini_set('display_errors', "On");
+        $builder = new ConditionBuilder();
+        $dateFilterString = $builder->getDateConditionString();
+        $finalConditionString = $builder->getFinalCondition($dateFilterString, $this->filterString);
+        
+        //number accessing group condition 
+        $criteria = new CDbCriteria();
+        $criteria->condition = $finalConditionString;
+        $criteria->group = 'atm.module_id';
+        $criteria->select = 'COUNT(DISTINCT(t.facility_id)) AS fcount';
+
+        $numAccessing = AidsSession::model()->with(array(
+                            'aidToModule.module' => array('joinType' => 'INNER JOIN', 'alias'=>'atm'),
+                            'facility' => array('select'=>false, 'joinType'=>'INNER JOIN')
+                        ))->findAll($criteria);       
+                
+        //times accessed query using exising condition object
+        $criteria->select = 'COUNT(session_id) AS scount';
+        $timesAccessed = AidsSession::model()->with(array(
+                            'aidToModule.module' => array('joinType' => 'INNER JOIN', 'alias'=>'atm'),
+                            'facility' => array('select'=>false, 'joinType'=>'INNER JOIN')
+                        ))->findAll($criteria);
+        
+        $TPArray = $categories = array();
+        
+        for($i=0; $i<count($numAccessing); $i++){
+            $numAcc = $numAccessing[$i];
+            $categories[] = $numAcc->aidToModule->module->module_abbr;
+            $TPArray['No of Facs<br/> Accessing'][] = (int)$numAcc->fcount;
+            $TPArray['No of Times<br/> Accessed'][] = (int)$timesAccessed[$i]->scount;
+        }
+
+        $performanceArray = array($categories, $TPArray);
+        //var_dump($performanceArray); exit;
+        if($ajaxCall) echo json_encode($performanceArray); else return json_encode($performanceArray);    
+    }
+    
+    
+    /*
+     * This gets the performance on pretests  
+     * No of HWs that have score in each score range in the system.
+     * Args: POST[state,lga,facility,fromdate,todate]
+     */
+    public function getPreTestPerformance($ajaxCall){
+        ini_set('display_errors', "On");
+        $builder = new ConditionBuilder();
+        $dateFilterString = $builder->getAssessmentDateConditionString();
+        $finalConditionString = $builder->getFinalCondition($dateFilterString, $this->filterString);
+        
+        //number accessing group condition 
+        $criteria = new CDbCriteria();
+        $criteria->condition = $finalConditionString;
+        $criteria->group = 'm.module_id,worker_id';
+        $criteria->having = 'MIN(session_id)';
+        $criteria->order = 'm.module_id';
+        
+        //echo json_encode(array($criteria->condition)); exit;
+        
+        $testSessions = TestSession::model()->with(array(
+                            'test'=> array('with'=>array('module'=>array('alias'=>'m'))),
+                            'facility' //=> array('select'=>false)
+                    ))->findAll($criteria);
+        
+        /*score ranges 
+         * <=40         ..... lte40 .... 0
+         * >40 and <=60 ..... gt40lte60 .... 1
+         * >60 and <=80 ..... gt60lte80 .... 2
+         * >80          ..... gt80 .... 3
+         */
+        
+        //see score ranges format above ===> key/value pair ====> score range => 0 (initial HW count value)
+        
+        $categories = array();
+        
+        //get all modules to be able to initialise the performance array 
+        $modules = TrainingModule::model()->findAll();
+        foreach ($modules as $module){
+            $categories[] = $module->module_abbr;
+        }
+    
+        //initializing ranres with module/categories
+        $rangesArray = array(0=>$categories,
+                              1=>$categories,
+                              2=>$categories,
+                              3=>$categories); 
+        
+        //forming the needed array structure and setting the count 
+        //of each cell to 0
+        foreach($rangesArray as $key=>$pa){
+            foreach ($pa as $cat){
+                $performanceArray[$key][$cat] = 0;
+            }
+        }
+                          
+        //for each user gotten by group by clause on test session
+        //get the pretest score, the module abbr, and calculate the range
+        //then increment the right array element. 
+        foreach($testSessions as $ts){
+            $moduleAbbr = $ts->test->module->module_abbr;
+            $preTestScore = $ts->score / $ts->total * 100 - $ts->improvement;
+            $rangeIndex = $this->getRangeIndex($preTestScore);
+            
+            $performanceArray[$rangeIndex][$moduleAbbr]++;
+        }
+        
+        $performanceArray = array($categories,$performanceArray);
+        if($ajaxCall) echo json_encode($performanceArray); else return json_encode($performanceArray);    
+    }
+
+    
+    /*
+     * This gets the performance on pretests  
+     * No of HWs that have score in each score range in the system.
+     * Args: POST[state,lga,facility,fromdate,todate]
+     */
+    public function getPostTestPerformance($ajaxCall){
+        ini_set('display_errors', "On");
+        $builder = new ConditionBuilder();
+        $dateFilterString = $builder->getAssessmentDateConditionString();
+        $finalConditionString = $builder->getFinalCondition($dateFilterString, $this->filterString);
+        
+        //number accessing group condition 
+        $criteria = new CDbCriteria();
+        $criteria->condition = $finalConditionString;    
+        $criteria->order = 't.worker_id,module.module_id';
+        
+        //echo json_encode(array($criteria->condition)); exit;
+        
+        $workers = HealthWorker::model()->with(array(
+                                'testSessions.test.module' =>array('jpinType'=>'INNER JOIN'),
+                                'facility'
+                            ))->findAll($criteria);
+        
+        /*score ranges 
+         * <=40         ..... lte40 .... 0
+         * >40 and <=60 ..... gt40lte60 .... 1
+         * >60 and <=80 ..... gt60lte80 .... 2
+         * >80          ..... gt80 .... 3
+         */
+        
+        //see score ranges format above ===> key/value pair ====> score range => 0 (initial HW count value)
+        
+        $categories = array();
+        
+        //get all modules to be able to initialise the performance array 
+        $modules = TrainingModule::model()->findAll();
+        foreach ($modules as $module){
+            $categories[] = $module->module_abbr;
+        }
+    
+        //initializing ranres with module/categories
+        $rangesArray = array(0=>$categories,
+                              1=>$categories,
+                              2=>$categories,
+                              3=>$categories);
+        
+        //forming the needed array structure and setting the count 
+        //of each cell to 0
+        foreach($rangesArray as $key=>$pa){
+            foreach ($pa as $cat){
+                $performanceArray[$key][$cat] = 0;
+            }
+        }
+        //var_dump($performanceArray); echo '<br><br>';
+         
+        //for each user gotten by group by clause on test session
+        //get the pretest score, the module abbr, and calculate the range
+        //then increment the right array element. 
+        foreach($workers as $worker){
+            
+            $testSessions = $worker->testSessions;
+            if(empty($testSessions)) continue;
+            
+            $moduleSessionsScoresArray = array();
+            $statFunctions = new StatFunctions();
+            
+            //echo 'worker: ' . $worker->worker_id . '<br>';
+            $currentModuleID = $testSessions[0]->test->module->module_id;
+            foreach($testSessions as $ts){
+                if($currentModuleID == $ts->test->module->module_id){
+                    $moduleAbbr = $ts->test->module->module_abbr;
+                    $moduleSessionsScoresArray[] = $ts->score / $ts->total * 100;
+                }
+                else{
+                    //exhausted module sessions
+                    $median = $statFunctions->median($moduleSessionsScoresArray);
+                    $rangeIndex = $this->getRangeIndex($median);
+                    $performanceArray[$rangeIndex][$moduleAbbr] += 1;
+                    
+                    //handle current session where the <> happened
+                    $moduleSessionsScoresArray = array(); //start module sessions all over
+                    $currentModuleID = $ts->test->module->module_id;
+                    $moduleAbbr = $ts->test->module->module_abbr;
+                    $moduleSessionsScoresArray[] = $ts->score / $ts->total * 100;
+                }
+            }
+            
+            //this is for the last module in which there will not be a <> 
+            //condition satisfied for
+            $median = $statFunctions->median($moduleSessionsScoresArray);
+            $rangeIndex = $this->getRangeIndex($median);
+            $performanceArray[$rangeIndex][$moduleAbbr] += 1;
+        }
+        
+        //var_dump($performanceArray); exit;
+        $performanceArray = array($categories,$performanceArray);
+        if($ajaxCall) echo json_encode($performanceArray); else return json_encode($performanceArray);    
+    }
+    
+    
+    
+
+    private function getRangeIndex($score){
+        $rangeIndex = 0;
+        switch ($score){
+            case $score < 40 : $rangeIndex = 0; break;
+            case $score > 40 && $score <= 60 : $rangeIndex = 1; break;
+            case $score > 60 && $score <= 80 : $rangeIndex = 2; break;
+            case $score > 80 : $rangeIndex = 3; break;
+        }
+        return $rangeIndex;
+    }
+
+    /*
  * This method will count the number of trainings taken by each worker
  * and divide that by the number of trainings in the system to get fractiondone column for each worker in query
  * each fractiondone column for each user is multiplied by 100 to get the percentage activity of that user
@@ -329,7 +628,6 @@ private function getWorkersCompletedTrainingPerformance(){
 
     return $gradeCounts;
  }
-    
     
     
 private function getWorkersCompletedIVRTrainingPerformance(){

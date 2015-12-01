@@ -125,12 +125,12 @@
       <header class="containerheader"><h6>Health Worker Performance</h6></header>
       <section class="container">
           <article>
-              <div class="row noborder margintop10 marginbottom15">
+              <div class="row noborder margintop10 marginbottom15 geobox">
                         <!--<div class="col-md-12" id="transparentdialog" title="mtrain" style="width: 93%; height: 200px; background: #000; z-index: 20; position: absolute; top: 0; left: 0; margin: 15px;">
                         <p></p>
                     </div>-->
                   <div class="col-md-3 nopadding marginright5">
-                    <select id="stateDropdown" name="state_id" class="form-control" onchange="filterLoadLga(this,'lgaDropdown','');">
+                    <select id="stateDropdown" name="state_id" class="form-control stateDropdown" onchange="filterLoadLga(this,'');">
                         <?php
                             $states = Yii::app()->helper->getStatesList($this->user->id);
                             $html ='';
@@ -146,7 +146,7 @@
                     </div>
                     
                   <div class="col-md-3 nopadding marginright5">
-                          <select id="lgaDropdown" class="form-control" name="lga" onchange="filterLoadFacility(this,'facilityDropdown','');">                                  
+                          <select id="lgaDropdown" class="form-control lgaDropdown" name="lga" onchange="filterLoadFacility(this,'');">                                  
                                 <?php
                                     $lgas = Yii::app()->helper->getLgaList($this->user->id);
                                     $html ='';
@@ -164,7 +164,7 @@
                   
                   
                  <div class="col-md-3  nopadding marginright5">
-                        <select id="facilityDropdown" class="form-control facility" id="facility" name="facility">
+                        <select id="facilityDropdown" class="form-control facility facilityDropdown" id="facility" name="facility">
                               <!--<option value="0">--Select Facility--</option>-->
                               <?php
                                     $facs = Yii::app()->helper->getFacilityList($this->user->id);
@@ -198,7 +198,7 @@
                         
                         
                 <div class="col-md-2 nopadding margintop10">
-                    <a id="filterButton" onclick="loadStackedBarChart();return false;" class="btn btn-primary bluehover ">Filter</a>
+                    <a id="filterButton" onclick="loadStackedBarChart();return false;" class="btn btn-default bluehover ">Filter</a>
                 </div>
                         
                 

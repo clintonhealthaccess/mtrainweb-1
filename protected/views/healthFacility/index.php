@@ -1,6 +1,6 @@
 <div class="row">
     
-    <div class="col-md-12">        
+    <div class="col-md-12">
         <!--pagetitle-->
         <div class="row">
             <div class="col-md-10 col-md-offset-1 marginbottom20 ">
@@ -19,9 +19,9 @@
             <section class="container">
                 <article>
                     <!--<table id="list4"></table>-->
-                    <div class="row noborder margintop10 marginbottom15">
+                    <div class="row noborder margintop10 marginbottom15 geobox">
                         <div class="col-md-2 nopadding marginright5">
-                            <select id="stateDropdown" name="state_id" class="form-control" onchange="filterLoadLga(this,'lgaDropdown','');">
+                            <select id="stateDropdown" name="state_id" class="form-control stateDropdown" onchange="filterLoadLga(this,'');">
                                 <?php
                                     $states = Yii::app()->helper->getStatesList($this->user->id);
                                     $html ='';
@@ -37,7 +37,7 @@
                           </div>
                           
                           <div class="col-md-2 nopadding marginright5">                              
-                              <select id="lgaDropdown" name="lga_id" class="form-control" >
+                              <select id="lgaDropdown" name="lga_id" class="form-control lgaDropdown" >
                                     <?php
                                         $lgas = Yii::app()->helper->getLgaList($this->user->id);
                                         $html ='';
@@ -54,9 +54,8 @@
                           </div>
                         
                             <div class="col-md-1 nopadding">
-                              <button id="filterButton" type="button" class="btn btn-primary">Filter</button>
+                              <button id="filterButton" type="button" class="btn btn-default">Filter</button>
                             </div>
-                        
                     </div>
 
 

@@ -1,18 +1,17 @@
-function filterLoadLga(combo, depth){
+
+function filterLoadLga(combo, lgaSelectId, depth){
     //$('.loadingdiv').removeClass('hidden');
-    var loadingDiv = $(combo).closest('div.geobox').find('div.loadingdiv');
-    $(loadingDiv).removeClass('hidden');
-    
+    //var loadingDiv = $(combo).parents('div#geobox').find('div.loadingdiv');
     var url = '';
     if(depth == '' || depth==0)
-        //url = '../ajax/filterLoadLga'; //this should be url = '../ajax/filterLoadLga';
-            url = './ajax/filterLoadLga';
+        url = './ajax/filterLoadLga';
     else
         url = '../ajax/filterLoadLga';
     
     var index = combo.selectedIndex;
-    var select = document.getElementById($(combo).closest('div.geobox').find('select.lgaDropdown').attr('id'));
-    var facSelect = document.getElementById($(combo).closest('div.geobox').find('select.facilityDropdown').attr('id'));
+    var select = document.getElementById(lgaSelectId);
+    
+    //console.log('index: ', index, 'select')
     
     $.ajax({
         type: 'POST',
@@ -20,13 +19,15 @@ function filterLoadLga(combo, depth){
         data: {stateid:index},
         dataType: 'json',
         success: function(lgas){
-            //log('lgas: ' + lgas.length + ' type: ' + JSON.stringify(lgas));
+            
             if(select==null || select.options==null)
                 return;
             else
                 select.options.length = 0;
             
-            for(key in lgas){
+            //log('lgas: ' + lgas.length + ' type: ' + JSON.stringify(lgas));
+            
+            for(key in lgas){         
                 if(isNaN(key)) return;
                 var option = document.createElement("option");
                 option.text = lgas[key];
@@ -35,9 +36,9 @@ function filterLoadLga(combo, depth){
             }
             
             //set the facility to just one (first) element to avoid inconsistency
-            //var facSelect = document.getElementById('facilityDropdown');
+            var facSelect = document.getElementById('facilityDropdown');
             if(facSelect != null) facSelect.options.length = 1;
-            $(loadingDiv).addClass('hidden');
+            $('.loadingdiv').addClass('hidden');
         },
         error: function(){log('An error occurred.')},
         complete:function(){}
@@ -45,19 +46,16 @@ function filterLoadLga(combo, depth){
 }
 
 
-function filterLoadFacility(combo, depth){
-    var loadingDiv = $(combo).closest('div.geobox').find('div.loadingdiv');
-    $(loadingDiv).removeClass('hidden');
-    
+function filterLoadFacility(combo, facilitySelectId, depth){
+    $('.loadingdiv').removeClass('hidden');
     var url = '';
     if(depth == '' || depth == 0)
-        url = './ajax/filterLoadFacility'; //this should be url = './ajax/filterLoadFacility';
+        url = './ajax/filterLoadFacility';
     else if(depth==1)
         url = '../ajax/filterLoadFacility';
     
     var index = $('#' + combo.id).val(); 
-    var select = document.getElementById($(combo).closest('div.geobox').find('select.facilityDropdown').attr('id'));
-    //var select = document.getElementById(facilitySelectId);
+    var select = document.getElementById(facilitySelectId);
     
     log('index ' + index +' select ' + select);
     
@@ -67,7 +65,7 @@ function filterLoadFacility(combo, depth){
         data: {lgaid:index},
         dataType: 'json',
         success: function(facs){
-            //console.log('facs: ' + JSON.stringify(facs));
+            console.log('facs: ' + JSON.stringify(facs));
             if(select==null || select.options==null)
                 return;
             else
@@ -81,7 +79,7 @@ function filterLoadFacility(combo, depth){
                 select.add(option);
             }
             
-            $(loadingDiv).addClass('hidden');
+            $('.loadingdiv').addClass('hidden');
         },
         error: function(){},
         complete:function(){}
@@ -280,7 +278,7 @@ function loadStackedBarChart(){
     //$('#transparentdialog').dialog({modal:true});
     $('.loadingdiv').removeClass('hidden');
     
-    url = './site/filterStackedChart';
+    url = './filterStackedChart';
     
     state = $('#stateDropdown').val();
     lga = $('#lgaDropdown').val();
@@ -324,103 +322,52 @@ function loadStackedBarChart(){
 
 
 $(document).ready(function(){
-    var labelSelectedMode = '';
-    $('label.btn.btn-default').click(function(){
-//        if($(this).has('.modeButton') && (!$(this).hasClass('currentMode'))){
-//            log('no cuurent mode');
-//            $('#filterButton').click();
-//            $(this).siblings().removeClass('currentMode');
-//            $(this).addClass('currentMode');
-//        }
-        labelSelectedMode = $(this).attr('id')
-        
-        log('label id: ' + $(this).attr('id') + ' labelSelectMode: ' + labelSelectedMode);
-        if($(this).attr('id') == 'ja'){
-            $(this).closest('div.optionbox').siblings('div.geobox').find('input.datepicker').prop('disabled','disabled');
-            $(this).closest('div.optionbox').siblings('div.geobox').find('a.homeFilterButton').click();
-        }
-        else{
-            $(this).closest('div.optionbox').siblings('div.geobox').find('input.datepicker').removeProp('disabled');
-            $(this).closest('div.optionbox').siblings('div.geobox').find('a.homeFilterButton').click();
-        }
-    });
-    
-    
-    /*
-     * Click event handler for all filterButtons on homepage
-     */
-    $('a.homeFilterButton').click(function(){
-       log("this ID: " + $(this).attr('id'));
-       var mode ='';
-       if(labelSelectedMode != '')
-           mode = labelSelectedMode;
-       else
-            mode = $(this).closest('div.geobox').siblings('div.optionbox').find('input[type="radio"]:checked').val();
-        
-       //clear the labelSelectedMode immediately to keep sterile
-       labelSelectedMode = '';
-       
-       log("mode inside click: " + mode);
-       
-       var chartCanvas = $(this).closest('div.geobox').siblings('.whiteframe').find('div.chartcanvas');
+    $('#filterButton').click(function(){
+       var mode = $(this).parents('div#geobox').siblings('div#optionbox').find('input[type="radio"]:checked').val();
+       log(mode);
        
        //hide the loading div
-       var loadingDiv = $(this).closest('div.geobox').find('div.loadingdiv');
-       $(loadingDiv).removeClass('hidden');
+       var loadingDivID = $(this).parent().siblings('div.loadingdiv').attr('id');
+       $('#' + loadingDivID).removeClass('hidden');
        
        var url = '';
-       if(mode == 'training' || mode == 'ja') url = './filterTJA';
-       if(mode == 'pretest' || mode == 'posttest') url = './filterTests';
-       
-        state = $(this).closest('div.geobox').find('.stateDropdown').val();
-        lga = $(this).closest('div.geobox').find('.lgaDropdown').val();
-        facility = $(this).closest('div.geobox').find('.facilityDropdown').val();
-        fromdate = $(this).closest('div.geobox').find('.fromdate').val();
-        todate = $(this).closest('div.geobox').find('.todate').val();
-                
-        //log('state: '+ state); 
-        //log('lga: '+ lga); 
-        //log('fac: '+ facility); 
+       if(mode == 'training') url = './filterTJA';
+    
+        state = $(this).parents('div#geobox').find('#stateDropdown').val();
+        lga = $(this).parents('div#geobox').find('#lgaDropdown').val();
+        facility = $(this).parents('div#geobox').find('#facilityDropdown').val();
+        //cadre = $(this).parents('div#geobox').find('input[name="cadreOption"]:checked').val();
+        fromdate = $(this).parents('div#geobox').find('#from').val();
+        todate = $(this).parents('div#geobox').find('#to').val();
+        
+        //log('state: ' + state + ' lga: ' + lga + ' facility ' + facility); return;
         
         //validate dates
         if(!validateDates(fromdate, todate)){
-            $(loadingDiv).removeClass('hidden');
+            $('#' + loadingDivID).addClass('hidden');
             return;
         }
-        
+
         $.ajax({
             type: 'POST',
             url: url,
             data: {state:state, lga:lga, facility:facility, fromdate:fromdate, todate:todate, mode:mode},
             dataType: 'json',
             success: function(performanceData){
-                //log(JSON.stringify(performanceData));
-                //log(performanceData[0].length);
-                if(performanceData[0].length <= 0){
-                    $(chartCanvas).html('No usage data for selected location');
-                }
-                else{
-                    //log('performanceItems: ' + JSON.stringify(performanceData));
-                    
-                    if(mode == 'training' || mode == 'ja') {
-                        log('inside trainig');
-                        tjaPerformance = performanceData;
-                        drawTJAChart();
-                    }
-                    else if(mode == 'pretest' || mode == 'posttest') {
-                        log('inside test');
-                        testPerformance = performanceData;
-                        drawTestChart();
-                    }
-                }
+                //log(JSON.stringify(performanceItems));
+                //reloadChart(performanceItems);
+                log('performanceItems: ' + performanceData);
+                tjaPerfomance = performanceData;
+                if(mode == 'traininig') drawTJAChart(); else 'no mode';
 
-                $(loadingDiv).addClass('hidden');
+                //$('#' + loadingDivID).addClass('hidden');
             },
             error: function(e){
                 log('An error occured loading chart data: ' + JSON.stringify(e));
-                $(loadingDiv).addClass('hidden');
             },
-            complete:function(){}
+            complete:function(){
+
+            }
         });
        
     });
@@ -479,6 +426,25 @@ function reloadChart(performanceItems){
 
     chart1.create('div_obj-1');
 }
+
+
+
+
+
+//$(function(){
+//    $(window).resize(function(){
+//        var viewportWidth = $(window).width();
+//        var viewportHeight = $(window).height();
+//        var donut = document.getElementById('div_obj');
+//        donut.style.width = donutWidth = Math.round(32 * viewportWidth / 100) + 'px';
+//        donut.style.height = donutHeight = Math.round(58 * viewportHeight / 100) + 'px';
+//        log('donutWidth: ' + donutWidth + ' donutHeight: ' + donutHeight + ' viewportWidth: ' + viewportWidth + ' viewportHeight ' + viewportHeight);
+//        donut._ud(true);
+//    });
+//}); 
+
+
+
 
 /*
  * UTILITY FUNCTIONS

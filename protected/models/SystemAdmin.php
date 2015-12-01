@@ -25,6 +25,7 @@
 class SystemAdmin extends CActiveRecord
 {
     //public $permissionArray = array();
+    public $passwordChangeMode = false;
 
     /**
 	 * @return string the associated database table name
@@ -162,7 +163,7 @@ class SystemAdmin extends CActiveRecord
         public function beforeSave()
         {
             if(parent::beforeSave()){
-                if($this->getIsNewRecord()) 
+                if($this->getIsNewRecord() || $this->passwordChangeMode) 
                 {
                     if(!isset($this->salt)) {
                         $this->salt = substr(uniqid(rand()), -6);

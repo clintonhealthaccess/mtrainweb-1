@@ -24,7 +24,9 @@
  */
 class TrainingSession extends CActiveRecord
 {
-	/**
+    public $wcount, $scount;  //these are needed for queries
+    
+    /**
 	 * @return string the associated database table name
 	 */
 	public function tableName()

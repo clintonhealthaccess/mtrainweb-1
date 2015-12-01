@@ -91,17 +91,18 @@ class AssessmentMetricsController extends Controller
                 foreach($cadres as $cadre){
                         $cadreid = $cadre->cadre_id;
                         
-                        $worker = array();
-                        $worker['cadre'] = Cadre::model()->findByPk($cadre->cadre_id)->cadre_title;
-                        $worker['num_hcw'] = $this->getNumberOfCadreWorkers($cadreid);
-                        $worker['num_hcw_taking_tests'] = $this->getNumberTakingTests($cadreid, $filterString); 
-                        $worker['num_tests_taken'] = $this->getNumberOfTestsTaken($cadreid, $filterString);
-                        $worker['high_performing_score'] = $this->getNumberOfHighPerformingScore($cadreid, $filterString);
-                        $worker['average_score'] = $this->getNumberOfAverageScore($cadreid, $filterString); 
-                        $worker['underperforming_score'] = $this->getNumberOfUnderPerformingScore($cadreid, $filterString);
-                        $worker['failed_score'] = $this->getNumberOfFailedScore($cadreid, $filterString);
+//                        $worker = array();
+//                        $worker['cadre'] = Cadre::model()->findByPk($cadre->cadre_id)->cadre_title;
+//                        $worker['num_hcw'] = $this->getNumberOfCadreWorkers($cadreid);
+//                        $worker['num_hcw_taking_tests'] = $this->getNumberTakingTests($cadreid, $filterString); 
+//                        $worker['num_tests_taken'] = $this->getNumberOfTestsTaken($cadreid, $filterString);
+//                        $worker['high_performing_score'] = $this->getNumberOfHighPerformingScore($cadreid, $filterString);
+//                        $worker['average_score'] = $this->getNumberOfAverageScore($cadreid, $filterString); 
+//                        $worker['underperforming_score'] = $this->getNumberOfUnderPerformingScore($cadreid, $filterString);
+//                        $worker['failed_score'] = $this->getNumberOfFailedScore($cadreid, $filterString);
 
-                        $rows[] = $worker;
+//                        $rows[] = $worker;
+                          $rows[] = $this->getSelectionValues($cadreid, $filterString);
                 }
                 
                 //HANDLE ONE MORE ITEM FOR TOTALS
@@ -148,7 +149,7 @@ class AssessmentMetricsController extends Controller
             $cadreWorkers = HealthWorker::model()->with('facility')->findAll($criteria);
             
             $count = count($cadreWorkers);
-            $this->totals['num_hcw'] += $count;
+            //$this->totals['num_hcw'] += $count;
             return count($cadreWorkers);
         }
         
@@ -166,7 +167,7 @@ class AssessmentMetricsController extends Controller
             $workers = AssessmentMetrics::model()->with('worker','facility')->findAll($criteria);            
 
             $count = count($workers);
-            $this->totals['num_hcw_taking_tests'] += $count;
+            //$this->totals['num_hcw_taking_tests'] += $count;
             return $count;
         }
         
@@ -183,7 +184,7 @@ class AssessmentMetricsController extends Controller
             $tests = AssessmentMetrics::model()->with('worker','facility')->findAll($criteria);            
 
             $count = count($tests);
-            $this->totals['num_tests_taken'] += $count;
+            //$this->totals['num_tests_taken'] += $count;
             return $count;
         }
         
@@ -198,7 +199,7 @@ class AssessmentMetricsController extends Controller
             $hps = AssessmentMetrics::model()->with('worker','facility')->findAll($criteria);            
 
             $count = count($hps);
-            $this->totals['high_performing_score'] += $count;
+            //$this->totals['high_performing_score'] += $count;
             return $count;
         }
         
@@ -214,7 +215,7 @@ class AssessmentMetricsController extends Controller
             $avgScores = AssessmentMetrics::model()->with('worker','facility')->findAll($criteria);            
 
             $count = count($avgScores);
-            $this->totals['average_score'] += $count;
+            //$this->totals['average_score'] += $count;
             return $count;
         }
         
@@ -230,7 +231,7 @@ class AssessmentMetricsController extends Controller
             $upScores = AssessmentMetrics::model()->with('worker','facility')->findAll($criteria);            
 
             $count = count($upScores);
-            $this->totals['underperforming_score'] += $count;
+            //$this->totals['underperforming_score'] += $count;
             return $count;
         }
         
@@ -246,13 +247,9 @@ class AssessmentMetricsController extends Controller
             $failedScores = AssessmentMetrics::model()->with('worker','facility')->findAll($criteria);            
 
             $count = count($failedScores);
-            $this->totals['failed_score'] += $count;
+            //$this->totals['failed_score'] += $count;
             return $count;
-        }
-        
-        
-        
-       
+        }       
         
         
         //	/**
@@ -405,33 +402,70 @@ class AssessmentMetricsController extends Controller
                 //and create the excel file content          
                 $objPHPExcel->setActiveSheetIndex(0);
                 
+                //write the logo image
+                $gdImage = imagecreatefromjpeg($this->webroot . '/img/logo.jpg');
+                $objDrawing = new PHPExcel_Worksheet_MemoryDrawing();
+                $objDrawing->setName('Sample image');
+                $objDrawing->setDescription('Sample image');
+                $objDrawing->setImageResource($gdImage);
+                $objDrawing->setRenderingFunction(PHPExcel_Worksheet_MemoryDrawing::RENDERING_PNG);
+                $objDrawing->setMimeType(PHPExcel_Worksheet_MemoryDrawing::MIMETYPE_DEFAULT);
+                $objDrawing->setWidthAndHeight(120,35);
+                $objDrawing->setCoordinates('E1');
+                $objDrawing->setWorksheet($objPHPExcel->getActiveSheet());
+
                 //set report title
-                $objPHPExcel->getActiveSheet()->SetCellValue('A1', 'Assessment Metrics Report');
-
+                $objPHPExcel->getActiveSheet()->SetCellValue('A2', 'Assessment Metrics Report');
+                $objPHPExcel->getActiveSheet()->SetCellValue('A3', 'PRINTED: ' . date('d-m-Y h:i A'));
+                
+                //adding the headers for the excel file
+                $state = !empty($_POST['state']) ? State::model()->findByPk($_POST['state'])->state_name : 'All';
+                $objPHPExcel->getActiveSheet()->SetCellValue('A4', 'State:');
+                $objPHPExcel->getActiveSheet()->SetCellValue('B4', $state);
+                
+                $lga = !empty($_POST['lga']) ? Lga::model()->findByPk($_POST['lga'])->lga_name : 'All';
+                $objPHPExcel->getActiveSheet()->SetCellValue('A5', 'LGA:');
+                $objPHPExcel->getActiveSheet()->SetCellValue('B5', $lga);
+                
+                $facility = !empty($_POST['facility']) ? HealthFacility::model()->findByPk($_POST['facility'])->facility_name : 'All';
+                $objPHPExcel->getActiveSheet()->SetCellValue('A6', 'Facility:');
+                $objPHPExcel->getActiveSheet()->SetCellValue('B6', $facility);
+                
+                $fromDate = !empty($_POST['fromdate']) ? $_POST['fromdate'] : 'Not Set';
+                $objPHPExcel->getActiveSheet()->SetCellValue('G4', 'Begin Date:');
+                $objPHPExcel->getActiveSheet()->SetCellValue('H4', $fromDate);
+                
+                $endDate = !empty($_POST['todate']) ? $_POST['todate'] : 'Not Set';
+                $objPHPExcel->getActiveSheet()->SetCellValue('G5', 'End Date:');
+                $objPHPExcel->getActiveSheet()->SetCellValue('H5', $endDate);
+                
+                
                 $objPHPExcel->getActiveSheet()
-                            ->SetCellValue('A2', 'CADRE')
-                            ->SetCellValue('B2', 'NO. OF HCWS')
-                            ->SetCellValue('C2', 'NO. TAKING TESTS')
-                            ->SetCellValue('D2', 'NO. OF TESTS TAKEN')
-                            ->SetCellValue('E2', 'HIGH PERFORMING SCORE')
-                            ->SetCellValue('F2', 'AVERAGE SCORE')
-                            ->SetCellValue('G2', 'UNDERPERFORMING SCORE')
-                            ->SetCellValue('H2', 'FAILED SCORE');
+                            ->SetCellValue('A8', 'CADRE')
+                            ->SetCellValue('B8', 'NO. OF HCWS')
+                            ->SetCellValue('C8', 'NO. TAKING TESTS')
+                            ->SetCellValue('D8', 'NO. OF TESTS TAKEN')
+                            ->SetCellValue('E8', 'HIGH PERFORMING SCORE')
+                            ->SetCellValue('F8', 'AVERAGE SCORE')
+                            ->SetCellValue('G8', 'UNDERPERFORMING SCORE')
+                            ->SetCellValue('H8', 'FAILED SCORE');
 
-                    $rowNumber = 0;
+                    $rowNumber = 8;
                     for($i=0; $i<count($cadres); $i++){
                             $cadreid = $cadres[$i]->cadre_id;
 
-                            $rowNumber = $i + 3; 
+                            $cadreValues = $this->getSelectionValues($cadreid, $filterString);
+                            
+                            $rowNumber++; 
                             $objPHPExcel->getActiveSheet()
-                                   ->SetCellValue('A' . $rowNumber, Cadre::model()->findByPk($cadreid)->cadre_title)
-                                   ->SetCellValue('B' . $rowNumber, $this->getNumberOfCadreWorkers($cadreid))
-                                   ->SetCellValue('C' . $rowNumber, $this->getNumberTakingTests($cadreid, $filterString))
-                                   ->SetCellValue('D' . $rowNumber, $this->getNumberOfTestsTaken($cadreid, $filterString))
-                                   ->SetCellValue('E' . $rowNumber, $this->getNumberOfHighPerformingScore($cadreid, $filterString))
-                                   ->SetCellValue('F' . $rowNumber, $this->getNumberOfAverageScore($cadreid, $filterString))
-                                   ->SetCellValue('G' . $rowNumber, $this->getNumberOfUnderPerformingScore($cadreid, $filterString))
-                                   ->SetCellValue('H' . $rowNumber, $this->getNumberOfFailedScore($cadreid, $filterString));
+                                   ->SetCellValue('A' . $rowNumber, $cadreValues['cadre'])
+                                   ->SetCellValue('B' . $rowNumber, $cadreValues['num_hcw'])
+                                   ->SetCellValue('C' . $rowNumber, $cadreValues['num_hcw_taking_tests'])
+                                   ->SetCellValue('D' . $rowNumber, $cadreValues['num_tests_taken'])
+                                   ->SetCellValue('E' . $rowNumber, $cadreValues['high_performing_score'])
+                                   ->SetCellValue('F' . $rowNumber, $cadreValues['average_score'])
+                                   ->SetCellValue('G' . $rowNumber, $cadreValues['underperforming_score'])
+                                   ->SetCellValue('H' . $rowNumber, $cadreValues['failed_score']);
                     }
 
                     //increment rownumber for next row and handle totals
@@ -481,34 +515,53 @@ class AssessmentMetricsController extends Controller
             $excelFunctions = new ExcelFunctions($objPHPExcel);
 
      //       //merge first row and format the contents
-            $objPHPExcel->getActiveSheet()->mergeCells('A1:H1');
-            $excelFunctions->formatAsSheetTitle("A1");
-            $excelFunctions->setRowHeight(1, 30);
+              $objPHPExcel->getActiveSheet()->mergeCells('A1:H1');
+              $objPHPExcel->getActiveSheet()->mergeCells('A2:H2');
+              $objPHPExcel->getActiveSheet()->mergeCells('A3:H3');
 
-            //format column titles
-            $excelFunctions->formatAsColumnHeaders("A2:H2");
-            $excelFunctions->cellsAlign("A2:H2", 'center', 'center');
+              $excelFunctions->setRowHeight(1, 35);
+              $excelFunctions->cellsAlign('A1:H1', 'center', 'center');
 
-            //format total row
-            $excelFunctions->formatAsFooter("A6:H6");
-            
+              $excelFunctions->setRowHeight(2, 20);
+              $excelFunctions->formatAsSheetTitle("A2");
+              $excelFunctions->makeBold("A2:H2");
+              
+              $excelFunctions->alignVertical("A3:H3");
+              $excelFunctions->alignHorizontal("A3:H3");
+                
+              //format the report paramters
+                $objPHPExcel->getActiveSheet()->mergeCells('C4:F4');
+                $objPHPExcel->getActiveSheet()->mergeCells('C5:F5');
+                $objPHPExcel->getActiveSheet()->mergeCells('C6:F6');
+                $excelFunctions->formatAsFooter("A4:H6");
+                $excelFunctions->makeBold("A4:A6");
+                $excelFunctions->makeBold("G4:G6");
+
+                //format column titles
+                $excelFunctions->formatAsColumnHeaders("A8:H8");
+                $excelFunctions->cellsAlign("A8:H8", 'center', 'center');
+                $excelFunctions->setRowHeight(8, 40);
+                
+                //format total row
+                $excelFunctions->formatAsFooter("A12:H12");
+                $excelFunctions->setRowHeight(2, 30);           
 
             
             //make all element in first column bold
-            $excelFunctions->makeBold("A1:A6");
-            
-             //set column alignments
+            $excelFunctions->makeBold("A9:A12");
+
+            //set column alignments
             for($i=0; $i<4; $i++){
-              $row = $i+3;
+              $row = $i+9;
               $excelFunctions->setRowHeight($row, 20);
               $excelFunctions->cellsAlign("A".$row . ":" . "H".$row, '', 'center');
             }
 
             //set row heights
-            $excelFunctions->columnFixedSize("A", "H", 20);
+            //$excelFunctions->columnFixedSize("A", "H", 20);
             
             //make colums widths adjust automatically to width size
-            //$excelFunctions->columnAutoSize('A', 'H');
+            $excelFunctions->columnAutoSize('A', 'H');
         }
         
         
@@ -523,13 +576,26 @@ class AssessmentMetricsController extends Controller
 
             $selections = $_POST['selectionString'];
             $selectionsArray = json_decode($selections, true);
-
+            $format = $_POST['format'];
+            
             $cadreRowsSet = array();
             $stringSpace = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
 
             foreach ($selectionsArray as $selection){
                 $ssArray = json_decode($selection, true);
-
+                
+                //re-initialize the array
+                $this->totals = array(
+                            'cadre' => 'Total',
+                            'num_hcw' => 0,
+                            'num_hcw_taking_tests' => 0,
+                            'num_tests_taken' => 0, 
+                            'high_performing_score' => 0,
+                            'average_score' => 0,
+                            'underperforming_score' => 0,
+                            'failed_score' => 0
+                        );
+                
                 try{
                      $rows = array();
                      //simulate Post request variables for each 
@@ -568,17 +634,19 @@ class AssessmentMetricsController extends Controller
                      foreach($cadres as $cadre){
                              $cadreid = $cadre->cadre_id;
 
-                            $worker = array();
-                            $worker['cadre'] = Cadre::model()->findByPk($cadre->cadre_id)->cadre_title;
-                            $worker['num_hcw'] = $this->getNumberOfCadreWorkers($cadreid,'GET');
-                            $worker['num_hcw_taking_tests'] = $this->getNumberTakingTests($cadreid, $filterString); 
-                            $worker['num_tests_taken'] = $this->getNumberOfTestsTaken($cadreid, $filterString);
-                            $worker['high_performing_score'] = $this->getNumberOfHighPerformingScore($cadreid, $filterString);
-                            $worker['average_score'] = $this->getNumberOfAverageScore($cadreid, $filterString); 
-                            $worker['underperforming_score'] = $this->getNumberOfUnderPerformingScore($cadreid, $filterString);
-                            $worker['failed_score'] = $this->getNumberOfFailedScore($cadreid, $filterString);
+//                            $worker = array();
+//                            $worker['cadre'] = Cadre::model()->findByPk($cadre->cadre_id)->cadre_title;
+//                            $worker['num_hcw'] = $this->getNumberOfCadreWorkers($cadreid,'GET');
+//                            $worker['num_hcw_taking_tests'] = $this->getNumberTakingTests($cadreid, $filterString); 
+//                            $worker['num_tests_taken'] = $this->getNumberOfTestsTaken($cadreid, $filterString);
+//                            $worker['high_performing_score'] = $this->getNumberOfHighPerformingScore($cadreid, $filterString);
+//                            $worker['average_score'] = $this->getNumberOfAverageScore($cadreid, $filterString); 
+//                            $worker['underperforming_score'] = $this->getNumberOfUnderPerformingScore($cadreid, $filterString);
+//                            $worker['failed_score'] = $this->getNumberOfFailedScore($cadreid, $filterString);
 
-                            $rows[] = $worker;
+//                            $rows[] = $worker;
+                            
+                            $rows[] = $this->getSelectionValues($cadreid, $filterString);
                      }
 
                      //HANDLE ONE MORE ITEM FOR TOTALS
@@ -593,16 +661,60 @@ class AssessmentMetricsController extends Controller
 
             }
 
-            //echo json_encode($cadreRowsSet); exit;
+            
+            //now handle the printing
+            $writeResult = '';
+            switch ($format){
+                case 'pdf':
+                    $writeResult = $this->writeComparePDF($cadreRowsSet);
+                    break;
+                default:
+                    $writeResult = $this->writeCompareExcel($cadreRowsSet, $format);
+                    break;
+            }
+            echo $writeResult;
+            
+        }//end parsecompare
 
+        
+        public function getSelectionValues($cadreid, $filterString, $requestType='POST'){
+            $worker = array();
+            $worker['cadre'] = Cadre::model()->findByPk($cadreid)->cadre_title;
+            
+            $worker['num_hcw'] = $this->getNumberOfCadreWorkers($cadreid, $requestType);
+            $this->totals['num_hcw'] += $worker['num_hcw'];
+            
+            $worker['num_hcw_taking_tests'] = $this->getNumberTakingTests($cadreid, $filterString); 
+            $this->totals['num_hcw_taking_tests'] += $worker['num_hcw_taking_tests'];
+            
+            $worker['num_tests_taken'] = $this->getNumberOfTestsTaken($cadreid, $filterString);
+            $this->totals['num_tests_taken'] += $worker['num_tests_taken'];
+            
+            $worker['high_performing_score'] = $this->getNumberOfHighPerformingScore($cadreid, $filterString);
+            $this->totals['high_performing_score'] += $worker['high_performing_score'];
+            
+            $worker['average_score'] = $this->getNumberOfAverageScore($cadreid, $filterString); 
+            $this->totals['average_score'] += $worker['average_score'];
+            
+            $worker['underperforming_score'] = $this->getNumberOfUnderPerformingScore($cadreid, $filterString);
+            $this->totals['underperforming_score'] += $worker['underperforming_score'];
+            
+            $worker['failed_score'] = $this->getNumberOfFailedScore($cadreid, $filterString);
+            $this->totals['failed_score'] += $worker['failed_score'];
+
+            return $worker;
+        }
+        
+   
+        public function writeComparePDF($cadreRowsSet){
              //create the html            
              //$this->render('_pdf', array('hcws'=>$healthWorkers));
              try{
                  //delete obsolete files in reports folder
-                 Yii::import('application.controllers.UtilController');
-                 $folderPath = $this->webroot . '/reports';
-                 UtilController::deleteObsoleteReportFiles($folderPath);
-                 
+                  Yii::import('application.controllers.UtilController');
+                  $folderPath = $this->webroot . '/reports';
+                  UtilController::deleteObsoleteReportFiles($folderPath);
+
                  $html = $this->renderPartial('_compare_pdf', 
                                                array(
                                                  'cadreRowSets'=>$cadreRowsSet,
@@ -616,6 +728,7 @@ class AssessmentMetricsController extends Controller
                    $fileName = Yii::app()->user->name . '_' . $title . '_' . $timestamp . '.pdf';
                    $saveName = "reports/" . $fileName;
 
+
                    $dompdf = new DOMPDF();
                    $dompdf->set_paper('A4', 'landscape');
                    $dompdf->load_html($html);
@@ -625,13 +738,175 @@ class AssessmentMetricsController extends Controller
                    file_put_contents($saveName, $pdf);
 
                    //return back to the calling ajax function
-                   echo json_encode(array('URL'=>$saveName, 'FILENAME'=>$fileName, 'STATUS'=>'OK'));
+                   return json_encode(array('URL'=>$saveName, 'FILENAME'=>$fileName, 'STATUS'=>'OK'));
 
              } catch(Exception $ex){
-                 echo json_encode(array('MESSAGE'=>$ex->getMessage(), 'STATUS'=>'ERROR'));
+                 return json_encode(array('MESSAGE'=>$ex->getMessage(), 'STATUS'=>'ERROR'));
              }
         }
-        
+
+        public function writeCompareExcel($cadreRowsSet, $excelFormat){
+            //NOW GO ALL ABOUT CREATING THE EXCEL FILE
+            //get a reference to the path of PHPExcel classes 
+            //var_dump($cadreRowsSet); exit;
+            try{
+                 $phpExcelPath = Yii::getPathOfAlias('ext.vendors.phpexcel.Classes');
+
+                 //get PHPExcel parent class
+                 include($phpExcelPath . DIRECTORY_SEPARATOR . 'PHPExcel.php');
+
+                 $objPHPExcel = new PHPExcel();
+
+                 // Set properties
+                 //echo date('Y-m-d H:i:s') . " Set properties\n";
+                 $objPHPExcel->getProperties()->setCreator("mTrain Mobile Learning Platform")
+                                              ->setLastModifiedBy("mTrain Mobile Learning Platform")
+                                              ->setTitle("Usage Metrics Report");
+                 //$objPHPExcel->getProperties()->setDescription("Health Workers Report");
+                 //$objPHPExcel->getProperties()->setSubject("Health Workers Report");
+
+                 //loop through the objects, add data to the cells
+                 //and create the excel file content          
+                 $objPHPExcel->setActiveSheetIndex(0);
+
+                 $rowNumber = 1;
+
+                 //write the logo image
+                 $gdImage = imagecreatefromjpeg($this->webroot . '/img/logo.jpg');
+                 $objDrawing = new PHPExcel_Worksheet_MemoryDrawing();
+                 $objDrawing->setName('Sample image');
+                 $objDrawing->setDescription('Sample image');
+                 $objDrawing->setImageResource($gdImage);
+                 $objDrawing->setRenderingFunction(PHPExcel_Worksheet_MemoryDrawing::RENDERING_PNG);
+                 $objDrawing->setMimeType(PHPExcel_Worksheet_MemoryDrawing::MIMETYPE_DEFAULT);
+                 $objDrawing->setWidthAndHeight(120,35);
+                 $objDrawing->setCoordinates('E1');
+                 $objDrawing->setWorksheet($objPHPExcel->getActiveSheet());
+
+
+                 //set report title
+                 $rowNumber++; //2
+                 $objPHPExcel->getActiveSheet()->SetCellValue('A' . $rowNumber, 'ASSESSMENT COMPARISON METRICS REPORT');
+
+                 $rowNumber++; //3
+                 $objPHPExcel->getActiveSheet()->SetCellValue('A' . $rowNumber, 'PRINTED: ' . date('d-m-Y h:i A'));
+
+                 $rowNumber++; //4 //for some space
+
+                 foreach($cadreRowsSet as $cadreRowSet){
+                     $selectionString = str_replace('&nbsp;', ' ', $cadreRowSet[0]);
+                     $cadres = array_slice($cadreRowSet, 1);
+
+                     //write the selection string
+                     $rowNumber++; //5
+                     $objPHPExcel->getActiveSheet()->SetCellValue('A' . $rowNumber, $selectionString);
+
+                     $rowNumber++; //6
+                     $objPHPExcel->getActiveSheet()
+                            ->SetCellValue('A'. $rowNumber, 'CADRE')
+                            ->SetCellValue('B'. $rowNumber, 'NO. OF HCWS')
+                            ->SetCellValue('C'. $rowNumber, 'NO. TAKING TESTS')
+                            ->SetCellValue('D'. $rowNumber, 'NO. OF TESTS TAKEN')
+                            ->SetCellValue('E'. $rowNumber, 'HIGH PERFORMING SCORE')
+                            ->SetCellValue('F'. $rowNumber, 'AVERAGE SCORE')
+                            ->SetCellValue('G'. $rowNumber, 'UNDERPERFORMING SCORE')
+                            ->SetCellValue('H'. $rowNumber, 'FAILED SCORE');
+                    
+                     foreach($cadres as $cadre){
+                             $rowNumber++; //7,8,9,10
+                             $objPHPExcel->getActiveSheet()
+                                    ->SetCellValue('A' . $rowNumber, $cadre['cadre'])
+                                    ->SetCellValue('B' . $rowNumber, $cadre['num_hcw'])
+                                    ->SetCellValue('C' . $rowNumber, $cadre['num_hcw_taking_tests']) 
+                                    ->SetCellValue('D' . $rowNumber, $cadre['num_tests_taken'])
+                                    ->SetCellValue('E' . $rowNumber, $cadre['high_performing_score']) 
+                                    ->SetCellValue('F' . $rowNumber, $cadre['average_score'])
+                                    ->SetCellValue('G' . $rowNumber, $cadre['underperforming_score'])
+                                    ->SetCellValue('H' . $rowNumber, $cadre['failed_score']);
+                     }
+
+                     //advance two rows for space
+                     $rowNumber += 2;
+                 }
+
+                 //FORMAT THE EXCEL FILE
+                 $this->formatCompareExcelSheet($objPHPExcel, count($cadreRowsSet));
+
+                 $title = 'Usage_Report';
+                 $timestamp = date('Y-m-d');
+                 $fileName = Yii::app()->user->name . '_' . $title . '_' . $timestamp;
+                 $excelFormat = $_POST['format'];
+
+                 if($excelFormat=='2007'){
+                     $objWriter = new PHPExcel_Writer_Excel2007($objPHPExcel);
+                     $fileName = $fileName . '.xlsx';
+                     $saveName .= 'reports/' . $fileName;
+                     $objWriter->save($saveName);
+                 }
+                 else if($excelFormat == '97_2003'){
+                     $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, "Excel5");
+                     $fileName = $fileName . '.xls';
+                     $saveName .= 'reports/' . $fileName;
+                     $objWriter->save($saveName);
+                 }
+
+                 //return back to the calling ajax function
+                 return json_encode(array('URL'=>$saveName, 'FILENAME'=>$fileName, 'STATUS'=>'OK'));
+             } catch(Exception $ex) {
+                 return json_encode(array('MESSAGE'=>$ex->getMessage(), 'STATUS'=>'ERROR'));
+             }
+        }
+   
+   
+        private function formatCompareExcelSheet($objPHPExcel, $comparsionUnitsCount){
+            $excelFunctions = new ExcelFunctions($objPHPExcel);
+
+     //     //merge first row and format the contents
+            $objPHPExcel->getActiveSheet()->mergeCells('A1:H1');
+            $objPHPExcel->getActiveSheet()->mergeCells('A2:H2');
+            $objPHPExcel->getActiveSheet()->mergeCells('A3:H3');
+
+            $excelFunctions->setRowHeight(1, 35);
+            $excelFunctions->cellsAlign('A1:H1', 'center', 'center');
+
+            $excelFunctions->setRowHeight(2, 20);
+            $excelFunctions->formatAsSheetTitle("A2");
+            $excelFunctions->makeBold("A2:H2");
+
+            $excelFunctions->alignVertical("A3:H3");
+            $excelFunctions->alignHorizontal("A3:H3");
+            //$excelFunctions->makeBold("A3:H3");
+
+            $i = 0;
+            $selectionHeader = 5;
+            $columnHeader = 6;
+            $totalRow = 10;
+
+            do{
+                $objPHPExcel->getActiveSheet()->mergeCells('A'.$selectionHeader.':H'.$selectionHeader);
+                $excelFunctions->formatAsSelectionHeaders("A$selectionHeader:H$selectionHeader");
+
+                $excelFunctions->formatAsColumnHeaders("A$columnHeader:H$columnHeader");
+                $excelFunctions->cellsAlign("A$columnHeader:H$columnHeader", 'center', 'center');
+
+                $excelFunctions->formatAsFooter("A$totalRow:H$totalRow");
+
+                //make all element in first column bold
+                $excelFunctions->makeBold("A$columnHeader:A$totalRow");
+
+                $selectionHeader += 8;
+                $columnHeader += 8;
+                $totalRow += 8;
+
+                $i++;
+            }while($i < $comparsionUnitsCount);
+
+            //make colums widths adjust automatically to width size
+            $excelFunctions->columnAutoSize('A', 'H');
+        }
+   
+   
+   
         /* This function exports data to a PDF file. */
         public function actionExportPDF(){
              try{
@@ -661,16 +936,7 @@ class AssessmentMetricsController extends Controller
                         $cadreid = $cadre->cadre_id;
 
                         $worker = array();
-                        $worker['cadre'] = Cadre::model()->findByPk($cadre->cadre_id)->cadre_title;
-                        $worker['num_hcw'] = $this->getNumberOfCadreWorkers($cadreid,'GET');
-                        $worker['num_hcw_taking_tests'] = $this->getNumberTakingTests($cadreid, $filterString); 
-                        $worker['num_tests_taken'] = $this->getNumberOfTestsTaken($cadreid, $filterString);
-                        $worker['high_performing_score'] = $this->getNumberOfHighPerformingScore($cadreid, $filterString);
-                        $worker['average_score'] = $this->getNumberOfAverageScore($cadreid, $filterString); 
-                        $worker['underperforming_score'] = $this->getNumberOfUnderPerformingScore($cadreid, $filterString);
-                        $worker['failed_score'] = $this->getNumberOfFailedScore($cadreid, $filterString);
-
-                        $rows[] = $worker;
+                        $rows[] = $this->getSelectionValues($cadreid, $filterString, 'GET');
                  }
 
                  //HANDLE ONE MORE ITEM FOR TOTALS

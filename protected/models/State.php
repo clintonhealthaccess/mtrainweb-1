@@ -9,6 +9,7 @@
  *
  * The followings are the available model relations:
  * @property HealthFacility[] $healthFacilities
+ * @property Lga[] $lga
  */
 class State extends CActiveRecord
 {
@@ -45,6 +46,7 @@ class State extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'healthFacilities' => array(self::HAS_MANY, 'HealthFacility', 'state_id'),
+                        'lga' => array(self::HAS_MANY, 'Lga', 'state_id'),
 		);
 	}
         

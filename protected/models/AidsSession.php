@@ -15,8 +15,11 @@
  * @property HealthFacility $facility
  */
 class AidsSession extends CActiveRecord
-{
-	/**
+{    
+    
+        public $fcount, $scount;
+        
+    /**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
@@ -49,6 +52,8 @@ class AidsSession extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'facility' => array(self::BELONGS_TO, 'HealthFacility', 'facility_id'),
+                        'aidToModule' => array(self::BELONGS_TO, 'JobaidToModule', 'aid_id'),
+                        'modules' => array(self::MANY_MANY, 'AidsSession', 'cthx_jobaid_to_module(module_id, session_id)'),
 		);
 	}
 

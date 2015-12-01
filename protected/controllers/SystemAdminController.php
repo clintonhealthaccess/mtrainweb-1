@@ -37,7 +37,7 @@ class SystemAdminController extends Controller
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('getRolesList','delete'),
+				'actions'=>array('getRolesList','delete', 'myProfile'),
 				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
@@ -239,6 +239,29 @@ class SystemAdminController extends Controller
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
 	}
+        
+        /*
+         * This method displays the logged in user profile
+         */
+        public function actionMyProfile(){
+            $model=$this->loadModel(Yii::app()->user->id);
+            
+            if(isset($_POST['SystemAdmin'])){
+                $currentPassword = $model->password;
+                $model->attributes=$_POST['SystemAdmin'];
+                
+                if(empty($model->password)) //password field was left empty.
+                    $model->password = $currentPassword;
+                else //password change mode
+                    $model->passwordChangeMode = true;
+                
+                if($model->save()){
+                    Yii::app()->user->setFlash('updated', "success");
+                }
+            }
+            
+            $this->render('profile',array('model'=>$model));
+        }
 
 	/**
 	 * Performs the AJAX validation.

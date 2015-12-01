@@ -66,6 +66,14 @@ class GETConditionBuilder extends CApplicationComponent{
                     return $startCondition . ' AND ' . $endConditioin;
         }
         
+        public function getAidsDateConditionString() {
+              $startCondition = isset($_GET['fromdate']) && !empty($_GET['fromdate']) ?
+                        'date_viewed >= "' . date('Y-m-d',  strtotime($_GET['fromdate'])) . '"'  : '';
+              $endConditioin = isset($_GET['todate']) && !empty($_GET['todate']) ?
+                        'date_viewed <= "' . date('Y-m-d',strtotime($_GET['todate'])) . '"' : '';
+                if(!empty($startCondition) && !empty($endConditioin))
+                    return $startCondition . ' AND ' . $endConditioin;        
+        }
         
         
         public function getFinalCondition($condition, $filterString ){

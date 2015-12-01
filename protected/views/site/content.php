@@ -18,7 +18,6 @@
             <h3 class="arialtitlebold">Content</h3>
         </div>
     </div>
-    </div>
     
     
     

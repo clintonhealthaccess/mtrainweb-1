@@ -20,14 +20,14 @@ class StatFunctions extends CApplicationComponent{
         
         
         sort($array);        
-        $middle = (count($array) + 1) / 2;
+        $middle = ((count($array) + 1)) / 2;
                         
         if(is_int($middle)){
             $median = $array[$middle];
         }
         else if(is_float($middle)){
-            $first = $array[(int)$middle-1];
-            $second = $array[round($middle)-1];
+            $first = $array[((int)$middle)-1];
+            $second = $array[(round($middle))-1];
             $median = ($first + $second) / 2;
         }
         

@@ -433,6 +433,7 @@ class HealthWorkerController extends Controller
     */
    public function actionExportExcel(){
        try{
+           date_default_timezone_set('Africa/Lagos');
            //clean up obsolete report files. Any report that is 1 hour or more old
            //ReportEngine::cleanUpReports();
            
@@ -471,22 +472,57 @@ class HealthWorkerController extends Controller
             //loop through the objects, add data to the cells
             //and create the excel file content          
             $objPHPExcel->setActiveSheetIndex(0);
+            
+            //write the logo image
+            $gdImage = imagecreatefromjpeg($this->webroot . '/img/logo.jpg');
+            $objDrawing = new PHPExcel_Worksheet_MemoryDrawing();
+            $objDrawing->setName('Sample image');
+            $objDrawing->setDescription('Sample image');
+            $objDrawing->setImageResource($gdImage);
+            $objDrawing->setRenderingFunction(PHPExcel_Worksheet_MemoryDrawing::RENDERING_PNG);
+            $objDrawing->setMimeType(PHPExcel_Worksheet_MemoryDrawing::MIMETYPE_DEFAULT);
+            $objDrawing->setWidthAndHeight(120,35);
+            $objDrawing->setCoordinates('D1');
+            $objDrawing->setWorksheet($objPHPExcel->getActiveSheet());
                 
             //set report title
-            $objPHPExcel->getActiveSheet()->SetCellValue('A1', 'Health Care Workers');
-                
-            $objPHPExcel->getActiveSheet()
-                        ->SetCellValue('A2', 'FULL NAME')
-                        ->SetCellValue('B2', 'PHONE')
-                        ->SetCellValue('C2', 'STATE')
-                        ->SetCellValue('D2', 'LOCAL GOVERNMENT AREA')
-                        ->SetCellValue('E2', 'FACILITY NAME')
-                        ->SetCellValue('F2', 'CADRE');
+            $objPHPExcel->getActiveSheet()->SetCellValue('A2', 'Health Care Workers');
+            $objPHPExcel->getActiveSheet()->SetCellValue('A3', 'PRINTED: ' . date('d-m-Y h:i A'));
             
+            //adding the headers for the excel file
+            $state = !empty($_POST['state']) ? State::model()->findByPk($_POST['state'])->state_name : 'All';
+            $objPHPExcel->getActiveSheet()->SetCellValue('A4', 'State:');
+            $objPHPExcel->getActiveSheet()->SetCellValue('B4', $state);
+
+            $lga = !empty($_POST['lga']) ? Lga::model()->findByPk($_POST['lga'])->lga_name : 'All';
+            $objPHPExcel->getActiveSheet()->SetCellValue('A5', 'LGA:');
+            $objPHPExcel->getActiveSheet()->SetCellValue('B5', $lga);
+
+            $facility = !empty($_POST['facility']) ? HealthFacility::model()->findByPk($_POST['facility'])->facility_name : 'All';
+            $objPHPExcel->getActiveSheet()->SetCellValue('A6', 'Facility:');
+            $objPHPExcel->getActiveSheet()->SetCellValue('B6', $facility);
+            
+            $cadre = !empty($_POST['cadre']) ? Cadre::model()->findByPk($_POST['cadre'])->cadre_title : 'All';
+            $objPHPExcel->getActiveSheet()->SetCellValue('E4', 'Cadre:');
+            $objPHPExcel->getActiveSheet()->SetCellValue('F4', $cadre);
+
+            $hwCount = count($healthWorkers);
+            $objPHPExcel->getActiveSheet()->SetCellValue('E5', 'Number of workers:');
+            $objPHPExcel->getActiveSheet()->SetCellValue('F5', $hwCount);
+
+            $objPHPExcel->getActiveSheet()
+                        ->SetCellValue('A8', 'FULL NAME')
+                        ->SetCellValue('B8', 'PHONE')
+                        ->SetCellValue('C8', 'STATE')
+                        ->SetCellValue('D8', 'LOCAL GOVERNMENT AREA')
+                        ->SetCellValue('E8', 'FACILITY NAME')
+                        ->SetCellValue('F8', 'CADRE');
+            
+            $rowNumber = 8;
             for($i=0; $i < count($healthWorkers); $i++){
                 $worker = $healthWorkers[$i];
                 $fullName = $worker->lastname . ' ' . $worker->firstname . ' ' . $worker->middlename;
-                $rowNumber = $i + 3; 
+                $rowNumber++; 
                 $objPHPExcel->getActiveSheet()
                         ->SetCellValue('A' . $rowNumber, $fullName)
                         ->setCellValueExplicit('B' . $rowNumber, $worker->phone, PHPExcel_Cell_DataType::TYPE_STRING)
@@ -527,25 +563,42 @@ class HealthWorkerController extends Controller
    private function formatExcelSheet($objPHPExcel, $count){
        $excelFunctions = new ExcelFunctions($objPHPExcel);
        
-       //merge first row and format the contents
-       $objPHPExcel->getActiveSheet()->mergeCells('A1:F1');
-       $excelFunctions->formatAsSheetTitle("A1");
-       $excelFunctions->setRowHeight(1, 30);
-       $excelFunctions->setRowHeight(2, 20);
-       
-       //format column titles
-       $excelFunctions->formatAsColumnHeaders("A2:F2");
-       $excelFunctions->cellsAlign("A2:F2", '', 'center');
+      //merge first row and format the contents
+        $objPHPExcel->getActiveSheet()->mergeCells('A1:F1');
+        $objPHPExcel->getActiveSheet()->mergeCells('A2:F2');
+        $objPHPExcel->getActiveSheet()->mergeCells('A3:F3');
+
+        //format the report paramters
+        $excelFunctions->formatAsFooter("A4:F6");
+        $excelFunctions->makeBold("A4:A6");
+        $excelFunctions->makeBold("E4:E6");
+        
+        $excelFunctions->setRowHeight(1, 35);
+        $excelFunctions->cellsAlign('A1:F1', 'center', 'center');
+
+        $excelFunctions->setRowHeight(2, 20);
+        $excelFunctions->formatAsSheetTitle("A2");
+        $excelFunctions->makeBold("A2:F2");
+
+        $excelFunctions->alignVertical("A3:F3");
+        $excelFunctions->alignHorizontal("A3:F3");
+
+        //format column titles
+        $excelFunctions->formatAsColumnHeaders("A8:F8");
+        $excelFunctions->cellsAlign("A8:F8", 'center', 'center');
        
        //set column alignments
        for($i=0; $i<$count; $i++){
-         $row = $i+3;
+         $row = $i+9;
          $excelFunctions->setRowHeight($row, 20);
          $excelFunctions->cellsAlign("A".$row . ":" . "F".$row, '', 'center');
        }
        
+       //set row heights
+       $excelFunctions->columnFixedSize("A", "F", 20);
+       
        //make colums widths adjust automatically to width size
-       $excelFunctions->columnAutoSize('A', 'H');
+       $excelFunctions->columnAutoSize('A', 'F');
    }
    
    /* This function exports data to a PDF file. */
@@ -589,9 +642,9 @@ class HealthWorkerController extends Controller
                                             'webroot'=>  $this->webroot, 
                                             'params' => array(
                                                         'state'=>  !empty($_GET['state']) ? State::model()->findByPk($_GET['state'])->state_name : 'All',
-                                                        'lga'=>  !empty($_GET['state']) ? Lga::model()->findByPk($_GET['lga'])->lga_name : 'All',
-                                                        'facility'=>  !empty($_GET['state']) ? HealthFacility::model()->findByPk($_GET['facility'])->facility_name : 'All',
-                                                        'cadre'=> !empty($_GET['state']) ? Cadre::model()->findByPk($_GET['cadre'])->cadre_title : 'All',
+                                                        'lga'=>  !empty($_GET['lga']) ? Lga::model()->findByPk($_GET['lga'])->lga_name : 'All',
+                                                        'facility'=>  !empty($_GET['facility']) ? HealthFacility::model()->findByPk($_GET['facility'])->facility_name : 'All',
+                                                        'cadre'=> !empty($_GET['cadre']) ? Cadre::model()->findByPk($_GET['cadre'])->cadre_title : 'All',
                                                         'count' => count($healthWorkers),
                                                     ),
                                           ),

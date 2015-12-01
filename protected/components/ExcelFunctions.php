@@ -20,13 +20,19 @@ class ExcelFunctions extends CApplicationComponent{
     }
     
     public function formatAsSheetTitle($cells){
-        $this->formatFont($cells, false, true, 'Arial', 20, '000000');
+        $this->formatFont($cells, false, true, 'Arial', 10, '000000');
         $this->alignVertical($cells);
         $this->alignHorizontal($cells);
         //$this->setFillColor($cells, '0378b3');
         $this->setFillColor($cells, 'CCCCCC');
     }    
     
+    public function formatAsSelectionHeaders($cells){
+       $this->formatFont($cells, false, true, 'Arial', 10, '000000');
+       //$this->setFillColor($cells, '0378B3');
+       //$this->setFillColor($cells, '7c94ac');
+       $this->wrapText($cells);
+    }    
     
     public function formatAsColumnHeaders($cells){
        $this->formatFont($cells, false, true, 'Arial', 10, 'FFFFFF');

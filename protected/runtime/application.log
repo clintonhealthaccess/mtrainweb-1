@@ -25292,3 +25292,1464 @@ Stack trace:
 REQUEST_URI=/yii/mtrain/usageMetrics/parseCompare
 in C:\wamp\www\yii\mtrain\protected\controllers\UsageMetricsController.php (551)
 in C:\wamp\www\yii\mtrain\index.php (15)
+2015/07/02 08:10:58 [error] [php] Undefined index:  format (C:\wamp\www\yii\mtrain\protected\controllers\UsageMetricsController.php:546)
+Stack trace:
+#0 C:\wamp\www\yii\framework1115\web\filters\CFilterChain.php(133): UsageMetricsController->runAction()
+#1 C:\wamp\www\yii\framework1115\web\filters\CFilter.php(40): CFilterChain->run()
+#2 C:\wamp\www\yii\framework1115\web\CController.php(1145): CAccessControlFilter->filter()
+#3 C:\wamp\www\yii\framework1115\web\filters\CInlineFilter.php(58): UsageMetricsController->filterAccessControl()
+#4 C:\wamp\www\yii\framework1115\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#5 C:\wamp\www\yii\framework1115\web\CController.php(291): CFilterChain->run()
+#6 C:\wamp\www\yii\framework1115\web\CController.php(265): UsageMetricsController->runActionWithFilters()
+#7 C:\wamp\www\yii\framework1115\web\CWebApplication.php(282): UsageMetricsController->run()
+#8 C:\wamp\www\yii\framework1115\web\CWebApplication.php(141): CWebApplication->runController()
+#9 C:\wamp\www\yii\framework1115\base\CApplication.php(180): CWebApplication->processRequest()
+#10 C:\wamp\www\yii\mtrain\index.php(15): CWebApplication->run()
+REQUEST_URI=/yii/mtrain/usageMetrics/parseCompare
+in C:\wamp\www\yii\mtrain\protected\controllers\UsageMetricsController.php (546)
+in C:\wamp\www\yii\mtrain\index.php (15)
+2015/07/02 08:11:40 [error] [php] Undefined index:  format (C:\wamp\www\yii\mtrain\protected\controllers\UsageMetricsController.php:546)
+Stack trace:
+#0 C:\wamp\www\yii\framework1115\web\filters\CFilterChain.php(133): UsageMetricsController->runAction()
+#1 C:\wamp\www\yii\framework1115\web\filters\CFilter.php(40): CFilterChain->run()
+#2 C:\wamp\www\yii\framework1115\web\CController.php(1145): CAccessControlFilter->filter()
+#3 C:\wamp\www\yii\framework1115\web\filters\CInlineFilter.php(58): UsageMetricsController->filterAccessControl()
+#4 C:\wamp\www\yii\framework1115\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#5 C:\wamp\www\yii\framework1115\web\CController.php(291): CFilterChain->run()
+#6 C:\wamp\www\yii\framework1115\web\CController.php(265): UsageMetricsController->runActionWithFilters()
+#7 C:\wamp\www\yii\framework1115\web\CWebApplication.php(282): UsageMetricsController->run()
+#8 C:\wamp\www\yii\framework1115\web\CWebApplication.php(141): CWebApplication->runController()
+#9 C:\wamp\www\yii\framework1115\base\CApplication.php(180): CWebApplication->processRequest()
+#10 C:\wamp\www\yii\mtrain\index.php(15): CWebApplication->run()
+REQUEST_URI=/yii/mtrain/usageMetrics/parseCompare
+in C:\wamp\www\yii\mtrain\protected\controllers\UsageMetricsController.php (546)
+in C:\wamp\www\yii\mtrain\index.php (15)
+2015/07/02 10:43:39 [error] [php] include(PHPExcel_Shared_String.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory (C:\wamp\www\yii\framework1115\YiiBase.php:427)
+Stack trace:
+#0 C:\wamp\www\yii\mtrain\protected\extensions\vendors\phpexcel\Classes\PHPExcel\Autoloader.php(37): spl_autoload_call()
+#1 C:\wamp\www\yii\mtrain\protected\extensions\vendors\phpexcel\Classes\PHPExcel.php(32): require()
+#2 C:\wamp\www\yii\mtrain\protected\controllers\UsageMetricsController.php(415): include()
+#3 C:\wamp\www\yii\framework1115\web\actions\CInlineAction.php(49): UsageMetricsController->actionExportExcel()
+#4 C:\wamp\www\yii\framework1115\web\CController.php(308): CInlineAction->runWithParams()
+#5 C:\wamp\www\yii\framework1115\web\filters\CFilterChain.php(133): UsageMetricsController->runAction()
+#6 C:\wamp\www\yii\framework1115\web\filters\CFilter.php(40): CFilterChain->run()
+#7 C:\wamp\www\yii\framework1115\web\CController.php(1145): CAccessControlFilter->filter()
+#8 C:\wamp\www\yii\framework1115\web\filters\CInlineFilter.php(58): UsageMetricsController->filterAccessControl()
+#9 C:\wamp\www\yii\framework1115\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#10 C:\wamp\www\yii\framework1115\web\CController.php(291): CFilterChain->run()
+#11 C:\wamp\www\yii\framework1115\web\CController.php(265): UsageMetricsController->runActionWithFilters()
+#12 C:\wamp\www\yii\framework1115\web\CWebApplication.php(282): UsageMetricsController->run()
+#13 C:\wamp\www\yii\framework1115\web\CWebApplication.php(141): CWebApplication->runController()
+#14 C:\wamp\www\yii\framework1115\base\CApplication.php(180): CWebApplication->processRequest()
+#15 C:\wamp\www\yii\mtrain\index.php(15): CWebApplication->run()
+REQUEST_URI=/yii/mtrain/usageMetrics/exportExcel
+in C:\wamp\www\yii\mtrain\protected\extensions\vendors\phpexcel\Classes\PHPExcel\Autoloader.php (37)
+in C:\wamp\www\yii\mtrain\protected\extensions\vendors\phpexcel\Classes\PHPExcel.php (32)
+in C:\wamp\www\yii\mtrain\protected\controllers\UsageMetricsController.php (415)
+2015/07/02 10:45:33 [error] [php] include(PHPExcel_Shared_String.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory (C:\wamp\www\yii\framework1115\YiiBase.php:427)
+Stack trace:
+#0 C:\wamp\www\yii\mtrain\protected\extensions\vendors\phpexcel\Classes\PHPExcel\Autoloader.php(37): spl_autoload_call()
+#1 C:\wamp\www\yii\mtrain\protected\extensions\vendors\phpexcel\Classes\PHPExcel.php(32): require()
+#2 C:\wamp\www\yii\mtrain\protected\controllers\UsageMetricsController.php(698): include()
+#3 C:\wamp\www\yii\mtrain\protected\controllers\UsageMetricsController.php(643): UsageMetricsController->writeCompareExcel()
+#4 C:\wamp\www\yii\framework1115\web\actions\CInlineAction.php(49): UsageMetricsController->actionParseCompare()
+#5 C:\wamp\www\yii\framework1115\web\CController.php(308): CInlineAction->runWithParams()
+#6 C:\wamp\www\yii\framework1115\web\filters\CFilterChain.php(133): UsageMetricsController->runAction()
+#7 C:\wamp\www\yii\framework1115\web\filters\CFilter.php(40): CFilterChain->run()
+#8 C:\wamp\www\yii\framework1115\web\CController.php(1145): CAccessControlFilter->filter()
+#9 C:\wamp\www\yii\framework1115\web\filters\CInlineFilter.php(58): UsageMetricsController->filterAccessControl()
+#10 C:\wamp\www\yii\framework1115\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#11 C:\wamp\www\yii\framework1115\web\CController.php(291): CFilterChain->run()
+#12 C:\wamp\www\yii\framework1115\web\CController.php(265): UsageMetricsController->runActionWithFilters()
+#13 C:\wamp\www\yii\framework1115\web\CWebApplication.php(282): UsageMetricsController->run()
+#14 C:\wamp\www\yii\framework1115\web\CWebApplication.php(141): CWebApplication->runController()
+#15 C:\wamp\www\yii\framework1115\base\CApplication.php(180): CWebApplication->processRequest()
+#16 C:\wamp\www\yii\mtrain\index.php(15): CWebApplication->run()
+REQUEST_URI=/yii/mtrain/usageMetrics/parseCompare
+in C:\wamp\www\yii\mtrain\protected\extensions\vendors\phpexcel\Classes\PHPExcel\Autoloader.php (37)
+in C:\wamp\www\yii\mtrain\protected\extensions\vendors\phpexcel\Classes\PHPExcel.php (32)
+in C:\wamp\www\yii\mtrain\protected\controllers\UsageMetricsController.php (698)
+2015/07/02 10:50:20 [error] [php] include(PHPExcel_Shared_String.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory (C:\wamp\www\yii\framework1115\YiiBase.php:427)
+Stack trace:
+#0 C:\wamp\www\yii\mtrain\protected\extensions\vendors\phpexcel\Classes\PHPExcel\Autoloader.php(37): spl_autoload_call()
+#1 C:\wamp\www\yii\mtrain\protected\extensions\vendors\phpexcel\Classes\PHPExcel.php(32): require()
+#2 C:\wamp\www\yii\mtrain\protected\controllers\UsageMetricsController.php(415): include()
+#3 C:\wamp\www\yii\framework1115\web\actions\CInlineAction.php(49): UsageMetricsController->actionExportExcel()
+#4 C:\wamp\www\yii\framework1115\web\CController.php(308): CInlineAction->runWithParams()
+#5 C:\wamp\www\yii\framework1115\web\filters\CFilterChain.php(133): UsageMetricsController->runAction()
+#6 C:\wamp\www\yii\framework1115\web\filters\CFilter.php(40): CFilterChain->run()
+#7 C:\wamp\www\yii\framework1115\web\CController.php(1145): CAccessControlFilter->filter()
+#8 C:\wamp\www\yii\framework1115\web\filters\CInlineFilter.php(58): UsageMetricsController->filterAccessControl()
+#9 C:\wamp\www\yii\framework1115\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#10 C:\wamp\www\yii\framework1115\web\CController.php(291): CFilterChain->run()
+#11 C:\wamp\www\yii\framework1115\web\CController.php(265): UsageMetricsController->runActionWithFilters()
+#12 C:\wamp\www\yii\framework1115\web\CWebApplication.php(282): UsageMetricsController->run()
+#13 C:\wamp\www\yii\framework1115\web\CWebApplication.php(141): CWebApplication->runController()
+#14 C:\wamp\www\yii\framework1115\base\CApplication.php(180): CWebApplication->processRequest()
+#15 C:\wamp\www\yii\mtrain\index.php(15): CWebApplication->run()
+REQUEST_URI=/yii/mtrain//usageMetrics/exportExcel
+in C:\wamp\www\yii\mtrain\protected\extensions\vendors\phpexcel\Classes\PHPExcel\Autoloader.php (37)
+in C:\wamp\www\yii\mtrain\protected\extensions\vendors\phpexcel\Classes\PHPExcel.php (32)
+in C:\wamp\www\yii\mtrain\protected\controllers\UsageMetricsController.php (415)
+2015/07/02 10:50:54 [error] [php] include(PHPExcel_Shared_String.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory (C:\wamp\www\yii\framework1115\YiiBase.php:427)
+Stack trace:
+#0 C:\wamp\www\yii\mtrain\protected\extensions\vendors\phpexcel\Classes\PHPExcel\Autoloader.php(37): spl_autoload_call()
+#1 C:\wamp\www\yii\mtrain\protected\extensions\vendors\phpexcel\Classes\PHPExcel.php(32): require()
+#2 C:\wamp\www\yii\mtrain\protected\controllers\UsageMetricsController.php(415): include()
+#3 C:\wamp\www\yii\framework1115\web\actions\CInlineAction.php(49): UsageMetricsController->actionExportExcel()
+#4 C:\wamp\www\yii\framework1115\web\CController.php(308): CInlineAction->runWithParams()
+#5 C:\wamp\www\yii\framework1115\web\filters\CFilterChain.php(133): UsageMetricsController->runAction()
+#6 C:\wamp\www\yii\framework1115\web\filters\CFilter.php(40): CFilterChain->run()
+#7 C:\wamp\www\yii\framework1115\web\CController.php(1145): CAccessControlFilter->filter()
+#8 C:\wamp\www\yii\framework1115\web\filters\CInlineFilter.php(58): UsageMetricsController->filterAccessControl()
+#9 C:\wamp\www\yii\framework1115\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#10 C:\wamp\www\yii\framework1115\web\CController.php(291): CFilterChain->run()
+#11 C:\wamp\www\yii\framework1115\web\CController.php(265): UsageMetricsController->runActionWithFilters()
+#12 C:\wamp\www\yii\framework1115\web\CWebApplication.php(282): UsageMetricsController->run()
+#13 C:\wamp\www\yii\framework1115\web\CWebApplication.php(141): CWebApplication->runController()
+#14 C:\wamp\www\yii\framework1115\base\CApplication.php(180): CWebApplication->processRequest()
+#15 C:\wamp\www\yii\mtrain\index.php(15): CWebApplication->run()
+REQUEST_URI=/yii/mtrain//usageMetrics/exportExcel
+in C:\wamp\www\yii\mtrain\protected\extensions\vendors\phpexcel\Classes\PHPExcel\Autoloader.php (37)
+in C:\wamp\www\yii\mtrain\protected\extensions\vendors\phpexcel\Classes\PHPExcel.php (32)
+in C:\wamp\www\yii\mtrain\protected\controllers\UsageMetricsController.php (415)
+2015/07/02 10:57:23 [error] [php] include(PHPExcel_Calculation.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory (C:\wamp\www\yii\framework1115\YiiBase.php:427)
+Stack trace:
+#0 C:\wamp\www\yii\mtrain\protected\extensions\vendors\phpexcel\Classes\PHPExcel.php(121): spl_autoload_call()
+#1 C:\wamp\www\yii\mtrain\protected\controllers\UsageMetricsController.php(417): PHPExcel->__construct()
+#2 C:\wamp\www\yii\framework1115\web\actions\CInlineAction.php(49): UsageMetricsController->actionExportExcel()
+#3 C:\wamp\www\yii\framework1115\web\CController.php(308): CInlineAction->runWithParams()
+#4 C:\wamp\www\yii\framework1115\web\filters\CFilterChain.php(133): UsageMetricsController->runAction()
+#5 C:\wamp\www\yii\framework1115\web\filters\CFilter.php(40): CFilterChain->run()
+#6 C:\wamp\www\yii\framework1115\web\CController.php(1145): CAccessControlFilter->filter()
+#7 C:\wamp\www\yii\framework1115\web\filters\CInlineFilter.php(58): UsageMetricsController->filterAccessControl()
+#8 C:\wamp\www\yii\framework1115\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#9 C:\wamp\www\yii\framework1115\web\CController.php(291): CFilterChain->run()
+#10 C:\wamp\www\yii\framework1115\web\CController.php(265): UsageMetricsController->runActionWithFilters()
+#11 C:\wamp\www\yii\framework1115\web\CWebApplication.php(282): UsageMetricsController->run()
+#12 C:\wamp\www\yii\framework1115\web\CWebApplication.php(141): CWebApplication->runController()
+#13 C:\wamp\www\yii\framework1115\base\CApplication.php(180): CWebApplication->processRequest()
+#14 C:\wamp\www\yii\mtrain\index.php(15): CWebApplication->run()
+REQUEST_URI=/yii/mtrain//usageMetrics/exportExcel
+in C:\wamp\www\yii\mtrain\protected\extensions\vendors\phpexcel\Classes\PHPExcel.php (121)
+in C:\wamp\www\yii\mtrain\protected\controllers\UsageMetricsController.php (417)
+in C:\wamp\www\yii\mtrain\index.php (15)
+2015/07/02 11:06:45 [error] [php] include(PHPExcel_Shared_String.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory (C:\wamp\www\yii\framework1115\YiiBase.php:427)
+Stack trace:
+#0 C:\wamp\www\yii\mtrain\protected\extensions\vendors\phpexcel\Classes\PHPExcel\Autoloader.php(37): spl_autoload_call()
+#1 C:\wamp\www\yii\mtrain\protected\extensions\vendors\phpexcel\Classes\PHPExcel.php(32): require()
+#2 C:\wamp\www\yii\mtrain\protected\controllers\UsageMetricsController.php(415): include()
+#3 C:\wamp\www\yii\framework1115\web\actions\CInlineAction.php(49): UsageMetricsController->actionExportExcel()
+#4 C:\wamp\www\yii\framework1115\web\CController.php(308): CInlineAction->runWithParams()
+#5 C:\wamp\www\yii\framework1115\web\filters\CFilterChain.php(133): UsageMetricsController->runAction()
+#6 C:\wamp\www\yii\framework1115\web\filters\CFilter.php(40): CFilterChain->run()
+#7 C:\wamp\www\yii\framework1115\web\CController.php(1145): CAccessControlFilter->filter()
+#8 C:\wamp\www\yii\framework1115\web\filters\CInlineFilter.php(58): UsageMetricsController->filterAccessControl()
+#9 C:\wamp\www\yii\framework1115\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#10 C:\wamp\www\yii\framework1115\web\CController.php(291): CFilterChain->run()
+#11 C:\wamp\www\yii\framework1115\web\CController.php(265): UsageMetricsController->runActionWithFilters()
+#12 C:\wamp\www\yii\framework1115\web\CWebApplication.php(282): UsageMetricsController->run()
+#13 C:\wamp\www\yii\framework1115\web\CWebApplication.php(141): CWebApplication->runController()
+#14 C:\wamp\www\yii\framework1115\base\CApplication.php(180): CWebApplication->processRequest()
+#15 C:\wamp\www\yii\mtrain\index.php(15): CWebApplication->run()
+REQUEST_URI=/yii/mtrain//usageMetrics/exportExcel
+in C:\wamp\www\yii\mtrain\protected\extensions\vendors\phpexcel\Classes\PHPExcel\Autoloader.php (37)
+in C:\wamp\www\yii\mtrain\protected\extensions\vendors\phpexcel\Classes\PHPExcel.php (32)
+in C:\wamp\www\yii\mtrain\protected\controllers\UsageMetricsController.php (415)
+2015/09/26 11:04:19 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "myProfile".' in C:\wamp\www\yii\framework1115\web\CController.php:483
+Stack trace:
+#0 C:\wamp\www\yii\framework1115\web\CController.php(270): CController->missingAction('myProfile')
+#1 C:\wamp\www\yii\framework1115\web\CWebApplication.php(282): CController->run('myProfile')
+#2 C:\wamp\www\yii\framework1115\web\CWebApplication.php(141): CWebApplication->runController('systemAdmin/myP...')
+#3 C:\wamp\www\yii\framework1115\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\wamp\www\yii\mtrain\index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/yii/mtrain/systemAdmin/myProfile
+HTTP_REFERER=http://localhost/yii/mtrain/systemAdmin
+---
+2015/09/26 11:04:37 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\wamp\www\yii\framework1115\web\auth\CAccessControlFilter.php:182
+Stack trace:
+#0 C:\wamp\www\yii\framework1115\web\auth\CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(WebUser), 'You are not aut...')
+#1 C:\wamp\www\yii\framework1115\web\filters\CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 C:\wamp\www\yii\framework1115\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 C:\wamp\www\yii\framework1115\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 C:\wamp\www\yii\framework1115\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\wamp\www\yii\framework1115\web\CController.php(291): CFilterChain->run()
+#6 C:\wamp\www\yii\framework1115\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\wamp\www\yii\framework1115\web\CWebApplication.php(282): CController->run('myProfile')
+#8 C:\wamp\www\yii\framework1115\web\CWebApplication.php(141): CWebApplication->runController('systemAdmin/myP...')
+#9 C:\wamp\www\yii\framework1115\base\CApplication.php(180): CWebApplication->processRequest()
+#10 C:\wamp\www\yii\mtrain\index.php(15): CApplication->run()
+#11 {main}
+REQUEST_URI=/yii/mtrain/systemAdmin/myProfile
+HTTP_REFERER=http://localhost/yii/mtrain/systemAdmin
+---
+2015/09/26 11:05:15 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\wamp\www\yii\framework1115\web\auth\CAccessControlFilter.php:182
+Stack trace:
+#0 C:\wamp\www\yii\framework1115\web\auth\CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(WebUser), 'You are not aut...')
+#1 C:\wamp\www\yii\framework1115\web\filters\CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 C:\wamp\www\yii\framework1115\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 C:\wamp\www\yii\framework1115\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 C:\wamp\www\yii\framework1115\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\wamp\www\yii\framework1115\web\CController.php(291): CFilterChain->run()
+#6 C:\wamp\www\yii\framework1115\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\wamp\www\yii\framework1115\web\CWebApplication.php(282): CController->run('myProfile')
+#8 C:\wamp\www\yii\framework1115\web\CWebApplication.php(141): CWebApplication->runController('systemAdmin/myP...')
+#9 C:\wamp\www\yii\framework1115\base\CApplication.php(180): CWebApplication->processRequest()
+#10 C:\wamp\www\yii\mtrain\index.php(15): CApplication->run()
+#11 {main}
+REQUEST_URI=/yii/mtrain/systemAdmin/myProfile
+---
+2015/09/26 11:05:55 [error] [exception.CException] exception 'CException' with message 'Property "SystemAdmin.middlenamw" is not defined.' in C:\wamp\www\yii\framework1115\base\CComponent.php:130
+Stack trace:
+#0 C:\wamp\www\yii\framework1115\db\ar\CActiveRecord.php(145): CComponent->__get('middlenamw')
+#1 C:\wamp\www\yii\framework1115\web\helpers\CHtml.php(2529): CActiveRecord->__get('middlenamw')
+#2 C:\wamp\www\yii\framework1115\web\helpers\CHtml.php(2252): CHtml::resolveValue(Object(SystemAdmin), 'middlenamw')
+#3 C:\wamp\www\yii\framework1115\web\helpers\CHtml.php(1434): CHtml::activeInputField('text', Object(SystemAdmin), 'middlenamw', Array)
+#4 C:\wamp\www\yii\framework1115\web\widgets\CActiveForm.php(725): CHtml::activeTextField(Object(SystemAdmin), 'middlenamw', Array)
+#5 C:\wamp\www\yii\mtrain\protected\views\systemAdmin\_search.php(31): CActiveForm->textField(Object(SystemAdmin), 'middlenamw', Array)
+#6 C:\wamp\www\yii\framework1115\web\CBaseController.php(126): require('C:\wamp\www\yii...')
+#7 C:\wamp\www\yii\framework1115\web\CBaseController.php(95): CBaseController->renderInternal('C:\wamp\www\yii...', Array, true)
+#8 C:\wamp\www\yii\framework1115\web\CController.php(869): CBaseController->renderFile('C:\wamp\www\yii...', Array, true)
+#9 C:\wamp\www\yii\mtrain\protected\views\systemAdmin\admin.php(40): CController->renderPartial('_search', Array)
+#10 C:\wamp\www\yii\framework1115\web\CBaseController.php(126): require('C:\wamp\www\yii...')
+#11 C:\wamp\www\yii\framework1115\web\CBaseController.php(95): CBaseController->renderInternal('C:\wamp\www\yii...', Array, true)
+#12 C:\wamp\www\yii\framework1115\web\CController.php(869): CBaseController->renderFile('C:\wamp\www\yii...', Array, true)
+#13 C:\wamp\www\yii\framework1115\web\CController.php(782): CController->renderPartial('admin', Array, true)
+#14 C:\wamp\www\yii\mtrain\protected\controllers\SystemAdminController.php(254): CController->render('admin', Array)
+#15 C:\wamp\www\yii\framework1115\web\actions\CInlineAction.php(49): SystemAdminController->actionMyProfile()
+#16 C:\wamp\www\yii\framework1115\web\CController.php(308): CInlineAction->runWithParams(Array)
+#17 C:\wamp\www\yii\framework1115\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#18 C:\wamp\www\yii\framework1115\web\filters\CFilter.php(40): CFilterChain->run()
+#19 C:\wamp\www\yii\framework1115\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#20 C:\wamp\www\yii\framework1115\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#21 C:\wamp\www\yii\framework1115\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#22 C:\wamp\www\yii\framework1115\web\CController.php(291): CFilterChain->run()
+#23 C:\wamp\www\yii\framework1115\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#24 C:\wamp\www\yii\framework1115\web\CWebApplication.php(282): CController->run('myProfile')
+#25 C:\wamp\www\yii\framework1115\web\CWebApplication.php(141): CWebApplication->runController('systemAdmin/myP...')
+#26 C:\wamp\www\yii\framework1115\base\CApplication.php(180): CWebApplication->processRequest()
+#27 C:\wamp\www\yii\mtrain\index.php(15): CApplication->run()
+#28 {main}
+REQUEST_URI=/yii/mtrain/systemAdmin/myProfile
+---
+2015/09/26 11:06:25 [error] [exception.CException] exception 'CException' with message 'Property "SystemAdmin.middlenamw" is not defined.' in C:\wamp\www\yii\framework1115\base\CComponent.php:130
+Stack trace:
+#0 C:\wamp\www\yii\framework1115\db\ar\CActiveRecord.php(145): CComponent->__get('middlenamw')
+#1 C:\wamp\www\yii\framework1115\web\helpers\CHtml.php(2529): CActiveRecord->__get('middlenamw')
+#2 C:\wamp\www\yii\framework1115\web\helpers\CHtml.php(2252): CHtml::resolveValue(Object(SystemAdmin), 'middlenamw')
+#3 C:\wamp\www\yii\framework1115\web\helpers\CHtml.php(1434): CHtml::activeInputField('text', Object(SystemAdmin), 'middlenamw', Array)
+#4 C:\wamp\www\yii\framework1115\web\widgets\CActiveForm.php(725): CHtml::activeTextField(Object(SystemAdmin), 'middlenamw', Array)
+#5 C:\wamp\www\yii\mtrain\protected\views\systemAdmin\_search.php(31): CActiveForm->textField(Object(SystemAdmin), 'middlenamw', Array)
+#6 C:\wamp\www\yii\framework1115\web\CBaseController.php(126): require('C:\wamp\www\yii...')
+#7 C:\wamp\www\yii\framework1115\web\CBaseController.php(95): CBaseController->renderInternal('C:\wamp\www\yii...', Array, true)
+#8 C:\wamp\www\yii\framework1115\web\CController.php(869): CBaseController->renderFile('C:\wamp\www\yii...', Array, true)
+#9 C:\wamp\www\yii\mtrain\protected\views\systemAdmin\admin.php(40): CController->renderPartial('_search', Array)
+#10 C:\wamp\www\yii\framework1115\web\CBaseController.php(126): require('C:\wamp\www\yii...')
+#11 C:\wamp\www\yii\framework1115\web\CBaseController.php(95): CBaseController->renderInternal('C:\wamp\www\yii...', Array, true)
+#12 C:\wamp\www\yii\framework1115\web\CController.php(869): CBaseController->renderFile('C:\wamp\www\yii...', Array, true)
+#13 C:\wamp\www\yii\framework1115\web\CController.php(782): CController->renderPartial('admin', Array, true)
+#14 C:\wamp\www\yii\mtrain\protected\controllers\SystemAdminController.php(251): CController->render('admin', Array)
+#15 C:\wamp\www\yii\framework1115\web\actions\CInlineAction.php(49): SystemAdminController->actionMyProfile()
+#16 C:\wamp\www\yii\framework1115\web\CController.php(308): CInlineAction->runWithParams(Array)
+#17 C:\wamp\www\yii\framework1115\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#18 C:\wamp\www\yii\framework1115\web\filters\CFilter.php(40): CFilterChain->run()
+#19 C:\wamp\www\yii\framework1115\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#20 C:\wamp\www\yii\framework1115\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#21 C:\wamp\www\yii\framework1115\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#22 C:\wamp\www\yii\framework1115\web\CController.php(291): CFilterChain->run()
+#23 C:\wamp\www\yii\framework1115\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#24 C:\wamp\www\yii\framework1115\web\CWebApplication.php(282): CController->run('myProfile')
+#25 C:\wamp\www\yii\framework1115\web\CWebApplication.php(141): CWebApplication->runController('systemAdmin/myP...')
+#26 C:\wamp\www\yii\framework1115\base\CApplication.php(180): CWebApplication->processRequest()
+#27 C:\wamp\www\yii\mtrain\index.php(15): CApplication->run()
+#28 {main}
+REQUEST_URI=/yii/mtrain/systemAdmin/myProfile
+---
+2015/09/26 11:07:15 [error] [exception.CException] exception 'CException' with message 'Property "SystemAdmin.middlenamw" is not defined.' in C:\wamp\www\yii\framework1115\base\CComponent.php:130
+Stack trace:
+#0 C:\wamp\www\yii\framework1115\db\ar\CActiveRecord.php(145): CComponent->__get('middlenamw')
+#1 C:\wamp\www\yii\framework1115\web\helpers\CHtml.php(2529): CActiveRecord->__get('middlenamw')
+#2 C:\wamp\www\yii\framework1115\web\helpers\CHtml.php(2252): CHtml::resolveValue(Object(SystemAdmin), 'middlenamw')
+#3 C:\wamp\www\yii\framework1115\web\helpers\CHtml.php(1434): CHtml::activeInputField('text', Object(SystemAdmin), 'middlenamw', Array)
+#4 C:\wamp\www\yii\framework1115\web\widgets\CActiveForm.php(725): CHtml::activeTextField(Object(SystemAdmin), 'middlenamw', Array)
+#5 C:\wamp\www\yii\mtrain\protected\views\systemAdmin\_search.php(31): CActiveForm->textField(Object(SystemAdmin), 'middlenamw', Array)
+#6 C:\wamp\www\yii\framework1115\web\CBaseController.php(126): require('C:\wamp\www\yii...')
+#7 C:\wamp\www\yii\framework1115\web\CBaseController.php(95): CBaseController->renderInternal('C:\wamp\www\yii...', Array, true)
+#8 C:\wamp\www\yii\framework1115\web\CController.php(869): CBaseController->renderFile('C:\wamp\www\yii...', Array, true)
+#9 C:\wamp\www\yii\mtrain\protected\views\systemAdmin\admin.php(40): CController->renderPartial('_search', Array)
+#10 C:\wamp\www\yii\framework1115\web\CBaseController.php(126): require('C:\wamp\www\yii...')
+#11 C:\wamp\www\yii\framework1115\web\CBaseController.php(95): CBaseController->renderInternal('C:\wamp\www\yii...', Array, true)
+#12 C:\wamp\www\yii\framework1115\web\CController.php(869): CBaseController->renderFile('C:\wamp\www\yii...', Array, true)
+#13 C:\wamp\www\yii\framework1115\web\CController.php(782): CController->renderPartial('admin', Array, true)
+#14 C:\wamp\www\yii\mtrain\protected\controllers\SystemAdminController.php(251): CController->render('admin', Array)
+#15 C:\wamp\www\yii\framework1115\web\actions\CInlineAction.php(49): SystemAdminController->actionMyProfile()
+#16 C:\wamp\www\yii\framework1115\web\CController.php(308): CInlineAction->runWithParams(Array)
+#17 C:\wamp\www\yii\framework1115\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#18 C:\wamp\www\yii\framework1115\web\filters\CFilter.php(40): CFilterChain->run()
+#19 C:\wamp\www\yii\framework1115\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#20 C:\wamp\www\yii\framework1115\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#21 C:\wamp\www\yii\framework1115\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#22 C:\wamp\www\yii\framework1115\web\CController.php(291): CFilterChain->run()
+#23 C:\wamp\www\yii\framework1115\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#24 C:\wamp\www\yii\framework1115\web\CWebApplication.php(282): CController->run('myProfile')
+#25 C:\wamp\www\yii\framework1115\web\CWebApplication.php(141): CWebApplication->runController('systemAdmin/myP...')
+#26 C:\wamp\www\yii\framework1115\base\CApplication.php(180): CWebApplication->processRequest()
+#27 C:\wamp\www\yii\mtrain\index.php(15): CApplication->run()
+#28 {main}
+REQUEST_URI=/yii/mtrain/systemAdmin/myProfile
+---
+2015/09/26 11:10:02 [error] [exception.CException] exception 'CException' with message 'Property "SystemAdmin.middlenamw" is not defined.' in C:\wamp\www\yii\framework1115\base\CComponent.php:130
+Stack trace:
+#0 C:\wamp\www\yii\framework1115\db\ar\CActiveRecord.php(145): CComponent->__get('middlenamw')
+#1 C:\wamp\www\yii\framework1115\web\helpers\CHtml.php(2529): CActiveRecord->__get('middlenamw')
+#2 C:\wamp\www\yii\framework1115\web\helpers\CHtml.php(2252): CHtml::resolveValue(Object(SystemAdmin), 'middlenamw')
+#3 C:\wamp\www\yii\framework1115\web\helpers\CHtml.php(1434): CHtml::activeInputField('text', Object(SystemAdmin), 'middlenamw', Array)
+#4 C:\wamp\www\yii\framework1115\web\widgets\CActiveForm.php(725): CHtml::activeTextField(Object(SystemAdmin), 'middlenamw', Array)
+#5 C:\wamp\www\yii\mtrain\protected\views\systemAdmin\_search.php(31): CActiveForm->textField(Object(SystemAdmin), 'middlenamw', Array)
+#6 C:\wamp\www\yii\framework1115\web\CBaseController.php(126): require('C:\wamp\www\yii...')
+#7 C:\wamp\www\yii\framework1115\web\CBaseController.php(95): CBaseController->renderInternal('C:\wamp\www\yii...', Array, true)
+#8 C:\wamp\www\yii\framework1115\web\CController.php(869): CBaseController->renderFile('C:\wamp\www\yii...', Array, true)
+#9 C:\wamp\www\yii\mtrain\protected\views\systemAdmin\admin.php(40): CController->renderPartial('_search', Array)
+#10 C:\wamp\www\yii\framework1115\web\CBaseController.php(126): require('C:\wamp\www\yii...')
+#11 C:\wamp\www\yii\framework1115\web\CBaseController.php(95): CBaseController->renderInternal('C:\wamp\www\yii...', Array, true)
+#12 C:\wamp\www\yii\framework1115\web\CController.php(869): CBaseController->renderFile('C:\wamp\www\yii...', Array, true)
+#13 C:\wamp\www\yii\framework1115\web\CController.php(782): CController->renderPartial('admin', Array, true)
+#14 C:\wamp\www\yii\mtrain\protected\controllers\SystemAdminController.php(251): CController->render('admin', Array)
+#15 C:\wamp\www\yii\framework1115\web\actions\CInlineAction.php(49): SystemAdminController->actionMyProfile()
+#16 C:\wamp\www\yii\framework1115\web\CController.php(308): CInlineAction->runWithParams(Array)
+#17 C:\wamp\www\yii\framework1115\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#18 C:\wamp\www\yii\framework1115\web\filters\CFilter.php(40): CFilterChain->run()
+#19 C:\wamp\www\yii\framework1115\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#20 C:\wamp\www\yii\framework1115\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#21 C:\wamp\www\yii\framework1115\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#22 C:\wamp\www\yii\framework1115\web\CController.php(291): CFilterChain->run()
+#23 C:\wamp\www\yii\framework1115\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#24 C:\wamp\www\yii\framework1115\web\CWebApplication.php(282): CController->run('myProfile')
+#25 C:\wamp\www\yii\framework1115\web\CWebApplication.php(141): CWebApplication->runController('systemAdmin/myP...')
+#26 C:\wamp\www\yii\framework1115\base\CApplication.php(180): CWebApplication->processRequest()
+#27 C:\wamp\www\yii\mtrain\index.php(15): CApplication->run()
+#28 {main}
+REQUEST_URI=/yii/mtrain/systemAdmin/myProfile
+---
+2015/09/26 11:55:29 [error] [exception.CException] exception 'CException' with message 'Property "SystemAdmin.middlenamw" is not defined.' in C:\wamp\www\yii\framework1115\base\CComponent.php:130
+Stack trace:
+#0 C:\wamp\www\yii\framework1115\db\ar\CActiveRecord.php(145): CComponent->__get('middlenamw')
+#1 C:\wamp\www\yii\framework1115\web\helpers\CHtml.php(2529): CActiveRecord->__get('middlenamw')
+#2 C:\wamp\www\yii\framework1115\web\helpers\CHtml.php(2252): CHtml::resolveValue(Object(SystemAdmin), 'middlenamw')
+#3 C:\wamp\www\yii\framework1115\web\helpers\CHtml.php(1434): CHtml::activeInputField('text', Object(SystemAdmin), 'middlenamw', Array)
+#4 C:\wamp\www\yii\framework1115\web\widgets\CActiveForm.php(725): CHtml::activeTextField(Object(SystemAdmin), 'middlenamw', Array)
+#5 C:\wamp\www\yii\mtrain\protected\views\systemAdmin\profile.php(75): CActiveForm->textField(Object(SystemAdmin), 'middlenamw', Array)
+#6 C:\wamp\www\yii\framework1115\web\CBaseController.php(126): require('C:\wamp\www\yii...')
+#7 C:\wamp\www\yii\framework1115\web\CBaseController.php(95): CBaseController->renderInternal('C:\wamp\www\yii...', Array, true)
+#8 C:\wamp\www\yii\framework1115\web\CController.php(869): CBaseController->renderFile('C:\wamp\www\yii...', Array, true)
+#9 C:\wamp\www\yii\framework1115\web\CController.php(782): CController->renderPartial('profile', Array, true)
+#10 C:\wamp\www\yii\mtrain\protected\controllers\SystemAdminController.php(251): CController->render('profile', Array)
+#11 C:\wamp\www\yii\framework1115\web\actions\CInlineAction.php(49): SystemAdminController->actionMyProfile()
+#12 C:\wamp\www\yii\framework1115\web\CController.php(308): CInlineAction->runWithParams(Array)
+#13 C:\wamp\www\yii\framework1115\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#14 C:\wamp\www\yii\framework1115\web\filters\CFilter.php(40): CFilterChain->run()
+#15 C:\wamp\www\yii\framework1115\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#16 C:\wamp\www\yii\framework1115\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#17 C:\wamp\www\yii\framework1115\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#18 C:\wamp\www\yii\framework1115\web\CController.php(291): CFilterChain->run()
+#19 C:\wamp\www\yii\framework1115\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#20 C:\wamp\www\yii\framework1115\web\CWebApplication.php(282): CController->run('myProfile')
+#21 C:\wamp\www\yii\framework1115\web\CWebApplication.php(141): CWebApplication->runController('systemAdmin/myP...')
+#22 C:\wamp\www\yii\framework1115\base\CApplication.php(180): CWebApplication->processRequest()
+#23 C:\wamp\www\yii\mtrain\index.php(15): CApplication->run()
+#24 {main}
+REQUEST_URI=/yii/mtrain/systemAdmin/myProfile
+HTTP_REFERER=http://localhost/yii/mtrain/roles
+---
+2015/09/26 11:55:50 [error] [exception.CException] exception 'CException' with message 'Property "SystemAdmin.partner_id" is not defined.' in C:\wamp\www\yii\framework1115\base\CComponent.php:130
+Stack trace:
+#0 C:\wamp\www\yii\framework1115\db\ar\CActiveRecord.php(145): CComponent->__get('partner_id')
+#1 C:\wamp\www\yii\framework1115\web\helpers\CHtml.php(2529): CActiveRecord->__get('partner_id')
+#2 C:\wamp\www\yii\framework1115\web\helpers\CHtml.php(2252): CHtml::resolveValue(Object(SystemAdmin), 'partner_id')
+#3 C:\wamp\www\yii\framework1115\web\helpers\CHtml.php(1434): CHtml::activeInputField('text', Object(SystemAdmin), 'partner_id', Array)
+#4 C:\wamp\www\yii\framework1115\web\widgets\CActiveForm.php(725): CHtml::activeTextField(Object(SystemAdmin), 'partner_id', Array)
+#5 C:\wamp\www\yii\mtrain\protected\views\systemAdmin\profile.php(105): CActiveForm->textField(Object(SystemAdmin), 'partner_id')
+#6 C:\wamp\www\yii\framework1115\web\CBaseController.php(126): require('C:\wamp\www\yii...')
+#7 C:\wamp\www\yii\framework1115\web\CBaseController.php(95): CBaseController->renderInternal('C:\wamp\www\yii...', Array, true)
+#8 C:\wamp\www\yii\framework1115\web\CController.php(869): CBaseController->renderFile('C:\wamp\www\yii...', Array, true)
+#9 C:\wamp\www\yii\framework1115\web\CController.php(782): CController->renderPartial('profile', Array, true)
+#10 C:\wamp\www\yii\mtrain\protected\controllers\SystemAdminController.php(251): CController->render('profile', Array)
+#11 C:\wamp\www\yii\framework1115\web\actions\CInlineAction.php(49): SystemAdminController->actionMyProfile()
+#12 C:\wamp\www\yii\framework1115\web\CController.php(308): CInlineAction->runWithParams(Array)
+#13 C:\wamp\www\yii\framework1115\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#14 C:\wamp\www\yii\framework1115\web\filters\CFilter.php(40): CFilterChain->run()
+#15 C:\wamp\www\yii\framework1115\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#16 C:\wamp\www\yii\framework1115\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#17 C:\wamp\www\yii\framework1115\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#18 C:\wamp\www\yii\framework1115\web\CController.php(291): CFilterChain->run()
+#19 C:\wamp\www\yii\framework1115\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#20 C:\wamp\www\yii\framework1115\web\CWebApplication.php(282): CController->run('myProfile')
+#21 C:\wamp\www\yii\framework1115\web\CWebApplication.php(141): CWebApplication->runController('systemAdmin/myP...')
+#22 C:\wamp\www\yii\framework1115\base\CApplication.php(180): CWebApplication->processRequest()
+#23 C:\wamp\www\yii\mtrain\index.php(15): CApplication->run()
+#24 {main}
+REQUEST_URI=/yii/mtrain/systemAdmin/myProfile
+HTTP_REFERER=http://localhost/yii/mtrain/roles
+---
+2015/09/26 12:08:39 [error] [php] htmlspecialchars() expects parameter 1 to be string, array given (C:\wamp\www\yii\framework1115\web\helpers\CHtml.php:103)
+Stack trace:
+#0 C:\wamp\www\yii\framework1115\web\helpers\CHtml.php(158): renderAttributes()
+#1 C:\wamp\www\yii\framework1115\web\helpers\CHtml.php(580): tag()
+#2 C:\wamp\www\yii\framework1115\web\helpers\CHtml.php(1393): label()
+#3 C:\wamp\www\yii\framework1115\web\helpers\CHtml.php(1415): activeLabel()
+#4 C:\wamp\www\yii\framework1115\web\widgets\CActiveForm.php(597): activeLabelEx()
+#5 C:\wamp\www\yii\mtrain\protected\views\systemAdmin\profile.php(60): CActiveForm->labelEx()
+#6 C:\wamp\www\yii\framework1115\web\CBaseController.php(126): require()
+#7 C:\wamp\www\yii\framework1115\web\CBaseController.php(95): SystemAdminController->renderInternal()
+#8 C:\wamp\www\yii\framework1115\web\CController.php(869): SystemAdminController->renderFile()
+#9 C:\wamp\www\yii\framework1115\web\CController.php(782): SystemAdminController->renderPartial()
+#10 C:\wamp\www\yii\mtrain\protected\controllers\SystemAdminController.php(251): SystemAdminController->render()
+#11 C:\wamp\www\yii\framework1115\web\actions\CInlineAction.php(49): SystemAdminController->actionMyProfile()
+#12 C:\wamp\www\yii\framework1115\web\CController.php(308): CInlineAction->runWithParams()
+#13 C:\wamp\www\yii\framework1115\web\filters\CFilterChain.php(133): SystemAdminController->runAction()
+#14 C:\wamp\www\yii\framework1115\web\filters\CFilter.php(40): CFilterChain->run()
+#15 C:\wamp\www\yii\framework1115\web\CController.php(1145): CAccessControlFilter->filter()
+#16 C:\wamp\www\yii\framework1115\web\filters\CInlineFilter.php(58): SystemAdminController->filterAccessControl()
+#17 C:\wamp\www\yii\framework1115\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#18 C:\wamp\www\yii\framework1115\web\CController.php(291): CFilterChain->run()
+#19 C:\wamp\www\yii\framework1115\web\CController.php(265): SystemAdminController->runActionWithFilters()
+#20 C:\wamp\www\yii\framework1115\web\CWebApplication.php(282): SystemAdminController->run()
+#21 C:\wamp\www\yii\framework1115\web\CWebApplication.php(141): CWebApplication->runController()
+#22 C:\wamp\www\yii\framework1115\base\CApplication.php(180): CWebApplication->processRequest()
+#23 C:\wamp\www\yii\mtrain\index.php(15): CWebApplication->run()
+REQUEST_URI=/yii/mtrain/systemAdmin/myProfile
+in C:\wamp\www\yii\mtrain\protected\views\systemAdmin\profile.php (60)
+in C:\wamp\www\yii\mtrain\protected\controllers\SystemAdminController.php (251)
+in C:\wamp\www\yii\mtrain\index.php (15)
+2015/09/26 13:34:30 [error] [exception.CException] exception 'CException' with message 'Property "SystemAdmin." is not defined.' in C:\wamp\www\yii\framework1115\base\CComponent.php:130
+Stack trace:
+#0 C:\wamp\www\yii\framework1115\db\ar\CActiveRecord.php(145): CComponent->__get('')
+#1 C:\wamp\www\yii\framework1115\web\helpers\CHtml.php(2529): CActiveRecord->__get('')
+#2 C:\wamp\www\yii\framework1115\web\helpers\CHtml.php(2252): CHtml::resolveValue(Object(SystemAdmin), '')
+#3 C:\wamp\www\yii\framework1115\web\helpers\CHtml.php(1628): CHtml::activeInputField('password', Object(SystemAdmin), '', Array)
+#4 C:\wamp\www\yii\framework1115\web\widgets\CActiveForm.php(771): CHtml::activePasswordField(Object(SystemAdmin), '', Array)
+#5 C:\wamp\www\yii\mtrain\protected\views\systemAdmin\profile.php(106): CActiveForm->passwordField(Object(SystemAdmin), '', Array)
+#6 C:\wamp\www\yii\framework1115\web\CBaseController.php(126): require('C:\wamp\www\yii...')
+#7 C:\wamp\www\yii\framework1115\web\CBaseController.php(95): CBaseController->renderInternal('C:\wamp\www\yii...', Array, true)
+#8 C:\wamp\www\yii\framework1115\web\CController.php(869): CBaseController->renderFile('C:\wamp\www\yii...', Array, true)
+#9 C:\wamp\www\yii\framework1115\web\CController.php(782): CController->renderPartial('profile', Array, true)
+#10 C:\wamp\www\yii\mtrain\protected\controllers\SystemAdminController.php(251): CController->render('profile', Array)
+#11 C:\wamp\www\yii\framework1115\web\actions\CInlineAction.php(49): SystemAdminController->actionMyProfile()
+#12 C:\wamp\www\yii\framework1115\web\CController.php(308): CInlineAction->runWithParams(Array)
+#13 C:\wamp\www\yii\framework1115\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#14 C:\wamp\www\yii\framework1115\web\filters\CFilter.php(40): CFilterChain->run()
+#15 C:\wamp\www\yii\framework1115\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#16 C:\wamp\www\yii\framework1115\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#17 C:\wamp\www\yii\framework1115\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#18 C:\wamp\www\yii\framework1115\web\CController.php(291): CFilterChain->run()
+#19 C:\wamp\www\yii\framework1115\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#20 C:\wamp\www\yii\framework1115\web\CWebApplication.php(282): CController->run('myProfile')
+#21 C:\wamp\www\yii\framework1115\web\CWebApplication.php(141): CWebApplication->runController('systemAdmin/myP...')
+#22 C:\wamp\www\yii\framework1115\base\CApplication.php(180): CWebApplication->processRequest()
+#23 C:\wamp\www\yii\mtrain\index.php(15): CApplication->run()
+#24 {main}
+REQUEST_URI=/yii/mtrain/systemAdmin/myProfile
+HTTP_REFERER=http://localhost/yii/mtrain/roles
+---
+2015/09/26 14:08:04 [warning] [application] Failed to set unsafe attribute "cpassword" of "SystemAdmin".
+in C:\wamp\www\yii\mtrain\protected\controllers\SystemAdminController.php (249)
+in C:\wamp\www\yii\mtrain\index.php (15)
+2015/09/26 14:16:04 [warning] [application] Failed to set unsafe attribute "cpassword" of "SystemAdmin".
+in C:\wamp\www\yii\mtrain\protected\controllers\SystemAdminController.php (249)
+in C:\wamp\www\yii\mtrain\index.php (15)
+2015/09/26 14:16:39 [warning] [application] Failed to set unsafe attribute "cpassword" of "SystemAdmin".
+in C:\wamp\www\yii\mtrain\protected\controllers\SystemAdminController.php (251)
+in C:\wamp\www\yii\mtrain\index.php (15)
+2015/09/26 14:16:49 [warning] [application] Failed to set unsafe attribute "cpassword" of "SystemAdmin".
+in C:\wamp\www\yii\mtrain\protected\controllers\SystemAdminController.php (251)
+in C:\wamp\www\yii\mtrain\index.php (15)
+2015/09/26 14:17:06 [warning] [application] Failed to set unsafe attribute "cpassword" of "SystemAdmin".
+in C:\wamp\www\yii\mtrain\protected\controllers\SystemAdminController.php (251)
+in C:\wamp\www\yii\mtrain\index.php (15)
+2015/09/26 14:17:33 [warning] [application] Failed to set unsafe attribute "cpassword" of "SystemAdmin".
+in C:\wamp\www\yii\mtrain\protected\controllers\SystemAdminController.php (251)
+in C:\wamp\www\yii\mtrain\index.php (15)
+2015/09/26 14:31:06 [warning] [application] Failed to set unsafe attribute "cpassword" of "SystemAdmin".
+in C:\wamp\www\yii\mtrain\protected\controllers\SystemAdminController.php (251)
+in C:\wamp\www\yii\mtrain\index.php (15)
+2015/09/26 14:35:28 [warning] [application] Failed to set unsafe attribute "cpassword" of "SystemAdmin".
+in C:\wamp\www\yii\mtrain\protected\controllers\SystemAdminController.php (251)
+in C:\wamp\www\yii\mtrain\index.php (15)
+2015/09/26 14:35:45 [warning] [application] Failed to set unsafe attribute "cpassword" of "SystemAdmin".
+in C:\wamp\www\yii\mtrain\protected\controllers\SystemAdminController.php (251)
+in C:\wamp\www\yii\mtrain\index.php (15)
+2015/09/26 14:38:48 [warning] [application] Failed to set unsafe attribute "cpassword" of "SystemAdmin".
+in C:\wamp\www\yii\mtrain\protected\controllers\SystemAdminController.php (251)
+in C:\wamp\www\yii\mtrain\index.php (15)
+2015/09/26 14:39:11 [warning] [application] Failed to set unsafe attribute "cpassword" of "SystemAdmin".
+in C:\wamp\www\yii\mtrain\protected\controllers\SystemAdminController.php (251)
+in C:\wamp\www\yii\mtrain\index.php (15)
+2015/09/26 14:40:43 [warning] [application] Failed to set unsafe attribute "cpassword" of "SystemAdmin".
+in C:\wamp\www\yii\mtrain\protected\controllers\SystemAdminController.php (251)
+in C:\wamp\www\yii\mtrain\index.php (15)
+2015/09/26 14:42:07 [warning] [application] Failed to set unsafe attribute "cpassword" of "SystemAdmin".
+in C:\wamp\www\yii\mtrain\protected\controllers\SystemAdminController.php (251)
+in C:\wamp\www\yii\mtrain\index.php (15)
+2015/09/26 14:42:21 [warning] [application] Failed to set unsafe attribute "cpassword" of "SystemAdmin".
+in C:\wamp\www\yii\mtrain\protected\controllers\SystemAdminController.php (251)
+in C:\wamp\www\yii\mtrain\index.php (15)
+2015/09/26 14:42:39 [warning] [application] Failed to set unsafe attribute "cpassword" of "SystemAdmin".
+in C:\wamp\www\yii\mtrain\protected\controllers\SystemAdminController.php (251)
+in C:\wamp\www\yii\mtrain\index.php (15)
+2015/09/26 14:43:15 [warning] [application] Failed to set unsafe attribute "cpassword" of "SystemAdmin".
+in C:\wamp\www\yii\mtrain\protected\controllers\SystemAdminController.php (251)
+in C:\wamp\www\yii\mtrain\index.php (15)
+2015/09/26 16:39:58 [warning] [application] Failed to set unsafe attribute "cpassword" of "SystemAdmin".
+in C:\wamp\www\yii\mtrain\protected\controllers\SystemAdminController.php (251)
+in C:\wamp\www\yii\mtrain\index.php (15)
+2015/10/29 00:33:14 [error] [php] Undefined variable: content (C:\wamp\www\yii\mtrain\protected\views\site\index.php:260)
+Stack trace:
+#0 C:\wamp\www\yii\framework1115\web\CController.php(869): SiteController->renderFile()
+#1 C:\wamp\www\yii\framework1115\web\CController.php(782): SiteController->renderPartial()
+#2 C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php(63): SiteController->render()
+#3 C:\wamp\www\yii\framework1115\web\actions\CInlineAction.php(49): SiteController->actionIndex()
+#4 C:\wamp\www\yii\framework1115\web\CController.php(308): CInlineAction->runWithParams()
+#5 C:\wamp\www\yii\framework1115\web\CController.php(286): SiteController->runAction()
+#6 C:\wamp\www\yii\framework1115\web\CController.php(265): SiteController->runActionWithFilters()
+#7 C:\wamp\www\yii\framework1115\web\CWebApplication.php(282): SiteController->run()
+#8 C:\wamp\www\yii\framework1115\web\CWebApplication.php(141): CWebApplication->runController()
+#9 C:\wamp\www\yii\framework1115\base\CApplication.php(180): CWebApplication->processRequest()
+#10 C:\wamp\www\yii\mtrain\index.php(15): CWebApplication->run()
+REQUEST_URI=/yii/mtrain/
+in C:\wamp\www\yii\mtrain\protected\views\site\index.php (260)
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (63)
+in C:\wamp\www\yii\mtrain\index.php (15)
+2015/10/29 01:10:38 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "site".' in C:\wamp\www\yii\framework1115\web\CController.php:483
+Stack trace:
+#0 C:\wamp\www\yii\framework1115\web\CController.php(270): CController->missingAction('site')
+#1 C:\wamp\www\yii\framework1115\web\CWebApplication.php(282): CController->run('site')
+#2 C:\wamp\www\yii\framework1115\web\CWebApplication.php(141): CWebApplication->runController('site/site/filte...')
+#3 C:\wamp\www\yii\framework1115\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\wamp\www\yii\mtrain\index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/yii/mtrain/site/site/filterStackedChart
+HTTP_REFERER=http://localhost/yii/mtrain/site/indexdemo
+---
+2015/10/29 01:56:32 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "site".' in C:\wamp\www\yii\framework1115\web\CController.php:483
+Stack trace:
+#0 C:\wamp\www\yii\framework1115\web\CController.php(270): CController->missingAction('site')
+#1 C:\wamp\www\yii\framework1115\web\CWebApplication.php(282): CController->run('site')
+#2 C:\wamp\www\yii\framework1115\web\CWebApplication.php(141): CWebApplication->runController('site/site/filte...')
+#3 C:\wamp\www\yii\framework1115\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\wamp\www\yii\mtrain\index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/yii/mtrain/site/site/filterStackedChart
+HTTP_REFERER=http://localhost/yii/mtrain/site/indexdemo
+---
+2015/10/29 05:10:42 [error] [php] Invalid argument supplied for foreach() (C:\wamp\www\yii\mtrain\protected\views\site\indexdemo.php:46)
+Stack trace:
+#0 C:\wamp\www\yii\framework1115\web\CController.php(869): SiteController->renderFile()
+#1 C:\wamp\www\yii\framework1115\web\CController.php(782): SiteController->renderPartial()
+#2 C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php(98): SiteController->render()
+#3 C:\wamp\www\yii\framework1115\web\actions\CInlineAction.php(49): SiteController->actionIndexDemo()
+#4 C:\wamp\www\yii\framework1115\web\CController.php(308): CInlineAction->runWithParams()
+#5 C:\wamp\www\yii\framework1115\web\CController.php(286): SiteController->runAction()
+#6 C:\wamp\www\yii\framework1115\web\CController.php(265): SiteController->runActionWithFilters()
+#7 C:\wamp\www\yii\framework1115\web\CWebApplication.php(282): SiteController->run()
+#8 C:\wamp\www\yii\framework1115\web\CWebApplication.php(141): CWebApplication->runController()
+#9 C:\wamp\www\yii\framework1115\base\CApplication.php(180): CWebApplication->processRequest()
+#10 C:\wamp\www\yii\mtrain\index.php(15): CWebApplication->run()
+REQUEST_URI=/yii/mtrain/site/indexdemo
+in C:\wamp\www\yii\mtrain\protected\views\site\indexdemo.php (46)
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (98)
+in C:\wamp\www\yii\mtrain\index.php (15)
+2015/10/29 05:24:10 [error] [php] Trying to get property of non-object (C:\wamp\www\yii\mtrain\protected\views\site\indexdemo.php:47)
+Stack trace:
+#0 C:\wamp\www\yii\framework1115\web\CController.php(869): SiteController->renderFile()
+#1 C:\wamp\www\yii\framework1115\web\CController.php(782): SiteController->renderPartial()
+#2 C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php(98): SiteController->render()
+#3 C:\wamp\www\yii\framework1115\web\actions\CInlineAction.php(49): SiteController->actionIndexDemo()
+#4 C:\wamp\www\yii\framework1115\web\CController.php(308): CInlineAction->runWithParams()
+#5 C:\wamp\www\yii\framework1115\web\CController.php(286): SiteController->runAction()
+#6 C:\wamp\www\yii\framework1115\web\CController.php(265): SiteController->runActionWithFilters()
+#7 C:\wamp\www\yii\framework1115\web\CWebApplication.php(282): SiteController->run()
+#8 C:\wamp\www\yii\framework1115\web\CWebApplication.php(141): CWebApplication->runController()
+#9 C:\wamp\www\yii\framework1115\base\CApplication.php(180): CWebApplication->processRequest()
+#10 C:\wamp\www\yii\mtrain\index.php(15): CWebApplication->run()
+REQUEST_URI=/yii/mtrain/site/indexdemo
+in C:\wamp\www\yii\mtrain\protected\views\site\indexdemo.php (47)
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (98)
+in C:\wamp\www\yii\mtrain\index.php (15)
+2015/10/30 18:26:17 [error] [php] Undefined index:  num_facs (C:\wamp\www\yii\mtrain\protected\views\site\index.php:30)
+Stack trace:
+#0 C:\wamp\www\yii\framework1115\web\CController.php(869): SiteController->renderFile()
+#1 C:\wamp\www\yii\framework1115\web\CController.php(782): SiteController->renderPartial()
+#2 C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php(63): SiteController->render()
+#3 C:\wamp\www\yii\framework1115\web\actions\CInlineAction.php(49): SiteController->actionIndex()
+#4 C:\wamp\www\yii\framework1115\web\CController.php(308): CInlineAction->runWithParams()
+#5 C:\wamp\www\yii\framework1115\web\CController.php(286): SiteController->runAction()
+#6 C:\wamp\www\yii\framework1115\web\CController.php(265): SiteController->runActionWithFilters()
+#7 C:\wamp\www\yii\framework1115\web\CWebApplication.php(282): SiteController->run()
+#8 C:\wamp\www\yii\framework1115\web\CWebApplication.php(141): CWebApplication->runController()
+#9 C:\wamp\www\yii\framework1115\base\CApplication.php(180): CWebApplication->processRequest()
+#10 C:\wamp\www\yii\mtrain\index.php(15): CWebApplication->run()
+REQUEST_URI=/yii/mtrain/
+in C:\wamp\www\yii\mtrain\protected\views\site\index.php (30)
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (63)
+in C:\wamp\www\yii\mtrain\index.php (15)
+2015/11/02 14:29:51 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "site".' in C:\wamp\www\yii\framework1115\web\CController.php:483
+Stack trace:
+#0 C:\wamp\www\yii\framework1115\web\CController.php(270): CController->missingAction('site')
+#1 C:\wamp\www\yii\framework1115\web\CWebApplication.php(282): CController->run('site')
+#2 C:\wamp\www\yii\framework1115\web\CWebApplication.php(141): CWebApplication->runController('site/site/filte...')
+#3 C:\wamp\www\yii\framework1115\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\wamp\www\yii\mtrain\index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/yii/mtrain/site/site/filterStackedChart
+HTTP_REFERER=http://localhost/yii/mtrain/site/index
+---
+2015/11/02 14:31:27 [error] [php] Undefined variable: performance (C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php:62)
+Stack trace:
+#0 C:\wamp\www\yii\framework1115\web\CController.php(286): SiteController->runAction()
+#1 C:\wamp\www\yii\framework1115\web\CController.php(265): SiteController->runActionWithFilters()
+#2 C:\wamp\www\yii\framework1115\web\CWebApplication.php(282): SiteController->run()
+#3 C:\wamp\www\yii\framework1115\web\CWebApplication.php(141): CWebApplication->runController()
+#4 C:\wamp\www\yii\framework1115\base\CApplication.php(180): CWebApplication->processRequest()
+#5 C:\wamp\www\yii\mtrain\index.php(15): CWebApplication->run()
+REQUEST_URI=/yii/mtrain/site/index
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (62)
+in C:\wamp\www\yii\mtrain\index.php (15)
+2015/11/02 14:31:57 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "site".' in C:\wamp\www\yii\framework1115\web\CController.php:483
+Stack trace:
+#0 C:\wamp\www\yii\framework1115\web\CController.php(270): CController->missingAction('site')
+#1 C:\wamp\www\yii\framework1115\web\CWebApplication.php(282): CController->run('site')
+#2 C:\wamp\www\yii\framework1115\web\CWebApplication.php(141): CWebApplication->runController('site/site/filte...')
+#3 C:\wamp\www\yii\framework1115\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\wamp\www\yii\mtrain\index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/yii/mtrain/site/site/filterStackedChart
+HTTP_REFERER=http://localhost/yii/mtrain/site/index
+---
+2015/11/02 14:37:04 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "site".' in C:\wamp\www\yii\framework1115\web\CController.php:483
+Stack trace:
+#0 C:\wamp\www\yii\framework1115\web\CController.php(270): CController->missingAction('site')
+#1 C:\wamp\www\yii\framework1115\web\CWebApplication.php(282): CController->run('site')
+#2 C:\wamp\www\yii\framework1115\web\CWebApplication.php(141): CWebApplication->runController('site/site/filte...')
+#3 C:\wamp\www\yii\framework1115\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\wamp\www\yii\mtrain\index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/yii/mtrain/site/site/filterStackedChart
+---
+2015/11/02 14:39:13 [error] [php] Undefined offset:  0 (C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php:93)
+Stack trace:
+#0 C:\wamp\www\yii\framework1115\web\CController.php(286): SiteController->runAction()
+#1 C:\wamp\www\yii\framework1115\web\CController.php(265): SiteController->runActionWithFilters()
+#2 C:\wamp\www\yii\framework1115\web\CWebApplication.php(282): SiteController->run()
+#3 C:\wamp\www\yii\framework1115\web\CWebApplication.php(141): CWebApplication->runController()
+#4 C:\wamp\www\yii\framework1115\base\CApplication.php(180): CWebApplication->processRequest()
+#5 C:\wamp\www\yii\mtrain\index.php(15): CWebApplication->run()
+REQUEST_URI=/yii/mtrain/site/indexdemo
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (93)
+in C:\wamp\www\yii\mtrain\index.php (15)
+2015/11/02 18:19:19 [error] [php] Missing argument 1 for SystemStatsDemo::getTrainingPerformance(), called in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php on line 189 and defined (C:\wamp\www\yii\mtrain\protected\components\SystemStatsDemo.php:295)
+Stack trace:
+#0 C:\wamp\www\yii\framework1115\web\actions\CInlineAction.php(49): SiteController->actionIndexDemo()
+#1 C:\wamp\www\yii\framework1115\web\CController.php(308): CInlineAction->runWithParams()
+#2 C:\wamp\www\yii\framework1115\web\CController.php(286): SiteController->runAction()
+#3 C:\wamp\www\yii\framework1115\web\CController.php(265): SiteController->runActionWithFilters()
+#4 C:\wamp\www\yii\framework1115\web\CWebApplication.php(282): SiteController->run()
+#5 C:\wamp\www\yii\framework1115\web\CWebApplication.php(141): CWebApplication->runController()
+#6 C:\wamp\www\yii\framework1115\base\CApplication.php(180): CWebApplication->processRequest()
+#7 C:\wamp\www\yii\mtrain\index.php(15): CWebApplication->run()
+REQUEST_URI=/yii/mtrain/site/indexdemo
+in C:\wamp\www\yii\mtrain\protected\components\SystemStatsDemo.php (295)
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (189)
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (91)
+2015/11/02 18:20:44 [error] [php] Missing argument 1 for SystemStatsDemo::getTrainingPerformance(), called in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php on line 189 and defined (C:\wamp\www\yii\mtrain\protected\components\SystemStatsDemo.php:295)
+Stack trace:
+#0 C:\wamp\www\yii\framework1115\web\actions\CInlineAction.php(49): SiteController->actionIndexDemo()
+#1 C:\wamp\www\yii\framework1115\web\CController.php(308): CInlineAction->runWithParams()
+#2 C:\wamp\www\yii\framework1115\web\CController.php(286): SiteController->runAction()
+#3 C:\wamp\www\yii\framework1115\web\CController.php(265): SiteController->runActionWithFilters()
+#4 C:\wamp\www\yii\framework1115\web\CWebApplication.php(282): SiteController->run()
+#5 C:\wamp\www\yii\framework1115\web\CWebApplication.php(141): CWebApplication->runController()
+#6 C:\wamp\www\yii\framework1115\base\CApplication.php(180): CWebApplication->processRequest()
+#7 C:\wamp\www\yii\mtrain\index.php(15): CWebApplication->run()
+REQUEST_URI=/yii/mtrain/site/indexdemo
+in C:\wamp\www\yii\mtrain\protected\components\SystemStatsDemo.php (295)
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (189)
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (91)
+2015/11/02 18:21:41 [error] [system.db.CDbCommand] CDbCommand::() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'module_abbr' in 'field list'. The SQL statement executed was: SELECT wcount, scount, t1.module_id, t1.module_abbr FROM (SELECT COUNT(DISTINCT(worker_id)) AS wcount,module_id,module_abbr FROM cthx_training_session GROUP BY module_id) AS t1 INNER JOIN (SELECT COUNT(session_id) AS scount,module_id FROM cthx_training_session GROUP BY module_id) AS t2 ON t1.module_id = t2.module_id ORDER BY t1.module_id.
+in C:\wamp\www\yii\mtrain\protected\components\SystemStatsDemo.php (312)
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (189)
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (91)
+2015/11/02 18:24:17 [error] [system.db.CDbCommand] CDbCommand::() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'module_abbr' in 'field list'. The SQL statement executed was: SELECT wcount, scount, t1.module_id, t1.module_abbr FROM (SELECT COUNT(DISTINCT(worker_id)) AS wcount,module_id,module_abbr FROM cthx_training_session GROUP BY module_id) AS t1 INNER JOIN (SELECT COUNT(session_id) AS scount,module_id FROM cthx_training_session GROUP BY module_id) AS t2 ON t1.module_id = t2.module_id ORDER BY t1.module_id.
+in C:\wamp\www\yii\mtrain\protected\components\SystemStatsDemo.php (312)
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (189)
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (91)
+2015/11/02 18:25:21 [error] [system.db.CDbCommand] CDbCommand::() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'module_abbr' in 'field list'. The SQL statement executed was: SELECT wcount, scount, t1.module_id, t1.module_abbr FROM (SELECT COUNT(DISTINCT(worker_id)) AS wcount,module_id,module_abbr FROM cthx_training_session GROUP BY module_id) AS t1 INNER JOIN (SELECT COUNT(session_id) AS scount,module_id FROM cthx_training_session GROUP BY module_id) AS t2 ON t1.module_id = t2.module_id ORDER BY t1.module_id.
+in C:\wamp\www\yii\mtrain\protected\components\SystemStatsDemo.php (312)
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (200)
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (91)
+2015/11/02 18:38:28 [error] [system.db.CDbCommand] CDbCommand::() failed: SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'module_id' in field list is ambiguous. The SQL statement executed was: SELECT wcount, scount, t1.module_id, t1.module_abbr FROM (SELECT COUNT(DISTINCT(worker_id)) AS wcount,module_id,module_abbr FROM cthx_training_session s JOIN cthx_training_module m ON m.module_id = s.module_id GROUP BY s.module_id) AS t1 INNER JOIN (SELECT COUNT(session_id) AS scount,module_id FROM cthx_training_session GROUP BY module_id) AS t2 ON t1.module_id = t2.module_id ORDER BY t1.module_id.
+in C:\wamp\www\yii\mtrain\protected\components\SystemStatsDemo.php (314)
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (200)
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (91)
+2015/11/02 21:54:33 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "testradio".' in C:\wamp\www\yii\framework1115\web\CController.php:483
+Stack trace:
+#0 C:\wamp\www\yii\framework1115\web\CController.php(270): CController->missingAction('testradio')
+#1 C:\wamp\www\yii\framework1115\web\CWebApplication.php(282): CController->run('testradio')
+#2 C:\wamp\www\yii\framework1115\web\CWebApplication.php(141): CWebApplication->runController('site/testradio')
+#3 C:\wamp\www\yii\framework1115\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\wamp\www\yii\mtrain\index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/yii/mtrain/site/testradio
+---
+2015/11/03 07:52:38 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "ajax".' in C:\wamp\www\yii\framework1115\web\CController.php:483
+Stack trace:
+#0 C:\wamp\www\yii\framework1115\web\CController.php(270): CController->missingAction('ajax')
+#1 C:\wamp\www\yii\framework1115\web\CWebApplication.php(282): CController->run('ajax')
+#2 C:\wamp\www\yii\framework1115\web\CWebApplication.php(141): CWebApplication->runController('site/ajax/filte...')
+#3 C:\wamp\www\yii\framework1115\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\wamp\www\yii\mtrain\index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/yii/mtrain/site/ajax/filterLoadLga
+HTTP_REFERER=http://localhost/yii/mtrain/site/indexdemo
+---
+2015/11/03 07:53:36 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "ajax".' in C:\wamp\www\yii\framework1115\web\CController.php:483
+Stack trace:
+#0 C:\wamp\www\yii\framework1115\web\CController.php(270): CController->missingAction('ajax')
+#1 C:\wamp\www\yii\framework1115\web\CWebApplication.php(282): CController->run('ajax')
+#2 C:\wamp\www\yii\framework1115\web\CWebApplication.php(141): CWebApplication->runController('site/ajax/filte...')
+#3 C:\wamp\www\yii\framework1115\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\wamp\www\yii\mtrain\index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/yii/mtrain/site/ajax/filterLoadLga
+HTTP_REFERER=http://localhost/yii/mtrain/site/indexdemo
+---
+2015/11/03 08:48:33 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "ajax".' in C:\wamp\www\yii\framework1115\web\CController.php:483
+Stack trace:
+#0 C:\wamp\www\yii\framework1115\web\CController.php(270): CController->missingAction('ajax')
+#1 C:\wamp\www\yii\framework1115\web\CWebApplication.php(282): CController->run('ajax')
+#2 C:\wamp\www\yii\framework1115\web\CWebApplication.php(141): CWebApplication->runController('site/ajax/filte...')
+#3 C:\wamp\www\yii\framework1115\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\wamp\www\yii\mtrain\index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/yii/mtrain/site/ajax/filterLoadLga
+HTTP_REFERER=http://localhost/yii/mtrain/site/indexdemo
+---
+2015/11/03 08:50:25 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "ajax".' in C:\wamp\www\yii\framework1115\web\CController.php:483
+Stack trace:
+#0 C:\wamp\www\yii\framework1115\web\CController.php(270): CController->missingAction('ajax')
+#1 C:\wamp\www\yii\framework1115\web\CWebApplication.php(282): CController->run('ajax')
+#2 C:\wamp\www\yii\framework1115\web\CWebApplication.php(141): CWebApplication->runController('site/ajax/filte...')
+#3 C:\wamp\www\yii\framework1115\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\wamp\www\yii\mtrain\index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/yii/mtrain/site/ajax/filterLoadLga
+HTTP_REFERER=http://localhost/yii/mtrain/site/indexdemo
+---
+2015/11/03 12:13:54 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "ajax".' in C:\wamp\www\yii\framework1115\web\CController.php:483
+Stack trace:
+#0 C:\wamp\www\yii\framework1115\web\CController.php(270): CController->missingAction('ajax')
+#1 C:\wamp\www\yii\framework1115\web\CWebApplication.php(282): CController->run('ajax')
+#2 C:\wamp\www\yii\framework1115\web\CWebApplication.php(141): CWebApplication->runController('site/ajax/filte...')
+#3 C:\wamp\www\yii\framework1115\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\wamp\www\yii\mtrain\index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/yii/mtrain/site/ajax/filterLoadLga
+HTTP_REFERER=http://localhost/yii/mtrain/site/indexdemo
+---
+2015/11/03 12:15:38 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "ajax".' in C:\wamp\www\yii\framework1115\web\CController.php:483
+Stack trace:
+#0 C:\wamp\www\yii\framework1115\web\CController.php(270): CController->missingAction('ajax')
+#1 C:\wamp\www\yii\framework1115\web\CWebApplication.php(282): CController->run('ajax')
+#2 C:\wamp\www\yii\framework1115\web\CWebApplication.php(141): CWebApplication->runController('site/ajax/filte...')
+#3 C:\wamp\www\yii\framework1115\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\wamp\www\yii\mtrain\index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/yii/mtrain/site/ajax/filterLoadLga
+HTTP_REFERER=http://localhost/yii/mtrain/site/indexdemo
+---
+2015/11/03 12:55:39 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "ajax".' in C:\wamp\www\yii\framework1115\web\CController.php:483
+Stack trace:
+#0 C:\wamp\www\yii\framework1115\web\CController.php(270): CController->missingAction('ajax')
+#1 C:\wamp\www\yii\framework1115\web\CWebApplication.php(282): CController->run('ajax')
+#2 C:\wamp\www\yii\framework1115\web\CWebApplication.php(141): CWebApplication->runController('site/ajax/filte...')
+#3 C:\wamp\www\yii\framework1115\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\wamp\www\yii\mtrain\index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/yii/mtrain/site/ajax/filterLoadFacility
+HTTP_REFERER=http://localhost/yii/mtrain/site/indexdemo
+---
+2015/11/03 13:00:54 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "ajax".' in C:\wamp\www\yii\framework1115\web\CController.php:483
+Stack trace:
+#0 C:\wamp\www\yii\framework1115\web\CController.php(270): CController->missingAction('ajax')
+#1 C:\wamp\www\yii\framework1115\web\CWebApplication.php(282): CController->run('ajax')
+#2 C:\wamp\www\yii\framework1115\web\CWebApplication.php(141): CWebApplication->runController('site/ajax/filte...')
+#3 C:\wamp\www\yii\framework1115\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\wamp\www\yii\mtrain\index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/yii/mtrain/site/ajax/filterLoadFacility
+HTTP_REFERER=http://localhost/yii/mtrain/site/indexdemo
+---
+2015/11/03 14:56:14 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AS wcount, `t`.`session_id` AS `t0_c0`, `module`.`module_id` AS `t1_c0`, `module' at line 1. The SQL statement executed was: SELECT COUNT(DISTINCT(worker_id) AS wcount, `t`.`session_id` AS `t0_c0`, `module`.`module_id` AS `t1_c0`, `module`.`module_title` AS `t1_c1`, `module`.`module_abbr` AS `t1_c2`, `module`.`guide_file` AS `t1_c3`, `module`.`remarks` AS `t1_c4`, `module`.`category_id` AS `t1_c5` FROM `cthx_training_session` `t`  LEFT OUTER JOIN `cthx_training_module` `module` ON (`t`.`module_id`=`module`.`module_id`)  GROUP BY t.module_id.
+in C:\wamp\www\yii\mtrain\protected\components\SystemStatsDemo.php (306)
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (202)
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (91)
+2015/11/03 15:38:42 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') AS scount, `t`.`session_id` AS `t0_c0`, `module`.`module_id` AS `t1_c0`, `modu' at line 1. The SQL statement executed was: SELECT COUNT(session_id)) AS scount, `t`.`session_id` AS `t0_c0`, `module`.`module_id` AS `t1_c0`, `module`.`module_title` AS `t1_c1`, `module`.`module_abbr` AS `t1_c2`, `module`.`guide_file` AS `t1_c3`, `module`.`remarks` AS `t1_c4`, `module`.`category_id` AS `t1_c5` FROM `cthx_training_session` `t`  LEFT OUTER JOIN `cthx_training_module` `module` ON (`t`.`module_id`=`module`.`module_id`)  GROUP BY t.module_id.
+in C:\wamp\www\yii\mtrain\protected\components\SystemStatsDemo.php (310)
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (202)
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (91)
+2015/11/03 15:48:34 [error] [php] Use of undefined constant i - assumed 'i' (C:\wamp\www\yii\mtrain\protected\components\SystemStatsDemo.php:335)
+Stack trace:
+#0 C:\wamp\www\yii\framework1115\web\actions\CInlineAction.php(49): SiteController->actionIndexDemo()
+#1 C:\wamp\www\yii\framework1115\web\CController.php(308): CInlineAction->runWithParams()
+#2 C:\wamp\www\yii\framework1115\web\CController.php(286): SiteController->runAction()
+#3 C:\wamp\www\yii\framework1115\web\CController.php(265): SiteController->runActionWithFilters()
+#4 C:\wamp\www\yii\framework1115\web\CWebApplication.php(282): SiteController->run()
+#5 C:\wamp\www\yii\framework1115\web\CWebApplication.php(141): CWebApplication->runController()
+#6 C:\wamp\www\yii\framework1115\base\CApplication.php(180): CWebApplication->processRequest()
+#7 C:\wamp\www\yii\mtrain\index.php(15): CWebApplication->run()
+REQUEST_URI=/yii/mtrain/site/indexdemo
+in C:\wamp\www\yii\mtrain\protected\components\SystemStatsDemo.php (335)
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (202)
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (91)
+2015/11/03 15:53:07 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'facility.state_id' in 'where clause'. The SQL statement executed was: SELECT COUNT(DISTINCT(worker_id)) AS wcount, `t`.`session_id` AS `t0_c0`, `module`.`module_abbr` AS `t1_c2`, `module`.`module_id` AS `t1_c0` FROM `cthx_training_session` `t`  LEFT OUTER JOIN `cthx_training_module` `module` ON (`t`.`module_id`=`module`.`module_id`)  WHERE (facility.state_id=12) GROUP BY t.module_id.
+in C:\wamp\www\yii\mtrain\protected\components\SystemStatsDemo.php (309)
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (191)
+in C:\wamp\www\yii\mtrain\index.php (15)
+2015/11/03 15:53:07 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'facility.state_id' in 'where clause'. The SQL statement executed was: SELECT COUNT(DISTINCT(worker_id)) AS wcount, `t`.`session_id` AS `t0_c0`, `module`.`module_abbr` AS `t1_c2`, `module`.`module_id` AS `t1_c0` FROM `cthx_training_session` `t`  LEFT OUTER JOIN `cthx_training_module` `module` ON (`t`.`module_id`=`module`.`module_id`)  WHERE (facility.state_id=12) GROUP BY t.module_id' in C:\wamp\www\yii\framework1115\db\CDbCommand.php:543
+Stack trace:
+#0 C:\wamp\www\yii\framework1115\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 C:\wamp\www\yii\framework1115\db\ar\CActiveFinder.php(803): CDbCommand->queryAll()
+#2 C:\wamp\www\yii\framework1115\db\ar\CActiveFinder.php(437): CJoinElement->runQuery(Object(CJoinQuery))
+#3 C:\wamp\www\yii\framework1115\db\ar\CActiveFinder.php(68): CJoinElement->find(Object(CDbCriteria))
+#4 C:\wamp\www\yii\framework1115\db\ar\CActiveRecord.php(1356): CActiveFinder->query(Object(CDbCriteria), true)
+#5 C:\wamp\www\yii\framework1115\db\ar\CActiveRecord.php(1470): CActiveRecord->query(Object(CDbCriteria), true)
+#6 C:\wamp\www\yii\mtrain\protected\components\SystemStatsDemo.php(309): CActiveRecord->findAll(Object(CDbCriteria))
+#7 C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php(191): SystemStatsDemo->getTrainingPerformance(true)
+#8 C:\wamp\www\yii\framework1115\web\actions\CInlineAction.php(49): SiteController->actionFilterTJA()
+#9 C:\wamp\www\yii\framework1115\web\CController.php(308): CInlineAction->runWithParams(Array)
+#10 C:\wamp\www\yii\framework1115\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#11 C:\wamp\www\yii\framework1115\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 C:\wamp\www\yii\framework1115\web\CWebApplication.php(282): CController->run('filterTJA')
+#13 C:\wamp\www\yii\framework1115\web\CWebApplication.php(141): CWebApplication->runController('site/filterTJA')
+#14 C:\wamp\www\yii\framework1115\base\CApplication.php(180): CWebApplication->processRequest()
+#15 C:\wamp\www\yii\mtrain\index.php(15): CApplication->run()
+#16 {main}
+REQUEST_URI=/yii/mtrain/site/filterTJA
+HTTP_REFERER=http://localhost/yii/mtrain/site/indexdemo
+---
+2015/11/04 18:26:35 [error] [exception.CDbException] exception 'CDbException' with message 'Active record "AidsSession" is trying to select an invalid column "module_abbr". Note, the column must exist in the table or be an expression with alias.' in C:\wamp\www\yii\framework1115\db\ar\CActiveFinder.php:960
+Stack trace:
+#0 C:\wamp\www\yii\framework1115\db\ar\CActiveFinder.php(1292): CJoinElement->getColumnSelect('module_abbr')
+#1 C:\wamp\www\yii\framework1115\db\ar\CActiveFinder.php(790): CJoinQuery->join(Object(CJoinElement))
+#2 C:\wamp\www\yii\framework1115\db\ar\CActiveFinder.php(435): CJoinElement->buildQuery(Object(CJoinQuery))
+#3 C:\wamp\www\yii\framework1115\db\ar\CActiveFinder.php(68): CJoinElement->find(Object(CDbCriteria))
+#4 C:\wamp\www\yii\framework1115\db\ar\CActiveRecord.php(1356): CActiveFinder->query(Object(CDbCriteria), true)
+#5 C:\wamp\www\yii\framework1115\db\ar\CActiveRecord.php(1470): CActiveRecord->query(Object(CDbCriteria), true)
+#6 C:\wamp\www\yii\mtrain\protected\components\SystemStatsDemo.php(356): CActiveRecord->findAll(Object(CDbCriteria))
+#7 C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php(192): SystemStatsDemo->getJAPerformance(true)
+#8 C:\wamp\www\yii\framework1115\web\actions\CInlineAction.php(49): SiteController->actionFilterTJA()
+#9 C:\wamp\www\yii\framework1115\web\CController.php(308): CInlineAction->runWithParams(Array)
+#10 C:\wamp\www\yii\framework1115\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#11 C:\wamp\www\yii\framework1115\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 C:\wamp\www\yii\framework1115\web\CWebApplication.php(282): CController->run('filterTJA')
+#13 C:\wamp\www\yii\framework1115\web\CWebApplication.php(141): CWebApplication->runController('site/filterTJA')
+#14 C:\wamp\www\yii\framework1115\base\CApplication.php(180): CWebApplication->processRequest()
+#15 C:\wamp\www\yii\mtrain\index.php(15): CApplication->run()
+#16 {main}
+REQUEST_URI=/yii/mtrain/site/filterTJA
+HTTP_REFERER=http://localhost/yii/mtrain/site/indexdemo
+---
+2015/11/04 18:34:35 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'chaidb.jobaid_to_module' doesn't exist. The SQL statement executed was: SHOW FULL COLUMNS FROM `jobaid_to_module`.
+in C:\wamp\www\yii\mtrain\protected\components\SystemStatsDemo.php (356)
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (202)
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (91)
+2015/11/04 18:37:27 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'worker_id' in 'field list'. The SQL statement executed was: SELECT COUNT(DISTINCT(worker_id)) AS wcount, `t`.`session_id` AS `t0_c0`, `modules`.`session_id` AS `t1_c0`, `modules`.`date_viewed` AS `t1_c1`, `modules`.`aid_id` AS `t1_c2`, `modules`.`aid_type` AS `t1_c3`, `modules`.`facility_id` AS `t1_c4`, `modules`.`channel_id` AS `t1_c5` FROM `cthx_aids_session` `t`  LEFT OUTER JOIN `cthx_jobaid_to_module` `modules_modules` ON (`t`.`session_id`=`modules_modules`.`module_id`) LEFT OUTER JOIN `cthx_aids_session` `modules` ON (`modules`.`session_id`=`modules_modules`.`session_id`)  LEFT OUTER JOIN `cthx_health_facility` `facility` ON (`t`.`facility_id`=`facility`.`facility_id`)  GROUP BY t.module_id.
+in C:\wamp\www\yii\mtrain\protected\components\SystemStatsDemo.php (356)
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (202)
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (91)
+2015/11/04 18:46:06 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'facility_id' in field list is ambiguous. The SQL statement executed was: SELECT COUNT(DISTINCT(facility_id)) AS fcount, `t`.`session_id` AS `t0_c0`, `modules`.`session_id` AS `t1_c0`, `modules`.`date_viewed` AS `t1_c1`, `modules`.`aid_id` AS `t1_c2`, `modules`.`aid_type` AS `t1_c3`, `modules`.`facility_id` AS `t1_c4`, `modules`.`channel_id` AS `t1_c5` FROM `cthx_aids_session` `t`  LEFT OUTER JOIN `cthx_jobaid_to_module` `modules_modules` ON (`t`.`session_id`=`modules_modules`.`module_id`) LEFT OUTER JOIN `cthx_aids_session` `modules` ON (`modules`.`session_id`=`modules_modules`.`session_id`)  LEFT OUTER JOIN `cthx_health_facility` `facility` ON (`t`.`facility_id`=`facility`.`facility_id`)  GROUP BY t.module_id.
+in C:\wamp\www\yii\mtrain\protected\components\SystemStatsDemo.php (356)
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (202)
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (91)
+2015/11/04 18:47:50 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'facility_id' in field list is ambiguous. The SQL statement executed was: SELECT COUNT(DISTINCT(facility_id)) AS fcount, `t`.`session_id` AS `t0_c0`, `modules`.`session_id` AS `t1_c0`, `modules`.`date_viewed` AS `t1_c1`, `modules`.`aid_id` AS `t1_c2`, `modules`.`aid_type` AS `t1_c3`, `modules`.`facility_id` AS `t1_c4`, `modules`.`channel_id` AS `t1_c5` FROM `cthx_aids_session` `t`  LEFT OUTER JOIN `cthx_jobaid_to_module` `modules_modules` ON (`t`.`session_id`=`modules_modules`.`module_id`) LEFT OUTER JOIN `cthx_aids_session` `modules` ON (`modules`.`session_id`=`modules_modules`.`session_id`)  LEFT OUTER JOIN `cthx_health_facility` `facility` ON (`t`.`facility_id`=`facility`.`facility_id`)  GROUP BY t.module_id.
+in C:\wamp\www\yii\mtrain\protected\components\SystemStatsDemo.php (356)
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (202)
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (91)
+2015/11/04 18:49:58 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'facility_id' in field list is ambiguous. The SQL statement executed was: SELECT COUNT(DISTINCT(facility_id)) AS fcount, `t`.`session_id` AS `t0_c0`, `modules`.`session_id` AS `t1_c0`, `modules`.`date_viewed` AS `t1_c1`, `modules`.`aid_id` AS `t1_c2`, `modules`.`aid_type` AS `t1_c3`, `modules`.`facility_id` AS `t1_c4`, `modules`.`channel_id` AS `t1_c5` FROM `cthx_aids_session` `t`  LEFT OUTER JOIN `cthx_jobaid_to_module` `modules_modules` ON (`t`.`session_id`=`modules_modules`.`module_id`) LEFT OUTER JOIN `cthx_aids_session` `modules` ON (`modules`.`session_id`=`modules_modules`.`session_id`)  LEFT OUTER JOIN `cthx_health_facility` `facility` ON (`t`.`facility_id`=`facility`.`facility_id`)  GROUP BY t.module_id.
+in C:\wamp\www\yii\mtrain\protected\components\SystemStatsDemo.php (356)
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (202)
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (91)
+2015/11/04 19:59:53 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'facility_id' in field list is ambiguous. The SQL statement executed was: SELECT COUNT(DISTINCT(facility_id)) AS fcount, `t`.`session_id` AS `t0_c0`, `modules`.`session_id` AS `t1_c0`, `modules`.`date_viewed` AS `t1_c1`, `modules`.`aid_id` AS `t1_c2`, `modules`.`aid_type` AS `t1_c3`, `modules`.`facility_id` AS `t1_c4`, `modules`.`channel_id` AS `t1_c5` FROM `cthx_aids_session` `t`  LEFT OUTER JOIN `cthx_jobaid_to_module` `modules_modules` ON (`t`.`session_id`=`modules_modules`.`module_id`) LEFT OUTER JOIN `cthx_aids_session` `modules` ON (`modules`.`session_id`=`modules_modules`.`session_id`)  LEFT OUTER JOIN `cthx_health_facility` `facility` ON (`t`.`facility_id`=`facility`.`facility_id`)  GROUP BY t.module_id.
+in C:\wamp\www\yii\mtrain\protected\components\SystemStatsDemo.php (357)
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (202)
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (91)
+2015/11/04 20:00:49 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'modules_modules.session_id' in 'on clause'. The SQL statement executed was: SELECT COUNT(DISTINCT(t.facility_id)) AS fcount, `t`.`session_id` AS `t0_c0`, `modules`.`session_id` AS `t1_c0`, `modules`.`date_viewed` AS `t1_c1`, `modules`.`aid_id` AS `t1_c2`, `modules`.`aid_type` AS `t1_c3`, `modules`.`facility_id` AS `t1_c4`, `modules`.`channel_id` AS `t1_c5` FROM `cthx_aids_session` `t`  LEFT OUTER JOIN `cthx_jobaid_to_module` `modules_modules` ON (`t`.`session_id`=`modules_modules`.`module_id`) LEFT OUTER JOIN `cthx_aids_session` `modules` ON (`modules`.`session_id`=`modules_modules`.`session_id`)  LEFT OUTER JOIN `cthx_health_facility` `facility` ON (`t`.`facility_id`=`facility`.`facility_id`)  GROUP BY t.module_id.
+in C:\wamp\www\yii\mtrain\protected\components\SystemStatsDemo.php (357)
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (202)
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (91)
+2015/11/04 20:05:24 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 't.module_id' in 'group statement'. The SQL statement executed was: SELECT COUNT(DISTINCT(t.facility_id)) AS fcount, `t`.`session_id` AS `t0_c0`, `aidToModule`.`aid_id` AS `t1_c0`, `aidToModule`.`module_id` AS `t1_c1` FROM `cthx_aids_session` `t`  LEFT OUTER JOIN `cthx_jobaid_to_module` `aidToModule` ON (`t`.`aid_id`=`aidToModule`.`aid_id`)  LEFT OUTER JOIN `cthx_health_facility` `facility` ON (`t`.`facility_id`=`facility`.`facility_id`)  GROUP BY t.module_id.
+in C:\wamp\www\yii\mtrain\protected\components\SystemStatsDemo.php (357)
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (202)
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (91)
+2015/11/04 20:09:46 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'modules_modules.session_id' in 'on clause'. The SQL statement executed was: SELECT COUNT(DISTINCT(t.facility_id)) AS fcount, `t`.`session_id` AS `t0_c0`, `modules`.`session_id` AS `t1_c0`, `modules`.`date_viewed` AS `t1_c1`, `modules`.`aid_id` AS `t1_c2`, `modules`.`aid_type` AS `t1_c3`, `modules`.`facility_id` AS `t1_c4`, `modules`.`channel_id` AS `t1_c5` FROM `cthx_aids_session` `t`  LEFT OUTER JOIN `cthx_jobaid_to_module` `modules_modules` ON (`t`.`session_id`=`modules_modules`.`module_id`) LEFT OUTER JOIN `cthx_aids_session` `modules` ON (`modules`.`session_id`=`modules_modules`.`session_id`)  LEFT OUTER JOIN `cthx_health_facility` `facility` ON (`t`.`facility_id`=`facility`.`facility_id`)  GROUP BY module_id.
+in C:\wamp\www\yii\mtrain\protected\components\SystemStatsDemo.php (357)
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (202)
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (91)
+2015/11/04 20:31:07 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'module_id' in group statement is ambiguous. The SQL statement executed was: SELECT COUNT(DISTINCT(t.facility_id)) AS fcount, `t`.`session_id` AS `t0_c0`, `aidToModule`.`aid_id` AS `t1_c0`, `aidToModule`.`module_id` AS `t1_c1`, `atm`.`module_id` AS `t2_c0`, `atm`.`module_title` AS `t2_c1`, `atm`.`module_abbr` AS `t2_c2`, `atm`.`guide_file` AS `t2_c3`, `atm`.`remarks` AS `t2_c4`, `atm`.`category_id` AS `t2_c5` FROM `cthx_aids_session` `t`  LEFT OUTER JOIN `cthx_jobaid_to_module` `aidToModule` ON (`t`.`aid_id`=`aidToModule`.`aid_id`)  INNER JOIN `cthx_training_module` `atm` ON (`atm`.`module_id`=`aidToModule`.`aid_id`)  INNER JOIN `cthx_health_facility` `facility` ON (`t`.`facility_id`=`facility`.`facility_id`)  GROUP BY module_id.
+in C:\wamp\www\yii\mtrain\protected\components\SystemStatsDemo.php (356)
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (202)
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (91)
+2015/11/04 21:16:33 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'start_time' in 'where clause'. The SQL statement executed was: SELECT COUNT(DISTINCT(t.facility_id)) AS fcount, `t`.`session_id` AS `t0_c0`, `aidToModule`.`aid_id` AS `t1_c0`, `aidToModule`.`module_id` AS `t1_c1`, `atm`.`module_id` AS `t2_c0`, `atm`.`module_title` AS `t2_c1`, `atm`.`module_abbr` AS `t2_c2`, `atm`.`guide_file` AS `t2_c3`, `atm`.`remarks` AS `t2_c4`, `atm`.`category_id` AS `t2_c5` FROM `cthx_aids_session` `t`  LEFT OUTER JOIN `cthx_jobaid_to_module` `aidToModule` ON (`t`.`aid_id`=`aidToModule`.`aid_id`)  INNER JOIN `cthx_training_module` `atm` ON (`atm`.`module_id`=`aidToModule`.`aid_id`)  INNER JOIN `cthx_health_facility` `facility` ON (`t`.`facility_id`=`facility`.`facility_id`)  WHERE (facility.state_id=20 AND start_time >= "2015-11-02" AND end_time <= "2015-11-03") GROUP BY atm.module_id.
+in C:\wamp\www\yii\mtrain\protected\components\SystemStatsDemo.php (356)
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (192)
+in C:\wamp\www\yii\mtrain\index.php (15)
+2015/11/04 21:16:34 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'start_time' in 'where clause'. The SQL statement executed was: SELECT COUNT(DISTINCT(t.facility_id)) AS fcount, `t`.`session_id` AS `t0_c0`, `aidToModule`.`aid_id` AS `t1_c0`, `aidToModule`.`module_id` AS `t1_c1`, `atm`.`module_id` AS `t2_c0`, `atm`.`module_title` AS `t2_c1`, `atm`.`module_abbr` AS `t2_c2`, `atm`.`guide_file` AS `t2_c3`, `atm`.`remarks` AS `t2_c4`, `atm`.`category_id` AS `t2_c5` FROM `cthx_aids_session` `t`  LEFT OUTER JOIN `cthx_jobaid_to_module` `aidToModule` ON (`t`.`aid_id`=`aidToModule`.`aid_id`)  INNER JOIN `cthx_training_module` `atm` ON (`atm`.`module_id`=`aidToModule`.`aid_id`)  INNER JOIN `cthx_health_facility` `facility` ON (`t`.`facility_id`=`facility`.`facility_id`)  WHERE (facility.state_id=20 AND start_time >= "2015-11-02" AND end_time <= "2015-11-03") GROUP BY atm.module_id' in C:\wamp\www\yii\framework1115\db\CDbCommand.php:543
+Stack trace:
+#0 C:\wamp\www\yii\framework1115\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 C:\wamp\www\yii\framework1115\db\ar\CActiveFinder.php(803): CDbCommand->queryAll()
+#2 C:\wamp\www\yii\framework1115\db\ar\CActiveFinder.php(437): CJoinElement->runQuery(Object(CJoinQuery))
+#3 C:\wamp\www\yii\framework1115\db\ar\CActiveFinder.php(68): CJoinElement->find(Object(CDbCriteria))
+#4 C:\wamp\www\yii\framework1115\db\ar\CActiveRecord.php(1356): CActiveFinder->query(Object(CDbCriteria), true)
+#5 C:\wamp\www\yii\framework1115\db\ar\CActiveRecord.php(1470): CActiveRecord->query(Object(CDbCriteria), true)
+#6 C:\wamp\www\yii\mtrain\protected\components\SystemStatsDemo.php(356): CActiveRecord->findAll(Object(CDbCriteria))
+#7 C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php(192): SystemStatsDemo->getJAPerformance(true)
+#8 C:\wamp\www\yii\framework1115\web\actions\CInlineAction.php(49): SiteController->actionFilterTJA()
+#9 C:\wamp\www\yii\framework1115\web\CController.php(308): CInlineAction->runWithParams(Array)
+#10 C:\wamp\www\yii\framework1115\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#11 C:\wamp\www\yii\framework1115\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 C:\wamp\www\yii\framework1115\web\CWebApplication.php(282): CController->run('filterTJA')
+#13 C:\wamp\www\yii\framework1115\web\CWebApplication.php(141): CWebApplication->runController('site/filterTJA')
+#14 C:\wamp\www\yii\framework1115\base\CApplication.php(180): CWebApplication->processRequest()
+#15 C:\wamp\www\yii\mtrain\index.php(15): CApplication->run()
+#16 {main}
+REQUEST_URI=/yii/mtrain/site/filterTJA
+HTTP_REFERER=http://localhost/yii/mtrain/site/indexdemo
+---
+2015/11/04 21:16:36 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'start_time' in 'where clause'. The SQL statement executed was: SELECT COUNT(DISTINCT(t.facility_id)) AS fcount, `t`.`session_id` AS `t0_c0`, `aidToModule`.`aid_id` AS `t1_c0`, `aidToModule`.`module_id` AS `t1_c1`, `atm`.`module_id` AS `t2_c0`, `atm`.`module_title` AS `t2_c1`, `atm`.`module_abbr` AS `t2_c2`, `atm`.`guide_file` AS `t2_c3`, `atm`.`remarks` AS `t2_c4`, `atm`.`category_id` AS `t2_c5` FROM `cthx_aids_session` `t`  LEFT OUTER JOIN `cthx_jobaid_to_module` `aidToModule` ON (`t`.`aid_id`=`aidToModule`.`aid_id`)  INNER JOIN `cthx_training_module` `atm` ON (`atm`.`module_id`=`aidToModule`.`aid_id`)  INNER JOIN `cthx_health_facility` `facility` ON (`t`.`facility_id`=`facility`.`facility_id`)  WHERE (facility.state_id=20 AND start_time >= "2015-11-02" AND end_time <= "2015-11-03") GROUP BY atm.module_id.
+in C:\wamp\www\yii\mtrain\protected\components\SystemStatsDemo.php (356)
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (192)
+in C:\wamp\www\yii\mtrain\index.php (15)
+2015/11/04 21:16:36 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'start_time' in 'where clause'. The SQL statement executed was: SELECT COUNT(DISTINCT(t.facility_id)) AS fcount, `t`.`session_id` AS `t0_c0`, `aidToModule`.`aid_id` AS `t1_c0`, `aidToModule`.`module_id` AS `t1_c1`, `atm`.`module_id` AS `t2_c0`, `atm`.`module_title` AS `t2_c1`, `atm`.`module_abbr` AS `t2_c2`, `atm`.`guide_file` AS `t2_c3`, `atm`.`remarks` AS `t2_c4`, `atm`.`category_id` AS `t2_c5` FROM `cthx_aids_session` `t`  LEFT OUTER JOIN `cthx_jobaid_to_module` `aidToModule` ON (`t`.`aid_id`=`aidToModule`.`aid_id`)  INNER JOIN `cthx_training_module` `atm` ON (`atm`.`module_id`=`aidToModule`.`aid_id`)  INNER JOIN `cthx_health_facility` `facility` ON (`t`.`facility_id`=`facility`.`facility_id`)  WHERE (facility.state_id=20 AND start_time >= "2015-11-02" AND end_time <= "2015-11-03") GROUP BY atm.module_id' in C:\wamp\www\yii\framework1115\db\CDbCommand.php:543
+Stack trace:
+#0 C:\wamp\www\yii\framework1115\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 C:\wamp\www\yii\framework1115\db\ar\CActiveFinder.php(803): CDbCommand->queryAll()
+#2 C:\wamp\www\yii\framework1115\db\ar\CActiveFinder.php(437): CJoinElement->runQuery(Object(CJoinQuery))
+#3 C:\wamp\www\yii\framework1115\db\ar\CActiveFinder.php(68): CJoinElement->find(Object(CDbCriteria))
+#4 C:\wamp\www\yii\framework1115\db\ar\CActiveRecord.php(1356): CActiveFinder->query(Object(CDbCriteria), true)
+#5 C:\wamp\www\yii\framework1115\db\ar\CActiveRecord.php(1470): CActiveRecord->query(Object(CDbCriteria), true)
+#6 C:\wamp\www\yii\mtrain\protected\components\SystemStatsDemo.php(356): CActiveRecord->findAll(Object(CDbCriteria))
+#7 C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php(192): SystemStatsDemo->getJAPerformance(true)
+#8 C:\wamp\www\yii\framework1115\web\actions\CInlineAction.php(49): SiteController->actionFilterTJA()
+#9 C:\wamp\www\yii\framework1115\web\CController.php(308): CInlineAction->runWithParams(Array)
+#10 C:\wamp\www\yii\framework1115\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#11 C:\wamp\www\yii\framework1115\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 C:\wamp\www\yii\framework1115\web\CWebApplication.php(282): CController->run('filterTJA')
+#13 C:\wamp\www\yii\framework1115\web\CWebApplication.php(141): CWebApplication->runController('site/filterTJA')
+#14 C:\wamp\www\yii\framework1115\base\CApplication.php(180): CWebApplication->processRequest()
+#15 C:\wamp\www\yii\mtrain\index.php(15): CApplication->run()
+#16 {main}
+REQUEST_URI=/yii/mtrain/site/filterTJA
+HTTP_REFERER=http://localhost/yii/mtrain/site/indexdemo
+---
+2015/11/04 21:16:56 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'start_time' in 'where clause'. The SQL statement executed was: SELECT COUNT(DISTINCT(t.facility_id)) AS fcount, `t`.`session_id` AS `t0_c0`, `aidToModule`.`aid_id` AS `t1_c0`, `aidToModule`.`module_id` AS `t1_c1`, `atm`.`module_id` AS `t2_c0`, `atm`.`module_title` AS `t2_c1`, `atm`.`module_abbr` AS `t2_c2`, `atm`.`guide_file` AS `t2_c3`, `atm`.`remarks` AS `t2_c4`, `atm`.`category_id` AS `t2_c5` FROM `cthx_aids_session` `t`  LEFT OUTER JOIN `cthx_jobaid_to_module` `aidToModule` ON (`t`.`aid_id`=`aidToModule`.`aid_id`)  INNER JOIN `cthx_training_module` `atm` ON (`atm`.`module_id`=`aidToModule`.`aid_id`)  INNER JOIN `cthx_health_facility` `facility` ON (`t`.`facility_id`=`facility`.`facility_id`)  WHERE (facility.state_id=20 AND start_time >= "2015-11-02" AND end_time <= "2015-11-03") GROUP BY atm.module_id.
+in C:\wamp\www\yii\mtrain\protected\components\SystemStatsDemo.php (356)
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (192)
+in C:\wamp\www\yii\mtrain\index.php (15)
+2015/11/04 21:16:56 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'start_time' in 'where clause'. The SQL statement executed was: SELECT COUNT(DISTINCT(t.facility_id)) AS fcount, `t`.`session_id` AS `t0_c0`, `aidToModule`.`aid_id` AS `t1_c0`, `aidToModule`.`module_id` AS `t1_c1`, `atm`.`module_id` AS `t2_c0`, `atm`.`module_title` AS `t2_c1`, `atm`.`module_abbr` AS `t2_c2`, `atm`.`guide_file` AS `t2_c3`, `atm`.`remarks` AS `t2_c4`, `atm`.`category_id` AS `t2_c5` FROM `cthx_aids_session` `t`  LEFT OUTER JOIN `cthx_jobaid_to_module` `aidToModule` ON (`t`.`aid_id`=`aidToModule`.`aid_id`)  INNER JOIN `cthx_training_module` `atm` ON (`atm`.`module_id`=`aidToModule`.`aid_id`)  INNER JOIN `cthx_health_facility` `facility` ON (`t`.`facility_id`=`facility`.`facility_id`)  WHERE (facility.state_id=20 AND start_time >= "2015-11-02" AND end_time <= "2015-11-03") GROUP BY atm.module_id' in C:\wamp\www\yii\framework1115\db\CDbCommand.php:543
+Stack trace:
+#0 C:\wamp\www\yii\framework1115\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 C:\wamp\www\yii\framework1115\db\ar\CActiveFinder.php(803): CDbCommand->queryAll()
+#2 C:\wamp\www\yii\framework1115\db\ar\CActiveFinder.php(437): CJoinElement->runQuery(Object(CJoinQuery))
+#3 C:\wamp\www\yii\framework1115\db\ar\CActiveFinder.php(68): CJoinElement->find(Object(CDbCriteria))
+#4 C:\wamp\www\yii\framework1115\db\ar\CActiveRecord.php(1356): CActiveFinder->query(Object(CDbCriteria), true)
+#5 C:\wamp\www\yii\framework1115\db\ar\CActiveRecord.php(1470): CActiveRecord->query(Object(CDbCriteria), true)
+#6 C:\wamp\www\yii\mtrain\protected\components\SystemStatsDemo.php(356): CActiveRecord->findAll(Object(CDbCriteria))
+#7 C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php(192): SystemStatsDemo->getJAPerformance(true)
+#8 C:\wamp\www\yii\framework1115\web\actions\CInlineAction.php(49): SiteController->actionFilterTJA()
+#9 C:\wamp\www\yii\framework1115\web\CController.php(308): CInlineAction->runWithParams(Array)
+#10 C:\wamp\www\yii\framework1115\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#11 C:\wamp\www\yii\framework1115\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 C:\wamp\www\yii\framework1115\web\CWebApplication.php(282): CController->run('filterTJA')
+#13 C:\wamp\www\yii\framework1115\web\CWebApplication.php(141): CWebApplication->runController('site/filterTJA')
+#14 C:\wamp\www\yii\framework1115\base\CApplication.php(180): CWebApplication->processRequest()
+#15 C:\wamp\www\yii\mtrain\index.php(15): CApplication->run()
+#16 {main}
+REQUEST_URI=/yii/mtrain/site/filterTJA
+HTTP_REFERER=http://localhost/yii/mtrain/site/indexdemo
+---
+2015/11/07 00:07:19 [error] [php] Undefined index:  mode (C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php:210)
+Stack trace:
+#0 C:\wamp\www\yii\framework1115\web\CController.php(308): CInlineAction->runWithParams()
+#1 C:\wamp\www\yii\framework1115\web\CController.php(286): SiteController->runAction()
+#2 C:\wamp\www\yii\framework1115\web\CController.php(265): SiteController->runActionWithFilters()
+#3 C:\wamp\www\yii\framework1115\web\CWebApplication.php(282): SiteController->run()
+#4 C:\wamp\www\yii\framework1115\web\CWebApplication.php(141): CWebApplication->runController()
+#5 C:\wamp\www\yii\framework1115\base\CApplication.php(180): CWebApplication->processRequest()
+#6 C:\wamp\www\yii\mtrain\index.php(15): CWebApplication->run()
+REQUEST_URI=/yii/mtrain/site/indexdemo
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (210)
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (92)
+in C:\wamp\www\yii\mtrain\index.php (15)
+2015/11/07 00:09:05 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'DESC' at line 1. The SQL statement executed was: SELECT `t`.`worker_id` AS `t0_c0`, `t`.`remote_id` AS `t0_c1`, `t`.`title` AS `t0_c2`, `t`.`username` AS `t0_c3`, `t`.`password` AS `t0_c4`, `t`.`firstname` AS `t0_c5`, `t`.`middlename` AS `t0_c6`, `t`.`lastname` AS `t0_c7`, `t`.`gender` AS `t0_c8`, `t`.`email` AS `t0_c9`, `t`.`phone` AS `t0_c10`, `t`.`qualification` AS `t0_c11`, `t`.`supervisor` AS `t0_c12`, `t`.`cadre_id` AS `t0_c13`, `t`.`facility_id` AS `t0_c14`, `t`.`date_created` AS `t0_c15`, `t`.`channel_id` AS `t0_c16`, `testSessions`.`session_id` AS `t1_c0`, `testSessions`.`date_taken` AS `t1_c1`, `testSessions`.`score` AS `t1_c2`, `testSessions`.`total` AS `t1_c3`, `testSessions`.`improvement` AS `t1_c4`, `testSessions`.`test_id` AS `t1_c5`, `testSessions`.`worker_id` AS `t1_c6`, `testSessions`.`facility_id` AS `t1_c7`, `testSessions`.`channel_id` AS `t1_c8` FROM `cthx_health_worker` `t`  LEFT OUTER JOIN `cthx_test_session` `testSessions` ON (`testSessions`.`worker_id`=`t`.`worker_id`)  ORDER BY DESC.
+in C:\wamp\www\yii\mtrain\protected\components\SystemStatsDemo.php (398)
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (225)
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (92)
+2015/11/07 01:09:15 [error] [php] Undefined variable: performanceArray (C:\wamp\www\yii\mtrain\protected\components\SystemStatsDemo.php:418)
+Stack trace:
+#0 C:\wamp\www\yii\framework1115\web\actions\CInlineAction.php(49): SiteController->actionIndexDemo()
+#1 C:\wamp\www\yii\framework1115\web\CController.php(308): CInlineAction->runWithParams()
+#2 C:\wamp\www\yii\framework1115\web\CController.php(286): SiteController->runAction()
+#3 C:\wamp\www\yii\framework1115\web\CController.php(265): SiteController->runActionWithFilters()
+#4 C:\wamp\www\yii\framework1115\web\CWebApplication.php(282): SiteController->run()
+#5 C:\wamp\www\yii\framework1115\web\CWebApplication.php(141): CWebApplication->runController()
+#6 C:\wamp\www\yii\framework1115\base\CApplication.php(180): CWebApplication->processRequest()
+#7 C:\wamp\www\yii\mtrain\index.php(15): CWebApplication->run()
+REQUEST_URI=/yii/mtrain/site/indexdemo
+in C:\wamp\www\yii\mtrain\protected\components\SystemStatsDemo.php (418)
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (225)
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (92)
+2015/11/07 02:09:02 [error] [php] Undefined variable: testPerfomance (C:\wamp\www\yii\mtrain\protected\views\site\indexdemo.php:372)
+Stack trace:
+#0 C:\wamp\www\yii\framework1115\web\CController.php(869): SiteController->renderFile()
+#1 C:\wamp\www\yii\framework1115\web\CController.php(782): SiteController->renderPartial()
+#2 C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php(101): SiteController->render()
+#3 C:\wamp\www\yii\framework1115\web\actions\CInlineAction.php(49): SiteController->actionIndexDemo()
+#4 C:\wamp\www\yii\framework1115\web\CController.php(308): CInlineAction->runWithParams()
+#5 C:\wamp\www\yii\framework1115\web\CController.php(286): SiteController->runAction()
+#6 C:\wamp\www\yii\framework1115\web\CController.php(265): SiteController->runActionWithFilters()
+#7 C:\wamp\www\yii\framework1115\web\CWebApplication.php(282): SiteController->run()
+#8 C:\wamp\www\yii\framework1115\web\CWebApplication.php(141): CWebApplication->runController()
+#9 C:\wamp\www\yii\framework1115\base\CApplication.php(180): CWebApplication->processRequest()
+#10 C:\wamp\www\yii\mtrain\index.php(15): CWebApplication->run()
+REQUEST_URI=/yii/mtrain/site/indexdemo
+in C:\wamp\www\yii\mtrain\protected\views\site\indexdemo.php (372)
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (101)
+in C:\wamp\www\yii\mtrain\index.php (15)
+2015/11/07 02:09:45 [error] [php] Undefined variable: testPerfomance (C:\wamp\www\yii\mtrain\protected\views\site\indexdemo.php:372)
+Stack trace:
+#0 C:\wamp\www\yii\framework1115\web\CController.php(869): SiteController->renderFile()
+#1 C:\wamp\www\yii\framework1115\web\CController.php(782): SiteController->renderPartial()
+#2 C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php(102): SiteController->render()
+#3 C:\wamp\www\yii\framework1115\web\actions\CInlineAction.php(49): SiteController->actionIndexDemo()
+#4 C:\wamp\www\yii\framework1115\web\CController.php(308): CInlineAction->runWithParams()
+#5 C:\wamp\www\yii\framework1115\web\CController.php(286): SiteController->runAction()
+#6 C:\wamp\www\yii\framework1115\web\CController.php(265): SiteController->runActionWithFilters()
+#7 C:\wamp\www\yii\framework1115\web\CWebApplication.php(282): SiteController->run()
+#8 C:\wamp\www\yii\framework1115\web\CWebApplication.php(141): CWebApplication->runController()
+#9 C:\wamp\www\yii\framework1115\base\CApplication.php(180): CWebApplication->processRequest()
+#10 C:\wamp\www\yii\mtrain\index.php(15): CWebApplication->run()
+REQUEST_URI=/yii/mtrain/site/indexdemo
+in C:\wamp\www\yii\mtrain\protected\views\site\indexdemo.php (372)
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (102)
+in C:\wamp\www\yii\mtrain\index.php (15)
+2015/11/07 02:11:07 [error] [php] Undefined variable: tjaPerformance (C:\wamp\www\yii\mtrain\protected\views\site\indexdemo.php:371)
+Stack trace:
+#0 C:\wamp\www\yii\framework1115\web\CController.php(869): SiteController->renderFile()
+#1 C:\wamp\www\yii\framework1115\web\CController.php(782): SiteController->renderPartial()
+#2 C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php(102): SiteController->render()
+#3 C:\wamp\www\yii\framework1115\web\actions\CInlineAction.php(49): SiteController->actionIndexDemo()
+#4 C:\wamp\www\yii\framework1115\web\CController.php(308): CInlineAction->runWithParams()
+#5 C:\wamp\www\yii\framework1115\web\CController.php(286): SiteController->runAction()
+#6 C:\wamp\www\yii\framework1115\web\CController.php(265): SiteController->runActionWithFilters()
+#7 C:\wamp\www\yii\framework1115\web\CWebApplication.php(282): SiteController->run()
+#8 C:\wamp\www\yii\framework1115\web\CWebApplication.php(141): CWebApplication->runController()
+#9 C:\wamp\www\yii\framework1115\base\CApplication.php(180): CWebApplication->processRequest()
+#10 C:\wamp\www\yii\mtrain\index.php(15): CWebApplication->run()
+REQUEST_URI=/yii/mtrain/site/indexdemo
+in C:\wamp\www\yii\mtrain\protected\views\site\indexdemo.php (371)
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (102)
+in C:\wamp\www\yii\mtrain\index.php (15)
+2015/11/07 02:37:42 [error] [php] Undefined index:  FP (C:\wamp\www\yii\mtrain\protected\components\SystemStatsDemo.php:414)
+Stack trace:
+#0 C:\wamp\www\yii\framework1115\web\actions\CInlineAction.php(49): SiteController->actionIndexDemo()
+#1 C:\wamp\www\yii\framework1115\web\CController.php(308): CInlineAction->runWithParams()
+#2 C:\wamp\www\yii\framework1115\web\CController.php(286): SiteController->runAction()
+#3 C:\wamp\www\yii\framework1115\web\CController.php(265): SiteController->runActionWithFilters()
+#4 C:\wamp\www\yii\framework1115\web\CWebApplication.php(282): SiteController->run()
+#5 C:\wamp\www\yii\framework1115\web\CWebApplication.php(141): CWebApplication->runController()
+#6 C:\wamp\www\yii\framework1115\base\CApplication.php(180): CWebApplication->processRequest()
+#7 C:\wamp\www\yii\mtrain\index.php(15): CWebApplication->run()
+REQUEST_URI=/yii/mtrain/site/indexdemo
+in C:\wamp\www\yii\mtrain\protected\components\SystemStatsDemo.php (414)
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (226)
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (92)
+2015/11/07 03:57:24 [error] [php] Undefined offset:  0 (C:\wamp\www\yii\mtrain\protected\components\SystemStatsDemo.php:422)
+Stack trace:
+#0 C:\wamp\www\yii\framework1115\web\actions\CInlineAction.php(49): SiteController->actionIndexDemo()
+#1 C:\wamp\www\yii\framework1115\web\CController.php(308): CInlineAction->runWithParams()
+#2 C:\wamp\www\yii\framework1115\web\CController.php(286): SiteController->runAction()
+#3 C:\wamp\www\yii\framework1115\web\CController.php(265): SiteController->runActionWithFilters()
+#4 C:\wamp\www\yii\framework1115\web\CWebApplication.php(282): SiteController->run()
+#5 C:\wamp\www\yii\framework1115\web\CWebApplication.php(141): CWebApplication->runController()
+#6 C:\wamp\www\yii\framework1115\base\CApplication.php(180): CWebApplication->processRequest()
+#7 C:\wamp\www\yii\mtrain\index.php(15): CWebApplication->run()
+REQUEST_URI=/yii/mtrain/site/indexdemo
+in C:\wamp\www\yii\mtrain\protected\components\SystemStatsDemo.php (422)
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (226)
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (92)
+2015/11/07 03:59:03 [error] [php] Cannot use a scalar value as an array (C:\wamp\www\yii\mtrain\protected\components\SystemStatsDemo.php:423)
+Stack trace:
+#0 C:\wamp\www\yii\framework1115\web\actions\CInlineAction.php(49): SiteController->actionIndexDemo()
+#1 C:\wamp\www\yii\framework1115\web\CController.php(308): CInlineAction->runWithParams()
+#2 C:\wamp\www\yii\framework1115\web\CController.php(286): SiteController->runAction()
+#3 C:\wamp\www\yii\framework1115\web\CController.php(265): SiteController->runActionWithFilters()
+#4 C:\wamp\www\yii\framework1115\web\CWebApplication.php(282): SiteController->run()
+#5 C:\wamp\www\yii\framework1115\web\CWebApplication.php(141): CWebApplication->runController()
+#6 C:\wamp\www\yii\framework1115\base\CApplication.php(180): CWebApplication->processRequest()
+#7 C:\wamp\www\yii\mtrain\index.php(15): CWebApplication->run()
+REQUEST_URI=/yii/mtrain/site/indexdemo
+in C:\wamp\www\yii\mtrain\protected\components\SystemStatsDemo.php (423)
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (226)
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (92)
+2015/11/07 14:20:35 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'facility.state_id' in 'where clause'. The SQL statement executed was: SELECT `t`.`session_id` AS `t0_c0`, `t`.`date_taken` AS `t0_c1`, `t`.`score` AS `t0_c2`, `t`.`total` AS `t0_c3`, `t`.`improvement` AS `t0_c4`, `t`.`test_id` AS `t0_c5`, `t`.`worker_id` AS `t0_c6`, `t`.`facility_id` AS `t0_c7`, `t`.`channel_id` AS `t0_c8`, `test`.`test_id` AS `t1_c0`, `test`.`title` AS `t1_c1`, `test`.`module_id` AS `t1_c2`, `m`.`module_id` AS `t2_c0`, `m`.`module_title` AS `t2_c1`, `m`.`module_abbr` AS `t2_c2`, `m`.`guide_file` AS `t2_c3`, `m`.`remarks` AS `t2_c4`, `m`.`category_id` AS `t2_c5` FROM `cthx_test_session` `t`  LEFT OUTER JOIN `cthx_test` `test` ON (`t`.`test_id`=`test`.`test_id`)  LEFT OUTER JOIN `cthx_training_module` `m` ON (`test`.`module_id`=`m`.`module_id`)  WHERE (facility.state_id=12) GROUP BY m.module_id,worker_id HAVING (MIN(session_id)) ORDER BY m.module_id.
+in C:\wamp\www\yii\mtrain\protected\components\SystemStatsDemo.php (400)
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (216)
+in C:\wamp\www\yii\mtrain\index.php (15)
+2015/11/07 14:20:35 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'facility.state_id' in 'where clause'. The SQL statement executed was: SELECT `t`.`session_id` AS `t0_c0`, `t`.`date_taken` AS `t0_c1`, `t`.`score` AS `t0_c2`, `t`.`total` AS `t0_c3`, `t`.`improvement` AS `t0_c4`, `t`.`test_id` AS `t0_c5`, `t`.`worker_id` AS `t0_c6`, `t`.`facility_id` AS `t0_c7`, `t`.`channel_id` AS `t0_c8`, `test`.`test_id` AS `t1_c0`, `test`.`title` AS `t1_c1`, `test`.`module_id` AS `t1_c2`, `m`.`module_id` AS `t2_c0`, `m`.`module_title` AS `t2_c1`, `m`.`module_abbr` AS `t2_c2`, `m`.`guide_file` AS `t2_c3`, `m`.`remarks` AS `t2_c4`, `m`.`category_id` AS `t2_c5` FROM `cthx_test_session` `t`  LEFT OUTER JOIN `cthx_test` `test` ON (`t`.`test_id`=`test`.`test_id`)  LEFT OUTER JOIN `cthx_training_module` `m` ON (`test`.`module_id`=`m`.`module_id`)  WHERE (facility.state_id=12) GROUP BY m.module_id,worker_id HAVING (MIN(session_id)) ORDER BY m.module_id' in C:\wamp\www\yii\framework1115\db\CDbCommand.php:543
+Stack trace:
+#0 C:\wamp\www\yii\framework1115\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 C:\wamp\www\yii\framework1115\db\ar\CActiveFinder.php(803): CDbCommand->queryAll()
+#2 C:\wamp\www\yii\framework1115\db\ar\CActiveFinder.php(437): CJoinElement->runQuery(Object(CJoinQuery))
+#3 C:\wamp\www\yii\framework1115\db\ar\CActiveFinder.php(68): CJoinElement->find(Object(CDbCriteria))
+#4 C:\wamp\www\yii\framework1115\db\ar\CActiveRecord.php(1356): CActiveFinder->query(Object(CDbCriteria), true)
+#5 C:\wamp\www\yii\framework1115\db\ar\CActiveRecord.php(1470): CActiveRecord->query(Object(CDbCriteria), true)
+#6 C:\wamp\www\yii\mtrain\protected\components\SystemStatsDemo.php(400): CActiveRecord->findAll(Object(CDbCriteria))
+#7 C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php(216): SystemStatsDemo->getPreTestPerformance(true)
+#8 C:\wamp\www\yii\framework1115\web\actions\CInlineAction.php(49): SiteController->actionFilterTests()
+#9 C:\wamp\www\yii\framework1115\web\CController.php(308): CInlineAction->runWithParams(Array)
+#10 C:\wamp\www\yii\framework1115\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#11 C:\wamp\www\yii\framework1115\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 C:\wamp\www\yii\framework1115\web\CWebApplication.php(282): CController->run('filterTests')
+#13 C:\wamp\www\yii\framework1115\web\CWebApplication.php(141): CWebApplication->runController('site/filterTest...')
+#14 C:\wamp\www\yii\framework1115\base\CApplication.php(180): CWebApplication->processRequest()
+#15 C:\wamp\www\yii\mtrain\index.php(15): CApplication->run()
+#16 {main}
+REQUEST_URI=/yii/mtrain/site/filterTests
+HTTP_REFERER=http://localhost/yii/mtrain/site/indexdemo
+---
+2015/11/10 09:13:51 [error] [php] Undefined offset:  -1 (C:\wamp\www\yii\mtrain\protected\components\StatFunctions.php:29)
+Stack trace:
+#0 C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php(92): SiteController->actionFilterTests()
+#1 C:\wamp\www\yii\framework1115\web\actions\CInlineAction.php(49): SiteController->actionIndexDemo()
+#2 C:\wamp\www\yii\framework1115\web\CController.php(308): CInlineAction->runWithParams()
+#3 C:\wamp\www\yii\framework1115\web\CController.php(286): SiteController->runAction()
+#4 C:\wamp\www\yii\framework1115\web\CController.php(265): SiteController->runActionWithFilters()
+#5 C:\wamp\www\yii\framework1115\web\CWebApplication.php(282): SiteController->run()
+#6 C:\wamp\www\yii\framework1115\web\CWebApplication.php(141): CWebApplication->runController()
+#7 C:\wamp\www\yii\framework1115\base\CApplication.php(180): CWebApplication->processRequest()
+#8 C:\wamp\www\yii\mtrain\index.php(15): CWebApplication->run()
+REQUEST_URI=/yii/mtrain/site/indexdemo
+in C:\wamp\www\yii\mtrain\protected\components\StatFunctions.php (29)
+in C:\wamp\www\yii\mtrain\protected\components\SystemStatsDemo.php (518)
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (228)
+2015/11/10 10:05:36 [error] [php] Undefined offset:  -1 (C:\wamp\www\yii\mtrain\protected\components\StatFunctions.php:29)
+Stack trace:
+#0 C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php(92): SiteController->actionFilterTests()
+#1 C:\wamp\www\yii\framework1115\web\actions\CInlineAction.php(49): SiteController->actionIndexDemo()
+#2 C:\wamp\www\yii\framework1115\web\CController.php(308): CInlineAction->runWithParams()
+#3 C:\wamp\www\yii\framework1115\web\CController.php(286): SiteController->runAction()
+#4 C:\wamp\www\yii\framework1115\web\CController.php(265): SiteController->runActionWithFilters()
+#5 C:\wamp\www\yii\framework1115\web\CWebApplication.php(282): SiteController->run()
+#6 C:\wamp\www\yii\framework1115\web\CWebApplication.php(141): CWebApplication->runController()
+#7 C:\wamp\www\yii\framework1115\base\CApplication.php(180): CWebApplication->processRequest()
+#8 C:\wamp\www\yii\mtrain\index.php(15): CWebApplication->run()
+REQUEST_URI=/yii/mtrain/site/indexdemo
+in C:\wamp\www\yii\mtrain\protected\components\StatFunctions.php (29)
+in C:\wamp\www\yii\mtrain\protected\components\SystemStatsDemo.php (518)
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (228)
+2015/11/10 10:33:02 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND t.worker_id = 152) ORDER BY t.worker_id,module.module_id' at line 1. The SQL statement executed was: SELECT `t`.`worker_id` AS `t0_c0`, `t`.`remote_id` AS `t0_c1`, `t`.`title` AS `t0_c2`, `t`.`username` AS `t0_c3`, `t`.`password` AS `t0_c4`, `t`.`firstname` AS `t0_c5`, `t`.`middlename` AS `t0_c6`, `t`.`lastname` AS `t0_c7`, `t`.`gender` AS `t0_c8`, `t`.`email` AS `t0_c9`, `t`.`phone` AS `t0_c10`, `t`.`qualification` AS `t0_c11`, `t`.`supervisor` AS `t0_c12`, `t`.`cadre_id` AS `t0_c13`, `t`.`facility_id` AS `t0_c14`, `t`.`date_created` AS `t0_c15`, `t`.`channel_id` AS `t0_c16`, `testSessions`.`session_id` AS `t1_c0`, `testSessions`.`date_taken` AS `t1_c1`, `testSessions`.`score` AS `t1_c2`, `testSessions`.`total` AS `t1_c3`, `testSessions`.`improvement` AS `t1_c4`, `testSessions`.`test_id` AS `t1_c5`, `testSessions`.`worker_id` AS `t1_c6`, `testSessions`.`facility_id` AS `t1_c7`, `testSessions`.`channel_id` AS `t1_c8`, `test`.`test_id` AS `t2_c0`, `test`.`title` AS `t2_c1`, `test`.`module_id` AS `t2_c2`, `module`.`module_id` AS `t3_c0`, `module`.`module_title` AS `t3_c1`, `module`.`module_abbr` AS `t3_c2`, `module`.`guide_file` AS `t3_c3`, `module`.`remarks` AS `t3_c4`, `module`.`category_id` AS `t3_c5`, `facility`.`facility_id` AS `t4_c0`, `facility`.`facility_address` AS `t4_c1`, `facility`.`facility_name` AS `t4_c2`, `facility`.`state_id` AS `t4_c3`, `facility`.`lga_id` AS `t4_c4` FROM `cthx_health_worker` `t`  LEFT OUTER JOIN `cthx_test_session` `testSessions` ON (`testSessions`.`worker_id`=`t`.`worker_id`)  LEFT OUTER JOIN `cthx_test` `test` ON (`testSessions`.`test_id`=`test`.`test_id`)  LEFT OUTER JOIN `cthx_training_module` `module` ON (`test`.`module_id`=`module`.`module_id`)  LEFT OUTER JOIN `cthx_health_facility` `facility` ON (`t`.`facility_id`=`facility`.`facility_id`)  WHERE ( AND t.worker_id = 152) ORDER BY t.worker_id,module.module_id.
+in C:\wamp\www\yii\mtrain\protected\components\SystemStatsDemo.php (473)
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (228)
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (92)
+2015/11/10 10:34:42 [error] [php] Trying to get property of non-object (C:\wamp\www\yii\mtrain\protected\components\SystemStatsDemo.php:514)
+Stack trace:
+#0 C:\wamp\www\yii\framework1115\web\actions\CInlineAction.php(49): SiteController->actionIndexDemo()
+#1 C:\wamp\www\yii\framework1115\web\CController.php(308): CInlineAction->runWithParams()
+#2 C:\wamp\www\yii\framework1115\web\CController.php(286): SiteController->runAction()
+#3 C:\wamp\www\yii\framework1115\web\CController.php(265): SiteController->runActionWithFilters()
+#4 C:\wamp\www\yii\framework1115\web\CWebApplication.php(282): SiteController->run()
+#5 C:\wamp\www\yii\framework1115\web\CWebApplication.php(141): CWebApplication->runController()
+#6 C:\wamp\www\yii\framework1115\base\CApplication.php(180): CWebApplication->processRequest()
+#7 C:\wamp\www\yii\mtrain\index.php(15): CWebApplication->run()
+REQUEST_URI=/yii/mtrain/site/indexdemo
+in C:\wamp\www\yii\mtrain\protected\components\SystemStatsDemo.php (514)
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (228)
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (92)
+2015/11/10 10:35:15 [error] [php] Trying to get property of non-object (C:\wamp\www\yii\mtrain\protected\components\SystemStatsDemo.php:514)
+Stack trace:
+#0 C:\wamp\www\yii\framework1115\web\actions\CInlineAction.php(49): SiteController->actionIndexDemo()
+#1 C:\wamp\www\yii\framework1115\web\CController.php(308): CInlineAction->runWithParams()
+#2 C:\wamp\www\yii\framework1115\web\CController.php(286): SiteController->runAction()
+#3 C:\wamp\www\yii\framework1115\web\CController.php(265): SiteController->runActionWithFilters()
+#4 C:\wamp\www\yii\framework1115\web\CWebApplication.php(282): SiteController->run()
+#5 C:\wamp\www\yii\framework1115\web\CWebApplication.php(141): CWebApplication->runController()
+#6 C:\wamp\www\yii\framework1115\base\CApplication.php(180): CWebApplication->processRequest()
+#7 C:\wamp\www\yii\mtrain\index.php(15): CWebApplication->run()
+REQUEST_URI=/yii/mtrain/site/indexdemo
+in C:\wamp\www\yii\mtrain\protected\components\SystemStatsDemo.php (514)
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (228)
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (92)
+2015/11/10 10:41:42 [error] [php] Trying to get property of non-object (C:\wamp\www\yii\mtrain\protected\components\SystemStatsDemo.php:511)
+Stack trace:
+#0 C:\wamp\www\yii\framework1115\web\actions\CInlineAction.php(49): SiteController->actionIndexDemo()
+#1 C:\wamp\www\yii\framework1115\web\CController.php(308): CInlineAction->runWithParams()
+#2 C:\wamp\www\yii\framework1115\web\CController.php(286): SiteController->runAction()
+#3 C:\wamp\www\yii\framework1115\web\CController.php(265): SiteController->runActionWithFilters()
+#4 C:\wamp\www\yii\framework1115\web\CWebApplication.php(282): SiteController->run()
+#5 C:\wamp\www\yii\framework1115\web\CWebApplication.php(141): CWebApplication->runController()
+#6 C:\wamp\www\yii\framework1115\base\CApplication.php(180): CWebApplication->processRequest()
+#7 C:\wamp\www\yii\mtrain\index.php(15): CWebApplication->run()
+REQUEST_URI=/yii/mtrain/site/indexdemo
+in C:\wamp\www\yii\mtrain\protected\components\SystemStatsDemo.php (511)
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (228)
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (92)
+2015/11/10 10:42:11 [error] [php] Trying to get property of non-object (C:\wamp\www\yii\mtrain\protected\components\SystemStatsDemo.php:511)
+Stack trace:
+#0 C:\wamp\www\yii\framework1115\web\actions\CInlineAction.php(49): SiteController->actionIndexDemo()
+#1 C:\wamp\www\yii\framework1115\web\CController.php(308): CInlineAction->runWithParams()
+#2 C:\wamp\www\yii\framework1115\web\CController.php(286): SiteController->runAction()
+#3 C:\wamp\www\yii\framework1115\web\CController.php(265): SiteController->runActionWithFilters()
+#4 C:\wamp\www\yii\framework1115\web\CWebApplication.php(282): SiteController->run()
+#5 C:\wamp\www\yii\framework1115\web\CWebApplication.php(141): CWebApplication->runController()
+#6 C:\wamp\www\yii\framework1115\base\CApplication.php(180): CWebApplication->processRequest()
+#7 C:\wamp\www\yii\mtrain\index.php(15): CWebApplication->run()
+REQUEST_URI=/yii/mtrain/site/indexdemo
+in C:\wamp\www\yii\mtrain\protected\components\SystemStatsDemo.php (511)
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (228)
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (92)
+2015/11/10 14:31:52 [error] [php] Trying to get property of non-object (C:\wamp\www\yii\mtrain\protected\components\SystemStatsDemo.php:517)
+Stack trace:
+#0 C:\wamp\www\yii\framework1115\web\actions\CInlineAction.php(49): SiteController->actionIndexDemo()
+#1 C:\wamp\www\yii\framework1115\web\CController.php(308): CInlineAction->runWithParams()
+#2 C:\wamp\www\yii\framework1115\web\CController.php(286): SiteController->runAction()
+#3 C:\wamp\www\yii\framework1115\web\CController.php(265): SiteController->runActionWithFilters()
+#4 C:\wamp\www\yii\framework1115\web\CWebApplication.php(282): SiteController->run()
+#5 C:\wamp\www\yii\framework1115\web\CWebApplication.php(141): CWebApplication->runController()
+#6 C:\wamp\www\yii\framework1115\base\CApplication.php(180): CWebApplication->processRequest()
+#7 C:\wamp\www\yii\mtrain\index.php(15): CWebApplication->run()
+REQUEST_URI=/yii/mtrain/site/indexdemo
+in C:\wamp\www\yii\mtrain\protected\components\SystemStatsDemo.php (517)
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (228)
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (92)
+2015/11/10 15:38:41 [error] [php] Undefined offset:  0 (C:\wamp\www\yii\mtrain\protected\components\SystemStatsDemo.php:516)
+Stack trace:
+#0 C:\wamp\www\yii\framework1115\web\actions\CInlineAction.php(49): SiteController->actionIndexDemo()
+#1 C:\wamp\www\yii\framework1115\web\CController.php(308): CInlineAction->runWithParams()
+#2 C:\wamp\www\yii\framework1115\web\CController.php(286): SiteController->runAction()
+#3 C:\wamp\www\yii\framework1115\web\CController.php(265): SiteController->runActionWithFilters()
+#4 C:\wamp\www\yii\framework1115\web\CWebApplication.php(282): SiteController->run()
+#5 C:\wamp\www\yii\framework1115\web\CWebApplication.php(141): CWebApplication->runController()
+#6 C:\wamp\www\yii\framework1115\base\CApplication.php(180): CWebApplication->processRequest()
+#7 C:\wamp\www\yii\mtrain\index.php(15): CWebApplication->run()
+REQUEST_URI=/yii/mtrain/site/indexdemo
+in C:\wamp\www\yii\mtrain\protected\components\SystemStatsDemo.php (516)
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (228)
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (92)
+2015/11/10 15:40:16 [error] [php] Undefined offset:  0 (C:\wamp\www\yii\mtrain\protected\components\SystemStatsDemo.php:517)
+Stack trace:
+#0 C:\wamp\www\yii\framework1115\web\actions\CInlineAction.php(49): SiteController->actionIndexDemo()
+#1 C:\wamp\www\yii\framework1115\web\CController.php(308): CInlineAction->runWithParams()
+#2 C:\wamp\www\yii\framework1115\web\CController.php(286): SiteController->runAction()
+#3 C:\wamp\www\yii\framework1115\web\CController.php(265): SiteController->runActionWithFilters()
+#4 C:\wamp\www\yii\framework1115\web\CWebApplication.php(282): SiteController->run()
+#5 C:\wamp\www\yii\framework1115\web\CWebApplication.php(141): CWebApplication->runController()
+#6 C:\wamp\www\yii\framework1115\base\CApplication.php(180): CWebApplication->processRequest()
+#7 C:\wamp\www\yii\mtrain\index.php(15): CWebApplication->run()
+REQUEST_URI=/yii/mtrain/site/indexdemo
+in C:\wamp\www\yii\mtrain\protected\components\SystemStatsDemo.php (517)
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (228)
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (92)
+2015/11/10 15:40:52 [error] [php] Undefined offset:  0 (C:\wamp\www\yii\mtrain\protected\components\SystemStatsDemo.php:518)
+Stack trace:
+#0 C:\wamp\www\yii\framework1115\web\actions\CInlineAction.php(49): SiteController->actionIndexDemo()
+#1 C:\wamp\www\yii\framework1115\web\CController.php(308): CInlineAction->runWithParams()
+#2 C:\wamp\www\yii\framework1115\web\CController.php(286): SiteController->runAction()
+#3 C:\wamp\www\yii\framework1115\web\CController.php(265): SiteController->runActionWithFilters()
+#4 C:\wamp\www\yii\framework1115\web\CWebApplication.php(282): SiteController->run()
+#5 C:\wamp\www\yii\framework1115\web\CWebApplication.php(141): CWebApplication->runController()
+#6 C:\wamp\www\yii\framework1115\base\CApplication.php(180): CWebApplication->processRequest()
+#7 C:\wamp\www\yii\mtrain\index.php(15): CWebApplication->run()
+REQUEST_URI=/yii/mtrain/site/indexdemo
+in C:\wamp\www\yii\mtrain\protected\components\SystemStatsDemo.php (518)
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (228)
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (92)
+2015/11/10 15:42:50 [error] [php] Undefined offset:  0 (C:\wamp\www\yii\mtrain\protected\components\SystemStatsDemo.php:519)
+Stack trace:
+#0 C:\wamp\www\yii\framework1115\web\actions\CInlineAction.php(49): SiteController->actionIndexDemo()
+#1 C:\wamp\www\yii\framework1115\web\CController.php(308): CInlineAction->runWithParams()
+#2 C:\wamp\www\yii\framework1115\web\CController.php(286): SiteController->runAction()
+#3 C:\wamp\www\yii\framework1115\web\CController.php(265): SiteController->runActionWithFilters()
+#4 C:\wamp\www\yii\framework1115\web\CWebApplication.php(282): SiteController->run()
+#5 C:\wamp\www\yii\framework1115\web\CWebApplication.php(141): CWebApplication->runController()
+#6 C:\wamp\www\yii\framework1115\base\CApplication.php(180): CWebApplication->processRequest()
+#7 C:\wamp\www\yii\mtrain\index.php(15): CWebApplication->run()
+REQUEST_URI=/yii/mtrain/site/indexdemo
+in C:\wamp\www\yii\mtrain\protected\components\SystemStatsDemo.php (519)
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (228)
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (92)
+2015/11/10 19:02:38 [error] [php] Undefined variable: time (C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php:267)
+Stack trace:
+#0 C:\wamp\www\yii\framework1115\web\CController.php(308): CInlineAction->runWithParams()
+#1 C:\wamp\www\yii\framework1115\web\CController.php(286): SiteController->runAction()
+#2 C:\wamp\www\yii\framework1115\web\CController.php(265): SiteController->runActionWithFilters()
+#3 C:\wamp\www\yii\framework1115\web\CWebApplication.php(282): SiteController->run()
+#4 C:\wamp\www\yii\framework1115\web\CWebApplication.php(141): CWebApplication->runController()
+#5 C:\wamp\www\yii\framework1115\base\CApplication.php(180): CWebApplication->processRequest()
+#6 C:\wamp\www\yii\mtrain\index.php(15): CWebApplication->run()
+REQUEST_URI=/yii/mtrain/site/indexdemo
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (267)
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (93)
+in C:\wamp\www\yii\mtrain\index.php (15)
+2015/11/10 19:04:44 [error] [php] A non well formed numeric value encountered (C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php:267)
+Stack trace:
+#0 C:\wamp\www\yii\framework1115\web\actions\CInlineAction.php(49): SiteController->actionIndexDemo()
+#1 C:\wamp\www\yii\framework1115\web\CController.php(308): CInlineAction->runWithParams()
+#2 C:\wamp\www\yii\framework1115\web\CController.php(286): SiteController->runAction()
+#3 C:\wamp\www\yii\framework1115\web\CController.php(265): SiteController->runActionWithFilters()
+#4 C:\wamp\www\yii\framework1115\web\CWebApplication.php(282): SiteController->run()
+#5 C:\wamp\www\yii\framework1115\web\CWebApplication.php(141): CWebApplication->runController()
+#6 C:\wamp\www\yii\framework1115\base\CApplication.php(180): CWebApplication->processRequest()
+#7 C:\wamp\www\yii\mtrain\index.php(15): CWebApplication->run()
+REQUEST_URI=/yii/mtrain/site/indexdemo
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (267)
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (93)
+in C:\wamp\www\yii\mtrain\index.php (15)
+2015/11/11 06:21:16 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "ajax".' in C:\wamp\www\yii\framework1115\web\CController.php:483
+Stack trace:
+#0 C:\wamp\www\yii\framework1115\web\CController.php(270): CController->missingAction('ajax')
+#1 C:\wamp\www\yii\framework1115\web\CWebApplication.php(282): CController->run('ajax')
+#2 C:\wamp\www\yii\framework1115\web\CWebApplication.php(141): CWebApplication->runController('site/ajax/filte...')
+#3 C:\wamp\www\yii\framework1115\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\wamp\www\yii\mtrain\index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/yii/mtrain/site/ajax/filterLoadLga
+HTTP_REFERER=http://localhost/yii/mtrain/site/indexdemo
+---
+2015/11/11 06:21:54 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "ajax".' in C:\wamp\www\yii\framework1115\web\CController.php:483
+Stack trace:
+#0 C:\wamp\www\yii\framework1115\web\CController.php(270): CController->missingAction('ajax')
+#1 C:\wamp\www\yii\framework1115\web\CWebApplication.php(282): CController->run('ajax')
+#2 C:\wamp\www\yii\framework1115\web\CWebApplication.php(141): CWebApplication->runController('site/ajax/filte...')
+#3 C:\wamp\www\yii\framework1115\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\wamp\www\yii\mtrain\index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/yii/mtrain/site/ajax/filterLoadFacility
+HTTP_REFERER=http://localhost/yii/mtrain/site/indexdemo
+---
+2015/11/11 06:36:04 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "filterStackedChart".' in C:\wamp\www\yii\framework1115\web\CWebApplication.php:286
+Stack trace:
+#0 C:\wamp\www\yii\framework1115\web\CWebApplication.php(141): CWebApplication->runController('filterStackedCh...')
+#1 C:\wamp\www\yii\framework1115\base\CApplication.php(180): CWebApplication->processRequest()
+#2 C:\wamp\www\yii\mtrain\index.php(15): CApplication->run()
+#3 {main}
+REQUEST_URI=/yii/mtrain/filterStackedChart
+HTTP_REFERER=http://localhost/yii/mtrain/
+---
+2015/11/28 07:27:15 [warning] [application] Failed to set unsafe attribute "admin_id" of "SystemAdmin".
+in C:\wamp\www\yii\mtrain\protected\controllers\SystemAdminController.php (102)
+in C:\wamp\www\yii\mtrain\index.php (15)
+2015/11/28 07:28:26 [error] [php] Undefined variable: performance (C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php:62)
+Stack trace:
+#0 C:\wamp\www\yii\framework1115\web\CController.php(286): SiteController->runAction()
+#1 C:\wamp\www\yii\framework1115\web\CController.php(265): SiteController->runActionWithFilters()
+#2 C:\wamp\www\yii\framework1115\web\CWebApplication.php(282): SiteController->run()
+#3 C:\wamp\www\yii\framework1115\web\CWebApplication.php(141): CWebApplication->runController()
+#4 C:\wamp\www\yii\framework1115\base\CApplication.php(180): CWebApplication->processRequest()
+#5 C:\wamp\www\yii\mtrain\index.php(15): CWebApplication->run()
+REQUEST_URI=/yii/mtrain/
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (62)
+in C:\wamp\www\yii\mtrain\index.php (15)
+2015/11/28 07:31:31 [error] [php] Undefined index:  state_id (C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php:84)
+Stack trace:
+#0 C:\wamp\www\yii\framework1115\web\CController.php(286): SiteController->runAction()
+#1 C:\wamp\www\yii\framework1115\web\CController.php(265): SiteController->runActionWithFilters()
+#2 C:\wamp\www\yii\framework1115\web\CWebApplication.php(282): SiteController->run()
+#3 C:\wamp\www\yii\framework1115\web\CWebApplication.php(141): CWebApplication->runController()
+#4 C:\wamp\www\yii\framework1115\base\CApplication.php(180): CWebApplication->processRequest()
+#5 C:\wamp\www\yii\mtrain\index.php(15): CWebApplication->run()
+REQUEST_URI=/yii/mtrain/site/indexdemo
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (84)
+in C:\wamp\www\yii\mtrain\index.php (15)
+2015/11/28 08:03:48 [warning] [application] Failed to set unsafe attribute "admin_id" of "SystemAdmin".
+in C:\wamp\www\yii\mtrain\protected\controllers\SystemAdminController.php (102)
+in C:\wamp\www\yii\mtrain\index.php (15)
+2015/11/28 08:07:30 [warning] [application] Failed to set unsafe attribute "admin_id" of "SystemAdmin".
+in C:\wamp\www\yii\mtrain\protected\controllers\SystemAdminController.php (102)
+in C:\wamp\www\yii\mtrain\index.php (15)
+2015/12/01 14:21:57 [error] [php] include(Controller.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory (C:\wamp\www\yii\framework1115\YiiBase.php:427)
+Stack trace:
+#0 C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php(3): spl_autoload_call()
+#1 C:\wamp\www\yii\framework1115\web\CWebApplication.php(354): require()
+#2 C:\wamp\www\yii\framework1115\web\CWebApplication.php(276): CWebApplication->createController()
+#3 C:\wamp\www\yii\framework1115\web\CWebApplication.php(141): CWebApplication->runController()
+#4 C:\wamp\www\yii\framework1115\base\CApplication.php(180): CWebApplication->processRequest()
+#5 C:\wamp\www\yii\mtrain\index.php(15): CWebApplication->run()
+REQUEST_URI=/yii/mtrain/site/logout
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (3)
+in C:\wamp\www\yii\mtrain\index.php (15)
+2015/12/01 14:22:24 [error] [php] include(Controller.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory (C:\wamp\www\yii\framework1115\YiiBase.php:427)
+Stack trace:
+#0 C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php(3): spl_autoload_call()
+#1 C:\wamp\www\yii\framework1115\web\CWebApplication.php(354): require()
+#2 C:\wamp\www\yii\framework1115\web\CWebApplication.php(276): CWebApplication->createController()
+#3 C:\wamp\www\yii\framework1115\web\CWebApplication.php(141): CWebApplication->runController()
+#4 C:\wamp\www\yii\framework1115\base\CApplication.php(180): CWebApplication->processRequest()
+#5 C:\wamp\www\yii\mtrain\index.php(15): CWebApplication->run()
+REQUEST_URI=/yii/mtrain/site/indexdemo
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (3)
+in C:\wamp\www\yii\mtrain\index.php (15)
+2015/12/01 14:22:33 [error] [php] include(Controller.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory (C:\wamp\www\yii\framework1115\YiiBase.php:427)
+Stack trace:
+#0 C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php(3): spl_autoload_call()
+#1 C:\wamp\www\yii\framework1115\web\CWebApplication.php(354): require()
+#2 C:\wamp\www\yii\framework1115\web\CWebApplication.php(276): CWebApplication->createController()
+#3 C:\wamp\www\yii\framework1115\web\CWebApplication.php(141): CWebApplication->runController()
+#4 C:\wamp\www\yii\framework1115\base\CApplication.php(180): CWebApplication->processRequest()
+#5 C:\wamp\www\yii\mtrain\index.php(15): CWebApplication->run()
+REQUEST_URI=/yii/mtrain/site/indexdemo
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (3)
+in C:\wamp\www\yii\mtrain\index.php (15)
+2015/12/01 14:22:53 [error] [php] include(Controller.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory (C:\wamp\www\yii\framework1115\YiiBase.php:427)
+Stack trace:
+#0 C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php(3): spl_autoload_call()
+#1 C:\wamp\www\yii\framework1115\web\CWebApplication.php(354): require()
+#2 C:\wamp\www\yii\framework1115\web\CWebApplication.php(276): CWebApplication->createController()
+#3 C:\wamp\www\yii\framework1115\web\CWebApplication.php(141): CWebApplication->runController()
+#4 C:\wamp\www\yii\framework1115\base\CApplication.php(180): CWebApplication->processRequest()
+#5 C:\wamp\www\yii\mtrain\index.php(15): CWebApplication->run()
+REQUEST_URI=/yii/mtrain/site/indexdemo
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (3)
+in C:\wamp\www\yii\mtrain\index.php (15)
+2015/12/01 14:22:58 [error] [php] include(Controller.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory (C:\wamp\www\yii\framework1115\YiiBase.php:427)
+Stack trace:
+#0 C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php(3): spl_autoload_call()
+#1 C:\wamp\www\yii\framework1115\web\CWebApplication.php(354): require()
+#2 C:\wamp\www\yii\framework1115\web\CWebApplication.php(276): CWebApplication->createController()
+#3 C:\wamp\www\yii\framework1115\web\CWebApplication.php(141): CWebApplication->runController()
+#4 C:\wamp\www\yii\framework1115\base\CApplication.php(180): CWebApplication->processRequest()
+#5 C:\wamp\www\yii\mtrain\index.php(15): CWebApplication->run()
+REQUEST_URI=/yii/mtrain/site/indexdemo
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (3)
+in C:\wamp\www\yii\mtrain\index.php (15)
+2015/12/01 14:29:05 [error] [php] include(Controller.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory (C:\wamp\www\yii\framework1115\YiiBase.php:427)
+Stack trace:
+#0 C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php(3): spl_autoload_call()
+#1 C:\wamp\www\yii\framework1115\web\CWebApplication.php(354): require()
+#2 C:\wamp\www\yii\framework1115\web\CWebApplication.php(276): CWebApplication->createController()
+#3 C:\wamp\www\yii\framework1115\web\CWebApplication.php(141): CWebApplication->runController()
+#4 C:\wamp\www\yii\framework1115\base\CApplication.php(180): CWebApplication->processRequest()
+#5 C:\wamp\www\yii\mtrain\index.php(15): CWebApplication->run()
+REQUEST_URI=/yii/mtrain/site/indexdemo
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (3)
+in C:\wamp\www\yii\mtrain\index.php (15)
+2015/12/01 14:29:32 [error] [php] include(Controller.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory (C:\wamp\www\yii\framework1115\YiiBase.php:427)
+Stack trace:
+#0 C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php(3): spl_autoload_call()
+#1 C:\wamp\www\yii\framework1115\web\CWebApplication.php(354): require()
+#2 C:\wamp\www\yii\framework1115\web\CWebApplication.php(276): CWebApplication->createController()
+#3 C:\wamp\www\yii\framework1115\web\CWebApplication.php(141): CWebApplication->runController()
+#4 C:\wamp\www\yii\framework1115\base\CApplication.php(180): CWebApplication->processRequest()
+#5 C:\wamp\www\yii\mtrain\index.php(15): CWebApplication->run()
+REQUEST_URI=/yii/mtrain/site/indexdemo
+in C:\wamp\www\yii\mtrain\protected\controllers\SiteController.php (3)
+in C:\wamp\www\yii\mtrain\index.php (15)

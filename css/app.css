@@ -23,14 +23,14 @@ a,button{
     background: #0378b3;
 }
 
-.btn-primary {
+.btn-default {
     background-color: #CCC !important;
     border-color: #CCC !important;
     color: #006 !important;
     font-size: 12px !important;
 }
 
-.btn-primary#active {
+.btn-default#active {
     color: #FFF !important;
     background-color: #428BCA !important;
     border-color: #357EBD !important;
@@ -265,6 +265,7 @@ a.actionButton:hover{
 div.errorMessage{
     color: #f00;
 }
+.errorSummary{ color: #ff0000 !important; }
 
 .header-bg{
     background-image: url('../img/hd-bg.jpg');
@@ -574,9 +575,10 @@ div.jtable-main-container>div.jtable-title div.jtable-toolbar span.jtable-toolba
 
 
 div.datepicker { background: #fff !important;}
+#ui-datepicker-div {z-index: 5 !important; }
 .date-form { margin: 10px; }
 label.control-label span { cursor: pointer; }
-
+.form-control { font-size: 12px; }
 
 
 .jtable-page-size-change, .jtable-goto-page { color: #000; }
@@ -704,19 +706,36 @@ table.detail-view tr.even
     background-color: #069 !important;
 }
 
-.btn.btn-primary:hover
+.btn.btn-default
+{
+    color: #333 !important;
+}
+
+.btn.btn-default:hover
 {
     background-color: #069 !important;
     color: #fff !important;
     border-color: #069 !important;
 }
-.btn-primary#active {
+.btn-default.active {
     color: #FFF !important;
-    background-color: #428BCA !important;
-    border-color: #357EBD !important;
-    font-size: 12px !important;
+    background-color: #069 !important;
+    /*font-size: 12px !important;*/
 }
 
+.btn.btn-primary
+{
+    background-color: #069 !important;
+    color: #fff !important;
+    border-color: #069 !important;
+}
+
+.btn.btn-primary:hover
+{
+    background-color: #ccc !important;
+    color: #006 !important;
+    border-color: #ccc !important;
+}
 
 .mini-signout
 {
@@ -751,6 +770,7 @@ li a.active
     background-color:  #069 !important;
 }
 
+/*text[text-anchor="end"]{ display: none; }*/
 
 
 @media all and (max-width: 767px){
@@ -820,7 +840,7 @@ li a.active
     }
 }
 
-div svg svg:last-child g:last-child {display: none !important;}
+/*div svg svg:last-child g:last-child {display: none !important;}*/
 
 
 .container_ConcentricPieCharts .jchartfx .Title1 {

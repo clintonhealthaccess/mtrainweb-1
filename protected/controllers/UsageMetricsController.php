@@ -97,17 +97,17 @@ class UsageMetricsController extends Controller
                 foreach($cadres as $cadre){
                         $cadreid = $cadre->cadre_id;
                         
-                        $worker = array();
-                        $worker['cadre'] = Cadre::model()->findByPk($cadre->cadre_id)->cadre_title;
-                        $worker['num_hcw'] = $this->getNumberOfCadreWorkers($cadreid);
-                        $worker['num_taking_trainings'] = $this->getNumberOfWorkers($cadreid,$filterString); 
-                        $worker['distinct_topics_viewed'] = $this->getDistinctTrainingsDone($cadreid,$filterString);
-                        $worker['total_topic_views'] = $this->getTotalTopicViews($cadreid,$filterString); 
-                        $worker['topics_completed'] = $this->getCadreCompletedTraining($cadreid,$filterString);
-                        $worker['distinct_guide_views'] = $this->materialType < 3 ? $this->getDistinctGuideViews($cadreid,$filterString) : 'NA';
-                        $worker['total_guide_views'] = $this->materialType < 3 ? $this->getTotalGuideViews($cadreid,$filterString) : 'NA';
+//                        $worker = array();
+//                        $worker['cadre'] = Cadre::model()->findByPk($cadre->cadre_id)->cadre_title;
+//                        $worker['num_hcw'] = $this->getNumberOfCadreWorkers($cadreid);
+//                        $worker['num_taking_trainings'] = $this->getNumberOfWorkers($cadreid,$filterString); 
+//                        $worker['distinct_topics_viewed'] = $this->getDistinctTrainingsDone($cadreid,$filterString);
+//                        $worker['total_topic_views'] = $this->getTotalTopicViews($cadreid,$filterString); 
+//                        $worker['topics_completed'] = $this->getCadreCompletedTraining($cadreid,$filterString);
+//                        $worker['distinct_guide_views'] = $this->materialType < 3 ? $this->getDistinctGuideViews($cadreid,$filterString) : 'NA';
+//                        $worker['total_guide_views'] = $this->materialType < 3 ? $this->getTotalGuideViews($cadreid,$filterString) : 'NA';
 
-                        $rows[] = $worker;
+                        $rows[] = $this->getSelectionValues($cadreid, $filterString);
                         
                 }
                 
@@ -161,7 +161,7 @@ class UsageMetricsController extends Controller
             $cadreWorkers = HealthWorker::model()->with('facility')->findAll($criteria);
             
             $count = count($cadreWorkers);
-            $this->totals['num_hcw'] += $count;
+            //$this->totals['num_hcw'] += $count;
             return count($cadreWorkers);
         }
         
@@ -179,7 +179,7 @@ class UsageMetricsController extends Controller
             $workers = UsageMetrics::model()->with('worker','facility')->findAll($criteria);            
                         
             $count = count($workers);            
-            $this->totals['num_taking_trainings'] += $count;
+            //$this->totals['num_taking_trainings'] += $count;
             return $count;
         }
         
@@ -193,7 +193,7 @@ class UsageMetricsController extends Controller
             $totalViews = UsageMetrics::model()->with('worker','facility')->findAll($criteria);
             
             $count = count($totalViews);
-            $this->totals['total_topic_views'] += $count;
+            //$this->totals['total_topic_views'] += $count;
             return $count;
         }
         
@@ -209,7 +209,7 @@ class UsageMetricsController extends Controller
             $completedTrainings = UsageMetrics::model()->with('worker','facility')->findAll($criteria);            
             
             $count = count($completedTrainings);
-            $this->totals['topics_completed'] += $count;
+            //$this->totals['topics_completed'] += $count;
             return $count;
         }
         
@@ -226,7 +226,7 @@ class UsageMetricsController extends Controller
             $distinctTrainings = UsageMetrics::model()->with('worker','facility')->findAll($criteria);
             
             $count = count($distinctTrainings);
-            $this->totals['distinct_topics_viewed'] += $count;
+            //$this->totals['distinct_topics_viewed'] += $count;
             return $count;       
         }
         
@@ -247,7 +247,7 @@ class UsageMetricsController extends Controller
             $distinctGuideViews = UsageMetrics::model()->with('worker','facility')->findAll($criteria);            
             
             $count = count($distinctGuideViews);
-            $this->totals['distinct_guide_views'] += $count;
+            //$this->totals['distinct_guide_views'] += $count;
             return $count;                        
         }
         
@@ -264,7 +264,7 @@ class UsageMetricsController extends Controller
             $totalGuideViews = UsageMetrics::model()->with('worker','facility')->findAll($criteria);            
             
             $count = count($totalGuideViews);
-            $this->totals['total_guide_views'] += $count;
+            //$this->totals['total_guide_views'] += $count;
             return $count;
         }
         
@@ -390,7 +390,9 @@ class UsageMetricsController extends Controller
         
         public function actionExportExcel(){
             //echo 'return value'; exit;
-            try{                                       
+            try{        
+                date_default_timezone_set('Africa/Lagos');
+                
                 //get the conditions string based on the criteria
                 $builder = new ConditionBuilder();
                 $filterString = $builder->getFilterConditionsString();
@@ -415,7 +417,7 @@ class UsageMetricsController extends Controller
                 include($phpExcelPath . DIRECTORY_SEPARATOR . 'PHPExcel.php');
 
                 $objPHPExcel = new PHPExcel();
-
+                                       
                 // Set properties
                 //echo date('Y-m-d H:i:s') . " Set properties\n";
                 $objPHPExcel->getProperties()->setCreator("mTrain Mobile Learning Platform")
@@ -427,34 +429,75 @@ class UsageMetricsController extends Controller
                 //loop through the objects, add data to the cells
                 //and create the excel file content          
                 $objPHPExcel->setActiveSheetIndex(0);
+                
+                //write the logo image
+                $gdImage = imagecreatefromjpeg($this->webroot . '/img/logo.jpg');
+                $objDrawing = new PHPExcel_Worksheet_MemoryDrawing();
+                $objDrawing->setName('Sample image');
+                $objDrawing->setDescription('Sample image');
+                $objDrawing->setImageResource($gdImage);
+                $objDrawing->setRenderingFunction(PHPExcel_Worksheet_MemoryDrawing::RENDERING_PNG);
+                $objDrawing->setMimeType(PHPExcel_Worksheet_MemoryDrawing::MIMETYPE_DEFAULT);
+                $objDrawing->setWidthAndHeight(120,35);
+                $objDrawing->setCoordinates('E1');
+                $objDrawing->setWorksheet($objPHPExcel->getActiveSheet());
 
                 //set report title
-                $objPHPExcel->getActiveSheet()->SetCellValue('A1', 'Usage Metrics Report');
+                $objPHPExcel->getActiveSheet()->SetCellValue('A2', 'Usage Metrics Report');
+                $objPHPExcel->getActiveSheet()->SetCellValue('A3', 'PRINTED: ' . date('d-m-Y h:i A'));
+                
+                //adding the headers for the excel file
+                $state = !empty($_POST['state']) ? State::model()->findByPk($_POST['state'])->state_name : 'All';
+                $objPHPExcel->getActiveSheet()->SetCellValue('A4', 'State:');
+                $objPHPExcel->getActiveSheet()->SetCellValue('B4', $state);
+                
+                $lga = !empty($_POST['lga']) ? Lga::model()->findByPk($_POST['lga'])->lga_name : 'All';
+                $objPHPExcel->getActiveSheet()->SetCellValue('A5', 'LGA:');
+                $objPHPExcel->getActiveSheet()->SetCellValue('B5', $lga);
+                
+                $facility = !empty($_POST['facility']) ? HealthFacility::model()->findByPk($_POST['facility'])->facility_name : 'All';
+                $objPHPExcel->getActiveSheet()->SetCellValue('A6', 'Facility:');
+                $objPHPExcel->getActiveSheet()->SetCellValue('B6', $facility);
+                
+                $channel = $_POST['channel'] = 'ivr' ? strtoupper($_POST['channel']) : ucwords($_POST['channel']);
+                $objPHPExcel->getActiveSheet()->SetCellValue('G4', 'Channel:');
+                $objPHPExcel->getActiveSheet()->SetCellValue('H4', $channel);
+                
+                $fromDate = !empty($_POST['fromdate']) ? $_POST['fromdate'] : 'Not Set';
+                $objPHPExcel->getActiveSheet()->SetCellValue('G5', 'Begin Date:');
+                $objPHPExcel->getActiveSheet()->SetCellValue('H5', $fromDate);
+                
+                $endDate = !empty($_POST['todate']) ? $_POST['todate'] : 'Not Set';
+                $objPHPExcel->getActiveSheet()->SetCellValue('G6', 'End Date:');
+                $objPHPExcel->getActiveSheet()->SetCellValue('H6', $endDate);
+                
                 
                 $objPHPExcel->getActiveSheet()
-                            ->SetCellValue('A2', 'CADRE')
-                            ->SetCellValue('B2', 'NO. OF HCWS')
-                            ->SetCellValue('C2', 'NO. TAKING TRAININGS')
-                            ->SetCellValue('D2', 'NO. OF DISTINCT TOPICS VIEWED')
-                            ->SetCellValue('E2', 'TOTAL TOPICS VIEWED')
-                            ->SetCellValue('F2', 'TOPICS COMPLETED')
-                            ->SetCellValue('G2', 'NO OF DISTINCT GUIDES VIEWED')
-                            ->SetCellValue('H2', 'TOTAL NO. OF GUIDES VIEWED');
+                            ->SetCellValue('A8', 'CADRE')
+                            ->SetCellValue('B8', 'NO. OF HCWS')
+                            ->SetCellValue('C8', 'NO. TAKING TRAININGS')
+                            ->SetCellValue('D8', 'NO. OF DISTINCT TOPICS VIEWED')
+                            ->SetCellValue('E8', 'TOTAL TOPICS VIEWED')
+                            ->SetCellValue('F8', 'TOPICS COMPLETED')
+                            ->SetCellValue('G8', 'NO OF DISTINCT GUIDES VIEWED')
+                            ->SetCellValue('H8', 'TOTAL NO. OF GUIDES VIEWED');
 
-                    $rowNumber = 0;
+                    $rowNumber += 8;
                     for($i=0; $i<count($cadres); $i++){
                             $cadreid = $cadres[$i]->cadre_id;
-
-                            $rowNumber = $i + 3; 
+                            
+                            $cadreValues = $this->getSelectionValues($cadreid, $filterString);
+                            
+                            $rowNumber++;
                             $objPHPExcel->getActiveSheet()
-                                    ->SetCellValue('A' . $rowNumber, Cadre::model()->findByPk($cadreid)->cadre_title)
-                                    ->SetCellValue('B' . $rowNumber, $this->getNumberOfCadreWorkers($cadreid))
-                                    ->SetCellValue('C' . $rowNumber, $this->getNumberOfWorkers($cadreid,$filterString)) 
-                                    ->SetCellValue('D' . $rowNumber, $this->getDistinctTrainingsDone($cadreid,$filterString))
-                                    ->SetCellValue('E' . $rowNumber, $this->getTotalTopicViews($cadreid,$filterString)) 
-                                    ->SetCellValue('F' . $rowNumber, $this->getCadreCompletedTraining($cadreid,$filterString))
-                                    ->SetCellValue('G' . $rowNumber, $this->getDistinctGuideViews($cadreid,$filterString))
-                                    ->SetCellValue('H' . $rowNumber, $this->getTotalGuideViews($cadreid,$filterString));
+                                    ->SetCellValue('A' . $rowNumber, $cadreValues['cadre'])
+                                    ->SetCellValue('B' . $rowNumber, $cadreValues['num_hcw'])
+                                    ->SetCellValue('C' . $rowNumber, $cadreValues['num_taking_trainings']) 
+                                    ->SetCellValue('D' . $rowNumber, $cadreValues['distinct_topics_viewed'])
+                                    ->SetCellValue('E' . $rowNumber, $cadreValues['total_topic_views']) 
+                                    ->SetCellValue('F' . $rowNumber, $cadreValues['topics_completed'])
+                                    ->SetCellValue('G' . $rowNumber, $cadreValues['distinct_guide_views'])
+                                    ->SetCellValue('H' . $rowNumber, $cadreValues['total_guide_views']);
                     }
 
                     //increment rownumber for next row and handle totals
@@ -503,24 +546,43 @@ class UsageMetricsController extends Controller
        
 //       //merge first row and format the contents
        $objPHPExcel->getActiveSheet()->mergeCells('A1:H1');
-       $excelFunctions->formatAsSheetTitle("A1");
-       $excelFunctions->setRowHeight(1, 30);
+       $objPHPExcel->getActiveSheet()->mergeCells('A2:H2');
+       $objPHPExcel->getActiveSheet()->mergeCells('A3:H3');
        
+       $excelFunctions->setRowHeight(1, 35);
+       $excelFunctions->cellsAlign('A1:H1', 'center', 'center');
+
+       $excelFunctions->setRowHeight(2, 20);
+       $excelFunctions->formatAsSheetTitle("A2");
+       $excelFunctions->makeBold("A2:H2");
+
+       $excelFunctions->alignVertical("A3:H3");
+       $excelFunctions->alignHorizontal("A3:H3");
+       
+       //format the report paramters
+       $objPHPExcel->getActiveSheet()->mergeCells('C4:F4');
+       $objPHPExcel->getActiveSheet()->mergeCells('C5:F5');
+       $objPHPExcel->getActiveSheet()->mergeCells('C6:F6');
+       $excelFunctions->formatAsFooter("A4:H6");
+       $excelFunctions->makeBold("A4:A6");
+       $excelFunctions->makeBold("G4:G6");
+        
        //format column titles
-       $excelFunctions->formatAsColumnHeaders("A2:H2");
-       $excelFunctions->cellsAlign("A2:H2", 'center', 'center');
+       $excelFunctions->formatAsColumnHeaders("A8:H8");
+       $excelFunctions->cellsAlign("A8:H8", 'center', 'center');
+       $excelFunctions->setRowHeight(8, 40);
        
        //format total row
-       $excelFunctions->formatAsFooter("A6:H6");
+       $excelFunctions->formatAsFooter("A12:H12");
        $excelFunctions->setRowHeight(2, 30);
        
        
        //make all element in first column bold
-       $excelFunctions->makeBold("A1:A6");
+       $excelFunctions->makeBold("A9:A12");
          
        //set column alignments
-       for($i=0; $i<4; $i++){
-         $row = $i+3;
+       for($i=0; $i<=4; $i++){
+         $row = $i + 9;
          $excelFunctions->setRowHeight($row, 20);
          $excelFunctions->cellsAlign("A".$row . ":" . "H".$row, '', 'center');
        }
@@ -530,8 +592,67 @@ class UsageMetricsController extends Controller
        $excelFunctions->columnAutoSize('A', 'H');
    }
 
+   
+   private function formatCompareExcelSheet($objPHPExcel, $comparsionUnitsCount){
+       $excelFunctions = new ExcelFunctions($objPHPExcel);
+       
+//     //merge first row and format the contents
+       $objPHPExcel->getActiveSheet()->mergeCells('A1:H1');
+       $objPHPExcel->getActiveSheet()->mergeCells('A2:H2');
+       $objPHPExcel->getActiveSheet()->mergeCells('A3:H3');
+              
+       $excelFunctions->setRowHeight(1, 35);
+       $excelFunctions->cellsAlign('A1:H1', 'center', 'center');
+       
+       $excelFunctions->setRowHeight(2, 20);
+       $excelFunctions->formatAsSheetTitle("A2");
+       $excelFunctions->makeBold("A2:H2");
+       
+       $excelFunctions->alignVertical("A3:H3");
+       $excelFunctions->alignHorizontal("A3:H3");
+       //$excelFunctions->makeBold("A3:H3");
+       
+       $i = 0;
+       $selectionHeader = 5;
+       $columnHeader = 6;
+       $totalRow = 10;
+       
+       do{
+           $objPHPExcel->getActiveSheet()->mergeCells('A'.$selectionHeader.':H'.$selectionHeader);
+           $excelFunctions->formatAsSelectionHeaders("A$selectionHeader:H$selectionHeader");
+           
+           $excelFunctions->formatAsColumnHeaders("A$columnHeader:H$columnHeader");
+           $excelFunctions->cellsAlign("A$columnHeader:H$columnHeader", 'center', 'center');
+           
+           $excelFunctions->formatAsFooter("A$totalRow:H$totalRow");
+           
+           //make all element in first column bold
+           $excelFunctions->makeBold("A$columnHeader:A$totalRow");
+           
+           $selectionHeader += 8;
+           $columnHeader += 8;
+           $totalRow += 8;
+           
+           $i++;
+       }while($i < $comparsionUnitsCount);
+       
+       
+       
+         
+       //set column alignments
+//       for($i=0; $i<4; $i++){
+//         $row = $i+3;
+//         $excelFunctions->setRowHeight($row, 20);
+//         $excelFunctions->cellsAlign("A".$row . ":" . "H".$row, '', 'center');
+//       }
+       
+       //make colums widths adjust automatically to width size
+       $excelFunctions->columnAutoSize('A', 'H');
+   }
 
    public function actionParseCompare(){        
+       date_default_timezone_set('Africa/Lagos');
+       
        $domPDFPath = Yii::getPathOfAlias('ext.vendors.dompdf');
 
        //get PHPExcel parent class
@@ -543,13 +664,24 @@ class UsageMetricsController extends Controller
        $selections = $_POST['selectionString'];
        //$selections = '{"group_1":"{\"channel\":\"mobile\",\"state\":\"0\",\"lga\":\"0\",\"facility\":\"0\",\"fromdate\":\"\",\"todate\":\"\"}","group_2":"{\"channel\":\"mobile\",\"state\":\"5\",\"lga\":\"0\",\"facility\":\"0\",\"fromdate\":\"\",\"todate\":\"\"}"}';
        $selectionsArray = json_decode($selections, true);
-       
+       $format = $_POST['format'];
        
        $cadreRowsSet = array();
        $stringSpace = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
        
        foreach ($selectionsArray as $selection){
            $ssArray = json_decode($selection, true);
+           //re-initialize the array
+           $this->totals = array(
+                        'cadre' => 'TOTAL',
+                        'num_hcw' => 0,
+                        'num_taking_trainings' => 0,
+                        'distinct_topics_viewed' => 0,
+                        'total_topic_views' => 0,
+                        'topics_completed' => 0,
+                        'distinct_guide_views' => 0,
+                        'total_guide_views' => 0
+            );
            
            try{
                 $rows = array();
@@ -593,17 +725,17 @@ class UsageMetricsController extends Controller
                 foreach($cadres as $cadre){
                         $cadreid = $cadre->cadre_id;
 
-                        $worker = array();
-                        $worker['cadre'] = Cadre::model()->findByPk($cadre->cadre_id)->cadre_title;
-                        $worker['num_hcw'] = $this->getNumberOfCadreWorkers($cadreid);
-                        $worker['num_taking_trainings'] = $this->getNumberOfWorkers($cadreid,$filterString); 
-                        $worker['distinct_topics_viewed'] = $this->getDistinctTrainingsDone($cadreid,$filterString);
-                        $worker['total_topic_views'] = $this->getTotalTopicViews($cadreid,$filterString); 
-                        $worker['topics_completed'] = $this->getCadreCompletedTraining($cadreid,$filterString);
-                        $worker['distinct_guide_views'] = $this->getDistinctGuideViews($cadreid,$filterString);
-                        $worker['total_guide_views'] = $this->getTotalGuideViews($cadreid,$filterString);
+//                        $worker = array();
+//                        $worker['cadre'] = Cadre::model()->findByPk($cadre->cadre_id)->cadre_title;
+//                        $worker['num_hcw'] = $this->getNumberOfCadreWorkers($cadreid);                        
+//                        $worker['num_taking_trainings'] = $this->getNumberOfWorkers($cadreid,$filterString); 
+//                        $worker['distinct_topics_viewed'] = $this->getDistinctTrainingsDone($cadreid,$filterString);
+//                        $worker['total_topic_views'] = $this->getTotalTopicViews($cadreid,$filterString); 
+//                        $worker['topics_completed'] = $this->getCadreCompletedTraining($cadreid,$filterString);
+//                        $worker['distinct_guide_views'] = $this->getDistinctGuideViews($cadreid,$filterString);
+//                        $worker['total_guide_views'] = $this->getTotalGuideViews($cadreid,$filterString);
 
-                        $rows[] = $worker;
+                        $rows[] = $this->getSelectionValues($cadreid, $filterString);
                 }
 
                 //HANDLE ONE MORE ITEM FOR TOTALS
@@ -621,8 +753,23 @@ class UsageMetricsController extends Controller
             
        }
        
-       //echo json_encode($cadreRowsSet); exit;
        
+       //now handle the printing
+       $writeResult = '';
+       switch ($format){
+           case 'pdf':
+               $writeResult = $this->writeComparePDF($cadreRowsSet);
+               break;
+           default:
+               $writeResult = $this->writeCompareExcel($cadreRowsSet, $format);
+               break;
+       }
+       echo $writeResult;
+        
+   }
+   
+   
+   public function writeComparePDF($cadreRowsSet){
         //create the html            
         //$this->render('_pdf', array('hcws'=>$healthWorkers));
         try{
@@ -655,19 +802,161 @@ class UsageMetricsController extends Controller
               file_put_contents($saveName, $pdf);
               
               //return back to the calling ajax function
-              echo json_encode(array('URL'=>$saveName, 'FILENAME'=>$fileName, 'STATUS'=>'OK'));
+              return json_encode(array('URL'=>$saveName, 'FILENAME'=>$fileName, 'STATUS'=>'OK'));
                 
         } catch(Exception $ex){
-            echo json_encode(array('MESSAGE'=>$ex->getMessage(), 'STATUS'=>'ERROR'));
+            return json_encode(array('MESSAGE'=>$ex->getMessage(), 'STATUS'=>'ERROR'));
         }
    }
    
-   
+   public function writeCompareExcel($cadreRowsSet, $excelFormat){
+       //NOW GO ALL ABOUT CREATING THE EXCEL FILE
+       //get a reference to the path of PHPExcel classes 
+       //var_dump($cadreRowsSet); exit;
+       try{
+            $phpExcelPath = Yii::getPathOfAlias('ext.vendors.phpexcel.Classes');
+
+            //get PHPExcel parent class
+            include($phpExcelPath . DIRECTORY_SEPARATOR . 'PHPExcel.php');
+
+            $objPHPExcel = new PHPExcel();
+
+            // Set properties
+            //echo date('Y-m-d H:i:s') . " Set properties\n";
+            $objPHPExcel->getProperties()->setCreator("mTrain Mobile Learning Platform")
+                                         ->setLastModifiedBy("mTrain Mobile Learning Platform")
+                                         ->setTitle("Usage Metrics Report");
+            //$objPHPExcel->getProperties()->setDescription("Health Workers Report");
+            //$objPHPExcel->getProperties()->setSubject("Health Workers Report");
+
+            //loop through the objects, add data to the cells
+            //and create the excel file content          
+            $objPHPExcel->setActiveSheetIndex(0);
+            
+            $rowNumber = 1;
+            
+            //write the logo image
+            $gdImage = imagecreatefromjpeg($this->webroot . '/img/logo.jpg');
+            $objDrawing = new PHPExcel_Worksheet_MemoryDrawing();
+            $objDrawing->setName('Sample image');
+            $objDrawing->setDescription('Sample image');
+            $objDrawing->setImageResource($gdImage);
+            $objDrawing->setRenderingFunction(PHPExcel_Worksheet_MemoryDrawing::RENDERING_PNG);
+            $objDrawing->setMimeType(PHPExcel_Worksheet_MemoryDrawing::MIMETYPE_DEFAULT);
+            $objDrawing->setWidthAndHeight(120,35);
+            $objDrawing->setCoordinates('E1');
+            $objDrawing->setWorksheet($objPHPExcel->getActiveSheet());
+            
+            
+            //set report title
+            $rowNumber++; //2
+            $objPHPExcel->getActiveSheet()->SetCellValue('A' . $rowNumber, 'USAGE COMPARISON METRICS REPORT');
+            
+            $rowNumber++; //3
+            $objPHPExcel->getActiveSheet()->SetCellValue('A' . $rowNumber, 'PRINTED: ' . date('d-m-Y h:i A'));
+            
+            $rowNumber++; //4 //for some space
+            
+            foreach($cadreRowsSet as $cadreRowSet){
+                $selectionString = str_replace('&nbsp;', ' ', $cadreRowSet[0]);
+                $cadres = array_slice($cadreRowSet, 1);
+                
+                //write the selection string
+                $rowNumber++; //5
+                $objPHPExcel->getActiveSheet()->SetCellValue('A' . $rowNumber, $selectionString);
+                
+                $rowNumber++; //6
+                $objPHPExcel->getActiveSheet()
+                    ->SetCellValue('A' . $rowNumber, 'CADRE')
+                    ->SetCellValue('B' . $rowNumber, 'NO. OF HCWS')
+                    ->SetCellValue('C' . $rowNumber, 'NO. TAKING TRAININGS')
+                    ->SetCellValue('D' . $rowNumber, 'NO. OF DISTINCT TOPICS VIEWED')
+                    ->SetCellValue('E' . $rowNumber, 'TOTAL TOPICS VIEWED')
+                    ->SetCellValue('F' . $rowNumber, 'TOPICS COMPLETED')
+                    ->SetCellValue('G' . $rowNumber, 'NO OF DISTINCT GUIDES VIEWED')
+                    ->SetCellValue('H' . $rowNumber, 'TOTAL NO. OF GUIDES VIEWED');
+                
+                foreach($cadres as $cadre){
+                        $rowNumber++; //7,8,9,10
+                        $objPHPExcel->getActiveSheet()
+                                ->SetCellValue('A' . $rowNumber, $cadre['cadre'])
+                                ->SetCellValue('B' . $rowNumber, $cadre['num_hcw'])
+                                ->SetCellValue('C' . $rowNumber, $cadre['num_taking_trainings']) 
+                                ->SetCellValue('D' . $rowNumber, $cadre['distinct_topics_viewed'])
+                                ->SetCellValue('E' . $rowNumber, $cadre['total_topic_views']) 
+                                ->SetCellValue('F' . $rowNumber, $cadre['topics_completed'])
+                                ->SetCellValue('G' . $rowNumber, $cadre['distinct_guide_views'])
+                                ->SetCellValue('H' . $rowNumber, $cadre['total_guide_views']);
+                }
+                
+                //advance two rows for space
+                $rowNumber += 2;
+            }
+
+            //FORMAT THE EXCEL FILE
+            $this->formatCompareExcelSheet($objPHPExcel, count($cadreRowsSet));
+
+            $title = 'Usage_Report';
+            $timestamp = date('Y-m-d');
+            $fileName = Yii::app()->user->name . '_' . $title . '_' . $timestamp;
+            $excelFormat = $_POST['format'];
+
+            if($excelFormat=='2007'){
+                $objWriter = new PHPExcel_Writer_Excel2007($objPHPExcel);
+                $fileName = $fileName . '.xlsx';
+                $saveName .= 'reports/' . $fileName;
+                $objWriter->save($saveName);
+            }
+            else if($excelFormat == '97_2003'){
+                $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, "Excel5");
+                $fileName = $fileName . '.xls';
+                $saveName .= 'reports/' . $fileName;
+                $objWriter->save($saveName);
+            }
+
+            //return back to the calling ajax function
+            return json_encode(array('URL'=>$saveName, 'FILENAME'=>$fileName, 'STATUS'=>'OK'));
+        } catch(Exception $ex) {
+            return json_encode(array('MESSAGE'=>$ex->getMessage(), 'STATUS'=>'ERROR'));
+        }
+   }
+
+   public function getSelectionValues($cadreid, $filterString, $requestType='POST'){
+        $worker = array();
+        $worker['cadre'] = Cadre::model()->findByPk($cadreid)->cadre_title;
         
+        $worker['num_hcw'] = $this->getNumberOfCadreWorkers($cadreid, $requestType);
+        $this->totals['num_hcw'] += $worker['num_hcw'];
+        
+        $worker['num_taking_trainings'] = $this->getNumberOfWorkers($cadreid,$filterString); 
+        $this->totals['num_taking_trainings'] += $worker['num_taking_trainings'];
+        
+        $worker['distinct_topics_viewed'] = $this->getDistinctTrainingsDone($cadreid,$filterString);
+        $this->totals['distinct_topics_viewed'] += $worker['distinct_topics_viewed'];
+        
+        $worker['total_topic_views'] = $this->getTotalTopicViews($cadreid,$filterString); 
+        $this->totals['total_topic_views'] += $worker['total_topic_views'];
+        
+        $worker['topics_completed'] = $this->getCadreCompletedTraining($cadreid,$filterString);
+        $this->totals['topics_completed'] += $worker['topics_completed'];
+        
+        $worker['distinct_guide_views'] = $this->getDistinctGuideViews($cadreid,$filterString);
+        $this->totals['distinct_guide_views'] += $worker['distinct_guide_views'];
+        
+        $worker['total_guide_views'] = $this->getTotalGuideViews($cadreid,$filterString);
+        $this->totals['total_guide_views'] += $worker['total_guide_views'];
+        
+        return $worker;
+   }
+
+
+
    /* This function exports data to a PDF file. */
    public function actionExportPDF(){
        //var_dump($_GET); exit;
         try{
+            date_default_timezone_set('Africa/Lagos');
+            
             $rows = array();
             
             //$_GET variables are availabe in this method
@@ -695,18 +984,7 @@ class UsageMetricsController extends Controller
             
             foreach($cadres as $cadre){
                     $cadreid = $cadre->cadre_id;
-
-                    $worker = array();
-                    $worker['cadre'] = Cadre::model()->findByPk($cadre->cadre_id)->cadre_title;
-                    $worker['num_hcw'] = $this->getNumberOfCadreWorkers($cadreid, 'GET');
-                    $worker['num_taking_trainings'] = $this->getNumberOfWorkers($cadreid,$filterString); 
-                    $worker['distinct_topics_viewed'] = $this->getDistinctTrainingsDone($cadreid,$filterString);
-                    $worker['total_topic_views'] = $this->getTotalTopicViews($cadreid,$filterString); 
-                    $worker['topics_completed'] = $this->getCadreCompletedTraining($cadreid,$filterString);
-                    $worker['distinct_guide_views'] = $this->getDistinctGuideViews($cadreid,$filterString);
-                    $worker['total_guide_views'] = $this->getTotalGuideViews($cadreid,$filterString);
-
-                    $rows[] = $worker;
+                    $rows[] = $this->getSelectionValues($cadreid, $filterString, 'GET');
             }
             
             //HANDLE ONE MORE ITEM FOR TOTALS
